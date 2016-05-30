@@ -37,7 +37,13 @@ ini_set('display_errors', '1');
 			$row= odbc_fetch_array($result);
 			return $row;
 		}
+		public function detalles_motor($tipomotor, $tipoproducto){
+			$sql="SELECT activacion, voltaje, tubo, RPM, amperaje FROM MOTOR WHERE descripcionMotor ='$tipomotor' AND tipoProducto='$tipoproducto'";
+			//error_log($sql);
+			$result = odbc_exec($this->db->connect(), $sql);
+			return $result;
 
+		}
 
 
 	}

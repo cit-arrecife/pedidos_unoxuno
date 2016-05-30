@@ -1,6 +1,6 @@
 			function consultarPrecio(nombre)
 			{
-				console.log('func precio');
+				//console.log('func precio');
 				var tipoProducto = $('#producto_tipo').val();
 				if(nombre == "da_mando")
 				{
@@ -279,7 +279,7 @@
 						Json =JSON.parse(response);
 						$('#Motor_valor').text(Json.precioMotor);
 						$('#Motor_valor_db').text(Json.precioMotor);
-						
+						detalle_motor(motor);
 						// $.each(Json, function(index, val) {
 					 //    	console.log(val.descripcionMotor);
 					 //    	var option = document.createElement('option');
@@ -289,4 +289,28 @@
 						// });
 				   }
 				}); // final del ajaz
+			}
+			function detalle_motor(motor){
+				var tipoproducto =$('#producto_tipo').val();
+				$.ajax({
+			        data:  {tipo_motor: motor,
+			        		tipo_producto: tipoproducto,
+			        		elegir: 2},
+			        url:   '../control/control_propio.php',
+			        type:  'post',
+			      
+			        success:  function (response) {
+			    		Json =JSON.parse(response);
+						$.each(Json, function(index, val) {
+						//	console.log('valor'+ val.activacion);
+							$('#Activacion').text(val.activacion);
+							$('#Voltaje').text(val.voltaje);
+							$('#Tubo').text(val.tubo);
+							$('#RPM').text(val.RPM);
+							$('#Amperaje').text(val.amperaje);
+							document.getElementById("Datos").style.display = "block";
+						});
+  					}
+				}); 
+
 			}

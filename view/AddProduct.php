@@ -66,7 +66,17 @@
 						    margin-right: 0;
 						}
 					}
+					.bor{
+						border: solid 1px black;
+						text-align: center;
+					}
+					.bor h4, p {
+						font-style: italic;
+						font-weight: bold;
+
+					}
 		</style>
+
 </head>
 <body>
 <input type="text" id="codusu" style="display:none;"></input>
@@ -85,8 +95,9 @@
 
 	      		<div class="collapse navbar-collapse navbar-ex1-collapse">
 	        		<ul class="nav navbar-nav">
-			      		<li><a href="MyOrders.php">Pedidos y Cotizaciones</a></li>
-			      		<li class="active"><a href="">Nuevo Pedido/Cotización</a></li>
+	        			<li class="active"><a href="">Nuevo Pedido/Cotización</a></li>
+			      		<li><a href="MyOrders.php">Consulta de Pedidos</a></li>
+			      	
 			      	<li><a href="Order.php">Ver Cotizacion</a></li>
 			      		<!-- <li><a href="#">Consulta de Inventario</a></li>  -->
 	        		</ul>
@@ -297,6 +308,12 @@
 					    	<div class="form-group col-sm-3" style="text-align:right;">
 						    	<label style="color:#CA0707;">$</label><label style="color:#CA0707;" id="producto_precio_descuento">0.00</label>
 					    	</div>
+
+					    	<div class="form-group col-sm-12">
+					    	<div class="bor">
+						    	<p style="align:right;">Importante: Todos los productos estan listados sin iva</p>
+						    	</div>
+						   	</div>
 					    </div>
 				    	
 				    </form>
@@ -579,6 +596,16 @@
 						    	<div class="col-sm-3" style="text-align:right;">
 						    	<label id="Motor_valor_db" style="display:none;">0.00</label>
 								<label id="Motor_valor" style="color:#CA0707;">$0.00</label>
+							    </div>
+							</div>
+							<div class="form-" id="Datos" style="display:none;">
+							   <div class="col-sm">
+								    <label style="color:#CA0707;">Activacion: 
+								    </label><label id="Activacion">---/---</label><br>
+								    <label style="color:#CA0707;">Voltaje: </label><label id="Voltaje">---/---</label><br>
+								    <label style="color:#CA0707;">Tubo: </label><label id="Tubo">---/---</label><br>
+								    <label style="color:#CA0707;">RPM: </label><label id="RPM">---/---</label><br>
+								    <label style="color:#CA0707;">Amperaje: </label><label id="Amperaje">---/---</label>
 							    </div>
 							</div>
 						

@@ -26,15 +26,18 @@ create table MOTOR(
 idMotor int IDENTITY(1,1),
 tipoProducto varchar(100),
 descripcionMotor varchar(100),
+detalleMotor varchar(100),
 dimensionesMotor varchar(100),
 lienxosMotor	 varchar(45),
 carreraMotor	 varchar(45),
-precioMotor	 float);
+precioMotor	 float,
+activacion	varchar(45),
+voltaje		varchar(45),
+tubo	varchar(45),
+RPM	varchar(45),
+amperaje	varchar(45));
 
-INSERT INTO MOTOR VALUES ('Vertilux-25E02, Radio frecuencia Tubo de 38mm, Batería interna recargable, No Incluye control ','2 Ancho x 2,40 Alto ','1 ','Electronico',800000 );
-INSERT INTO MOTOR VALUES ('Vertilux-35S06, Alámbrico Tubo 50mm, No incluye interruptor alámbrico ','4 Ancho x 4 Alto ','2 ','Mecanico',350000 );
-INSERT INTO MOTOR VALUES ('Vertilux-35E06,Radio frecuencia, Tubo 50mm, No incluye control ','5 Ancho x 4 Alto ','2 ','Electronico',750000 );
-INSERT INTO MOTOR VALUES ('Unoxuno-35R06 ,Radio frecuencia, Tubo 50mm, Incluye control ','6 Ancho x 4 Alto ','2 ','Mecanico3',390000 );
+
 
 
 Create Table PRODUCTOSUNO(

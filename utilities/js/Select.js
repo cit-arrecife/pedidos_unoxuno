@@ -225,12 +225,19 @@
 		var productoDescuentoDistribuidor = $('#producto_descuento_distribuidor').val();
 		var productoDescuentoAdicional = $('#producto_descuento_adicional').val();
 	
+		var ancho = $('#producto_ancho').val();
+		var alto = $('#producto_alto').val();
+
+
 		var productoPrecioDescuento = productoPrecioL - (productoPrecioL * (productoDescuentoDistribuidor / 100)) - (productoPrecioL * (productoDescuentoAdicional / 100));
 		if (productoPrecioDescuento < 0) {
 				productoPrecioDescuento = 0;
 			}
 		$('#producto_precio_descuento').html(productoPrecioDescuento);
 		//console.log(productoPrecioDescuento);
+		
+		var dimenciones = ancho * alto;
+		productoCantidad = productoCantidad *dimenciones;
 
 		var daProductoSubtotal = productoPrecioDescuento * productoCantidad;
 		//console.log(daProductoSubtotal);

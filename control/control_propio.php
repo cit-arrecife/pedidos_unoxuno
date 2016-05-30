@@ -38,6 +38,26 @@
 				}
 
 			break;
+			case '2': //traer motores desde la base de datos dependiendo el tipo de motor
+				$tipomotor =$_POST['tipo_motor'];
+				$tipoproducto =$_POST['tipo_producto'];
+				$Resultado = $m_propio->detalles_motor($tipomotor, $tipoproducto);
+				if($Resultado){
+					while ($row = odbc_fetch_array($Resultado)) {
+						$response["activacion"] = $row["activacion"];
+						$response["voltaje"] = $row["voltaje"];
+						$response["tubo"] = $row["tubo"];
+						$response["RPM"] = $row["RPM"];
+						$response["amperaje"] = $row["amperaje"];
+						$json[] = $response;	
+					}
+					echo json_encode($json);
+				}else
+				{
+					error_log("No se encontraron datos para ese motor");
+				}
+
+			break;
 			}//Cierre del switch
 
 

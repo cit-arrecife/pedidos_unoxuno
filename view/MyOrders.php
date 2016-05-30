@@ -115,11 +115,12 @@
 
 	      		<div class="collapse navbar-collapse navbar-ex1-collapse">
 	        		<ul class="nav navbar-nav">
-			      		<li class="active"><a href="">Pedidos y Cotizaciones</a></li>
-			      		<li><a href="AddProduct.php">Nuevo Pedido/Cotización</a></li>
-			      		<li>
+			      		<li ><a href="AddProduct.php">Nuevo Pedido/Cotización</a></li>
+			      		<li class="active"><a href="">Consulta de Pedidos</a></li>
+			      		
 			      		<!-- <a href="AdminPrices.php">Administrador de Precios</a> -->
-			      		</li>
+			      			<li><a href="Order.php">Ver Cotizacion</a></li>
+			      		
 			      		<li>
 			      		<!-- <a href="#">Consulta de Inventario</a> -->
 			      		</li>

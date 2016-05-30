@@ -80,10 +80,11 @@
 
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="MyOrders.php">Pedidos y Cotizaciones</a></li>
-                        <li><a href="AddProduct.php">Nuevo Pedido/Cotización</a></li>
+                       <li ><a href="addProduct.php">Nuevo Pedido/Cotización</a></li>
+                        <li><a href="MyOrders.php">Consulta de Pedidos</a></li>
                         <!-- <li><a href="AdminPrices.php">Administrador de Precios</a></li>
                         <li><a href="#">Consulta de Inventario</a></li> -->
+                            <li class="active"><a href="">Ver Cotizacion</a></li>
                     </ul>
                     <hr>
                     <ul class="nav navbar-nav navbar-right">

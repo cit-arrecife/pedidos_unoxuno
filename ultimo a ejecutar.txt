@@ -1,0 +1,1 @@
+alter table mtprocli add PASSWORDLOG VARCHAR(45)
