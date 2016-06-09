@@ -66,15 +66,9 @@
 						    margin-right: 0;
 						}
 					}
-					.bor{
-						border: solid 1px black;
-						text-align: center;
-					}
-					.bor h4, p {
-						font-style: italic;
-						font-weight: bold;
-
-					}
+					.bor{border: solid 1px black;text-align: center;}
+					.bor h4, p {font-style: italic;font-weight: bold;}
+					.Datos{font-size: 11px; text-align:center;}
 		</style>
 
 </head>
@@ -180,7 +174,7 @@
 			    	<div class="form-group col-sm-4">
 				    	<div class="input_container">
 				    		<label>Tipo de Presentación</label>
-				    		<select id="producto_tipo_presentacion" class="form-control" onchange="validar_tipo_presentacion(this.value)">
+				    		<select id="producto_tipo_presentacion" class="form-control" onchange="validar_tipo_presentacion(this.value);Perfil(this.value)">
 				    		<option value="SELECCIONE">-- Seleccione --</option>
 				    		
 				    		</select>
@@ -301,7 +295,7 @@
 					    	</div>
 
 					    	<div class="form-group col-sm-3">
-						    	<input type="number" min="0" max="100" id="producto_descuento_adicional" onkeyup="validarDescuento(this.id)" onchange="validarDescuento(this.id)" class="form-control" value="0" placeholder="Descuento Adicional">
+						    	<input type="number" min="0" max="100" id="producto_descuento_adicional" onkeyup="validarDescuento(this.id)" onchange="validarDescuento(this.id)" class="form-control" value="0" placeholder="Descuento Adicional" disabled>
 						    	<p style="font-size:85%;">% (Dto. Adicional.)</p>
 					    	</div>
 
@@ -338,21 +332,21 @@
 							    </div>
 
 							    <div class="col-sm-4">
-							    	<select id="da_mando" class="form-control" onchange="consultarPrecio(this.id)" onblur ="sumarAdicionales('#da_mando_precio')">
+							    	<select id="da_mando" class="form-control" onchange="adicional('Mando', this.value, '')" >
 							    		<option value="SELECCIONE">-- Seleccione --</option>
 							    		<option value="IZQUIERDO">IZQUIERDO</option>
 				    					<option value="DERECHO">DERECHO</option>
 							    	</select>
 						    	</div>
 
-							    <div class="col-sm-2">
-								    <input type="number" min="0" max="100" id="da_mando_descuento" onkeyup="validarDescuento(this.id)" onchange="validarDescuento(this.id)" class="form-control" value="0" placeholder="Descuento" disabled>
+						<!-- 	    <div class="col-sm-2">
+								    <input type="number" min="0" max="100" id="da_mando_descuento" onkeyup="validarDescuento(this.id)" onchange="validarDescuento(this.id)" class="form-control" value="0" placeholder="Descuento" disabled style="display:none;">
 							    </div>
 
 						    	<div class="col-sm-3" style="text-align:right;">
 						    		<label id="h_mando_precio" style="display:none;">0</label>
 								    <label style="color:#CA0707;">$</label><label style="color:#CA0707;" id="da_mando_precio">0</label>
-							    </div>
+							    </div> -->
 							</div>
 
 							<div class="form-group col-sm-12" id="dap_perfil" style="display:none;">
@@ -361,21 +355,23 @@
 							    </div>
 
 							    <div class="col-sm-4">
-							    	<select id="da_perfil" class="form-control" onchange="consultarPrecio(this.id)" onblur ="sumarAdicionales('#da_perfil_precio')">
+							    <LABEL>Tipo de Pefil</LABEL><br>
+							    	<select id="da_perfil" class="form-control" onchange="PerfilColor(this.value);adicional('Perfil', this.value,'')" >
 							    		<option value="SELECCIONE">-- Seleccione --</option>
-							    		<option value="ESTANDAR">ESTANDAR</option>
-				    					<option value="ELITE">ELITE</option>
-				    					<option value="PREMIUM">PREMIUM</option>
 							    	</select>
 						    	</div>
 
-							    <div class="col-sm-2">
-								    <input type="number" min="0" max="100" id="da_perfil_descuento" onkeyup="validarDescuento(this.id)" onchange="validarDescuento(this.id)" class="form-control" value="0" placeholder="Descuento" disabled>
+							    <div class="col-sm-4">
+								<!--     <input type="number" min="0" max="100" id="da_perfil_descuento" onkeyup="validarDescuento(this.id)" onchange="validarDescuento(this.id)" class="form-control" value="0" placeholder="Descuento" disabled style="display:none;"> -->
+								     <label>Color</label><br>
+								    <select id="da_perfil_color" class="form-control" onchange="adicional('Perfil Color', this.value, '')">
+							    	<option value="SELECCIONE">-- Seleccione --</option>
+							    	</select>
 							    </div>
 
 						    	<div class="col-sm-3" style="text-align:right;">
-						    		<label id="h_perfil_precio" style="display:none;">0</label>
-								    <label style="color:#CA0707;">$</label><label style="color:#CA0707;" id="da_perfil_precio">0</label>
+						    		<!-- <label id="h_perfil_precio" style="display:none;">0</label>
+								    <label style="color:#CA0707;">$</label><label style="color:#CA0707;" id="da_perfil_precio">0</label> -->
 							    </div>
 							</div>
 							    
@@ -385,7 +381,7 @@
 							    </div>
 
 							    <div class="col-sm-4">
-							    	<select id="da_direccion_tela" class="form-control" onchange="consultarPrecio(this.id)" onblur ="sumarAdicionales('#da_direccion_tela_precio')">
+							    	<select id="da_direccion_tela" class="form-control" onchange="adicional('Dir Tela', this.value,'')" >
 							    		<option value="SELECCIONE">-- Seleccione --</option>
 							    		<option value="NORMAL">NORMAL</option>
 				    					<option value="ATRAVESADA">ATRAVESADA</option>
@@ -393,14 +389,14 @@
 							    	</select>
 						    	</div>
 
-							    <div class="col-sm-2">
-								    <input type="number" min="0" max="100" id="da_direccion_tela_descuento" onkeyup="validarDescuento(this.id)" onchange="validarDescuento(this.id)" class="form-control" value="0" placeholder="Descuento" disabled>
+							   <!--  <div class="col-sm-2">
+								    <input type="number" min="0" max="100" id="da_direccion_tela_descuento" onkeyup="validarDescuento(this.id)" onchange="validarDescuento(this.id)" class="form-control" value="0" placeholder="Descuento" disabled style="display:none;">
 							    </div>
 
 						    	<div class="col-sm-3" style="text-align:right;">
 						    		<label id="h_direccion_tela_precio" style="display:none;">0</label>
 								    <label style="color:#CA0707;">$</label><label style="color:#CA0707;" id="da_direccion_tela_precio">0</label>
-							    </div>
+							    </div> -->
 							</div>
 
 							<div class="form-group col-sm-12" id="dap_sentido" style="display:none;">
@@ -409,21 +405,21 @@
 							    </div>
 
 							    <div class="col-sm-4">
-							    	<select id="da_sentido" class="form-control" onchange="consultarPrecio(this.id)" onblur ="sumarAdicionales('#da_sentido_precio')">
+							    	<select id="da_sentido" class="form-control" onchange="adicional('Sentido', this.value,'')" >
 							    		<option value="SELECCIONE">-- Seleccione --</option>
 							    		<option value="NORMAL">NORMAL</option>
 							    		<option value="CONTRARIO-NVR">CONTRARIO-NVR</option>
 							    	</select>
 						    	</div>
 
-							    <div class="col-sm-2">
-								    <input type="number" min="0" max="100" id="da_sentido_descuento" onkeyup="validarDescuento(this.id)" onchange="validarDescuento(this.id)" class="form-control" value="0" placeholder="Descuento" disabled>
+							    <!-- <div class="col-sm-2">
+								    <input type="number" min="0" max="100" id="da_sentido_descuento" onkeyup="validarDescuento(this.id)" onchange="validarDescuento(this.id)" class="form-control" value="0" placeholder="Descuento" disabled style="display:none;">
 							    </div>
 
 						    	<div class="col-sm-3" style="text-align:right;">
 						    		<label id="h_sentido_precio" style="display:none;">0</label>
 								    <label style="color:#CA0707;">$</label><label style="color:#CA0707;" id="da_sentido_precio">0</label>
-							    </div>
+							    </div> -->
 							</div>
 							    
 							<div class="form-group col-sm-12" id="dap_soporte_intermedio" style="display:none;">
@@ -432,21 +428,21 @@
 							    </div>
 
 							    <div class="col-sm-4">
-							    	<select id="da_soporte_intermedio" class="form-control" onchange="consultarPrecio(this.id)" onblur ="sumarAdicionales('#da_soporte_intermedio_precio')">
+							    	<select id="da_soporte_intermedio" class="form-control" onchange="adicional('Soporte', this.value,'')" >
 							    		<option value="SELECCIONE">-- Seleccione --</option>
 							    		<option value="DEPENDIENTE">DEPENDIENTE</option>
 							    		<option value="INDEPENDIENTE">INDEPENDIENTE</option>
 							    	</select>
 						    	</div>
 
-							    <div class="col-sm-2">
-								    <input type="number" min="0" max="100" id="da_soporte_intermedio_descuento" onkeyup="validarDescuento(this.id)" onchange="validarDescuento(this.id)" class="form-control" value="0" placeholder="Descuento" disabled>
+							   <!--  <div class="col-sm-2">
+								    <input type="number" min="0" max="100" id="da_soporte_intermedio_descuento" onkeyup="validarDescuento(this.id)" onchange="validarDescuento(this.id)" class="form-control" value="0" placeholder="Descuento" disabled style="display:none;">
 							    </div>
 
 						    	<div class="col-sm-3" style="text-align:right;">
 								    <label id="h_soporte_intermedio_precio" style="display:none;">0</label>
 								    <label style="color:#CA0707;">$</label><label style="color:#CA0707;" id="da_soporte_intermedio_precio">0</label>
-							    </div>
+							    </div> -->
 							</div>
 
 							<div class="form-group col-sm-12" id="dap_cover_light" style="display:none;">
@@ -455,19 +451,19 @@
 							    </div>
 
 							    <div class="col-sm-4">
-							    	<select id="da_cover_light" class="form-control" onchange="consultarPrecio(this.id)" onblur ="sumarAdicionales('#da_cover_light_precio')">
+							    	<select id="da_cover_light" class="form-control" onchange="cover_light();adicional('Cover', this.value, 'da_cover_light_precio')">
 							    		<option value="SELECCIONE">-- Seleccione --</option>
 							    		<option value="SI">SI</option>
 							    	</select>
 						    	</div>
 
 							    <div class="col-sm-2">
-								    <input type="number" min="0" max="100" id="da_cover_light_descuento" onkeyup="validarDescuento(this.id)" onchange="validarDescuento(this.id)" class="form-control" value="0" placeholder="Descuento" disabled>
+								    <input type="number" min="0" max="100" id="da_cover_light_descuento" onkeyup="validarDescuento(this.id)" onchange="validarDescuento(this.id)" class="form-control" value="0" placeholder="Descuento" disabled style="display:none;">
 							    </div>
-
+							  
 						    	<div class="col-sm-3" style="text-align:right;">
 						    		<label id="h_cover_light_precio" style="display:none;">0</label>
-								    <label style="color:#CA0707;">$</label><label style="color:#CA0707;" id="da_cover_light_precio">0</label>
+								    <label style="color:#CA0707;">$</label><label style="color:#CA0707;" id="da_cover_light_precio" >0</label>
 							    </div>
 							</div>
 
@@ -477,21 +473,21 @@
 							    </div>
 
 							    <div class="col-sm-4">
-							    	<select id="da_junto_item" class="form-control" onchange="consultarPrecio(this.id)" onblur ="sumarAdicionales('#da_junto_item_precio')">
+							    	<select id="da_junto_item" class="form-control" onchange="adicional('Junto Item', this.value,'')" >
 							    		<option value="SELECCIONE">-- Seleccione --</option>
 							    		<option value="AL SIGUIENTE ITEM">AL SIGUIENTE ITEM</option>
 							    		<option value="AL ANTERIOR ITEM">AL ANTERIOR ITEM</option>
 							    	</select>
 						    	</div>
 
-							    <div class="col-sm-2">
-								    <input type="number" min="0" max="100" id="da_junto_item_descuento" onkeyup="validarDescuento(this.id)" onchange="validarDescuento(this.id)" class="form-control" value="0" placeholder="Descuento" disabled>
+							   <!--  <div class="col-sm-2">
+								    <input type="number" min="0" max="100" id="da_junto_item_descuento" onkeyup="validarDescuento(this.id)" onchange="validarDescuento(this.id)" class="form-control" value="0" placeholder="Descuento" disabled style="display:none;">
 							    </div>
 
 						    	<div class="col-sm-3" style="text-align:right;">
 						    		<label id="h_junto_item_precio" style="display:none;">0</label>
 								    <label style="color:#CA0707;">$</label><label style="color:#CA0707;" id="da_junto_item_precio">0</label>
-							    </div>
+							    </div> -->
 							</div>
 
 							<div class="form-group col-sm-12" id="dap_mismo_cabezal" style="display:none;">
@@ -500,7 +496,7 @@
 							    </div>
 
 							    <div class="col-sm-4">
-							    	<select id="da_mismo_cabezal" class="form-control" onchange="consultarPrecio(this.id)" onblur ="sumarAdicionales('#da_mismo_cabezal_precio')">
+							    	<select id="da_mismo_cabezal" class="form-control" onchange="adicional('Cabezal', this.value,'')" onblur ="sumarAdicionales('#da_mismo_cabezal_precio')">
 							    		<option value="SELECCIONE">-- Seleccione --</option>
 							    		<option value="JUNTO AL SIGUIENTE">JUNTO AL SIGUIENTE</option>
 							    		<option value="JUNTO AL ANTERIOR">JUNTO AL ANTERIOR</option>
@@ -508,14 +504,14 @@
 							    	</select>
 						    	</div>
 
-							    <div class="col-sm-2">
-								    <input type="number" min="0" max="100" id="da_mismo_cabezal_descuento" onkeyup="validarDescuento(this.id)" onchange="validarDescuento(this.id)" class="form-control" value="0" placeholder="Descuento" disabled>
+							   <!--  <div class="col-sm-2">
+								    <input type="number" min="0" max="100" id="da_mismo_cabezal_descuento" onkeyup="validarDescuento(this.id)" onchange="validarDescuento(this.id)" class="form-control" value="0" placeholder="Descuento" disabled style="display:none;">
 							    </div>
 
 						    	<div class="col-sm-3" style="text-align:right;">
 						    		<label id="h_mismo_cabezal_precio" style="display:none;">0</label>
 								    <label style="color:#CA0707;">$</label><label style="color:#CA0707;" id="da_mismo_cabezal_precio">0</label>
-							    </div>
+							    </div> -->
 							</div>
 
 						</div>
@@ -569,7 +565,7 @@
 							    </div>
 
 							    <div class="col-sm-4">
-							    	<select id="da_motor_tipo" class="form-control" onchange=" Llenar_motor(this.value)">
+							    	<select id="da_motor_tipo" class="form-control" onchange="Llenar_motor(this.value)">
 							    		<option selected value="SELECCIONE" >-- Seleccione --</option>
 							    		<option value="ELECTRONICO">ELECTRONICO</option>
 							    		<option value="MECANICO">MECANICO</option>
@@ -584,7 +580,7 @@
 							    </div>
 
 							    <div class="col-sm-4">
-							    	<select id="da_motor" class="form-control" onchange="precio_motor(this.value)" onblur ="sumarAdicionales('#Motor_valor')">
+							    	<select id="da_motor" class="form-control" onchange="precio_motor(this.value); adicional('Motor', this.value, 'Motor_valor')">
 							    		<option selected value="SELECCIONE" >-- Seleccione --</option>
 							    	</select>
 						    	</div>
@@ -598,14 +594,18 @@
 								<label id="Motor_valor" style="color:#CA0707;">$0.00</label>
 							    </div>
 							</div>
-							<div class="form-" id="Datos" style="display:none;">
-							   <div class="col-sm">
-								    <label style="color:#CA0707;">Activacion: 
-								    </label><label id="Activacion">---/---</label><br>
-								    <label style="color:#CA0707;">Voltaje: </label><label id="Voltaje">---/---</label><br>
-								    <label style="color:#CA0707;">Tubo: </label><label id="Tubo">---/---</label><br>
-								    <label style="color:#CA0707;">RPM: </label><label id="RPM">---/---</label><br>
-								    <label style="color:#CA0707;">Amperaje: </label><label id="Amperaje">---/---</label>
+							<div  id="Datos" style="display:none;">
+							   <div class="Datos">
+								    <label style="color:#CA0707;">Activacion:</label>
+								    	<label id="Activacion">---/---</label>
+								    <label style="color:#CA0707;">Voltaje: </label>
+								    	<label id="Voltaje">---/---</label>
+								    <label style="color:#CA0707;">Tubo: </label>
+								    	<label id="Tubo">---/---</label>
+								    <label style="color:#CA0707;">RPM: </label>
+								    	<label id="RPM">---/---</label>
+								    <label style="color:#CA0707;">Amperaje: </label>
+								    	<label id="Amperaje">---/---</label>
 							    </div>
 							</div>
 						
@@ -670,97 +670,7 @@
 			<div class="form-group col-sm-12">
 	    		<button class="btn btn-danger" type="button" onclick="agregarProducto()" style="background-color:#CA0707 !important;">Confirmar Producto</button>
 	    	</div>
-	    	<script type="text/javascript" charset="utf-8" async defer>
-	    	var dateGrupoVenta, random, guardarCodigoVenta, guardarGrupoVenta;
-			var nombreEspacio, tipoProducto, tipoPresentacion, tipoTela, telaProducto, colorTela;
-			var productoCodigo, productoNombre, productoCantidad, productoAncho, productoAlto, productoDescuentoDistribuidor, productoDescuentoAdicional, productoObservaciones;
-			var clienteCodigo, clienteNombre, clienteDireccion, clienteFinal;
-			var ventaProductoSubtotal, ventaProductoIva, ventaProductoTotal;
-			var objectDatosProducto, arrayObjectProducto = [];
-	    	function registrarVenta()
-			{
-				
-				// if (validacionesRegistrar() != true)
-				// {
-					//$('#cliente_buscar').prop("disabled", true);
+	<script>
 
-					dateGrupoVenta = new Date();
-					random = Math.floor((Math.random() * 1000) + 1);
-					guardarCodigoVenta = "vent-" + dateGrupoVenta.getDate() + "" + (dateGrupoVenta.getMonth()+1) + "" + dateGrupoVenta.getFullYear() + "" + random + dateGrupoVenta.getHours() + "" + dateGrupoVenta.getMinutes() + "" + dateGrupoVenta.getSeconds() + "" + dateGrupoVenta.getMilliseconds();
-					if (guardarGrupoVenta == null)
-	    			{ guardarGrupoVenta = "grup-" + dateGrupoVenta.getDate() + "" + (dateGrupoVenta.getMonth()+1) + "" + dateGrupoVenta.getFullYear() + "" + dateGrupoVenta.getHours() + "" + dateGrupoVenta.getMinutes() + "" + dateGrupoVenta.getSeconds() + "" + dateGrupoVenta.getMilliseconds();
-	    			}
-
-	    			/* Seleccionar Producto */
-		    		nombreEspacio = $('#producto_nombre_espacio').val();
-		    		tipoProducto = $('#producto_tipo').val();
-		    		tipoPresentacion = $('#producto_tipo_presentacion').val();
-		    		tipoTela = $('#producto_tipo_tela').val();
-		    		telaProducto = $('#producto_tela').val();
-		    		colorTela = $('#producto_tela_color').val();
-		    		//productoCodigo = $('#producto_buscar').val();
-		    		//productoNombre = $('#producto_buscar :selected').text();
-		    		clienteCodigo = "<?php echo $_SESSION['usuario_codigo']; ?>";
-		    		clienteNombre = "<?php echo $_SESSION['usuario_nombre']; ?>";
-		    		//clienteDireccion = $('#direccion_envio_final').val();
-		    		//clienteFinal = $('#nombre_cliente_final').val();
-		    		/* /Seleccionar Producto */
-
-		    		/* Datos Iniciales */
-		    		productoCantidad = $('#producto_cantidad').val();
-		    		productoAncho = $('#producto_ancho').val();
-		    		productoAlto = $('#producto_alto').val();
-		    		productoDescuentoDistribuidor = $('#producto_descuento_distribuidor').val();
-		    		productoDescuentoAdicional = $('#producto_descuento_adicional').val();
-		    		/* /Datos Iniciales */
-
-		    		/* Cotización */
-		    		ventaProductoSubtotal = $('#da_producto_subtotal').text();
-		    		ventaProductoIva = $('#da_producto_iva').text();
-		    		ventaProductoTotal = $('#da_producto_total').text();
-		    		/* /Cotización */
-
-		    		/* Datos Complementarios */
-		    		productoObservaciones = $('#dc_producto_observaciones').val();
-		    		/* /Datos Complementarios */
-
-		    		objectDatosProducto = { 
-		    			venta_codigo:guardarCodigoVenta, 
-		    			venta_grupo:guardarGrupoVenta, 
-		    			espacio_nombre:nombreEspacio, 
-		    			producto_tipo:tipoProducto, 
-		    			//producto_codigo:productoCodigo, 
-		    			//producto_nombre:productoNombre, 
-		    			cliente_codigo:clienteCodigo, 
-		    			cliente_nombre:clienteNombre, 
-		    			/*cliente_direccion:clienteDireccion, *//*cliente_final:clienteFinal,*/
-		    			producto_cantidad:productoCantidad, 
-		    			producto_ancho:productoAncho, 
-		    			producto_alto:productoAlto, 
-		    			producto_descuento_distribuidor:productoDescuentoDistribuidor, 
-		    			producto_descuento_adicional:productoDescuentoAdicional, 
-		    			venta_producto_subtotal:ventaProductoSubtotal, 
-		    			venta_producto_iva:ventaProductoIva, 
-		    			venta_producto_total:ventaProductoTotal, 
-		    			producto_observaciones:productoObservaciones };
-		    		arrayObjectProducto.push(objectDatosProducto);
-
-		    		$('#modalRegistroVenta').modal({backdrop: 'static', keyboard: false});
-
-		    		//alert(guardarCodigoVenta + "\n" + guardarGrupoVenta);
-				//}
-			}
-
-			function finalizarRegistro()
-			{
-				
-				var stringArrayObjectProducto = "'"+JSON.stringify(arrayObjectProducto, null, "")+"'";
-			
-				var form = '<form action="RegisterOrder.php" method="POST">'+'<input type="hidden" name="arrayDatosProductos" value='+stringArrayObjectProducto+'></input>'+'</form>';
-				$(form).submit();
-				
-			}	
-
-	    	</script>
 </body>
 </html>

@@ -47,12 +47,12 @@ function CargarEncabezado(codigo){
 					var RAnch='<td style="text-align:center">'+val.ANCHO+'</td>';
 					var RAlt='<td style="text-align:center">'+val.ALTO+'</td>';
 					var RVal='<td style="text-align:center" id="Val'+i+'">'+val.VALORUNIT+'</td>';
-					var RCaracte='<td style="text-align:center">'+''+'</td>';
-					var Dispo='<td style="text-align:center">DISPONIBLE</td>';
+					var RCaracte='<td style="text-align:center">'+val.PRODUCTO+'</td>';
+					// var Dispo='<td style="text-align:center"></td>';
 					var buttonModificarP = '<button id="bModificarP'+val.IDPRODUCTO+'" class="btn btn-warning" title="Modificar" data-toggle="modal" data-target="#modal_modificar_producto'+val.IDPRODUCTO+'"><span class="glyphicon glyphicon-list-alt"></span></button>';
 					var buttonEliminarP = '<button id="bEliminarP'+val.IDPRODUCTO+'" class="btn btn-danger" title="Eliminar" onclick=eliminarRowProducto("'+val.IDPRODUCTO+'")><span class="glyphicon glyphicon-remove"></span></button>';
 					var opciones = '<td style="text-align:center">'+buttonEliminarP+'</td>';
-					var detalleProducto ="<tr id='tr_"+val.IDPRODUCTO+"'>"+Row+RName+RCant+RAnch+RAlt+RVal+RCaracte+Dispo+opciones+"</tr>";
+					var detalleProducto ="<tr id='tr_"+val.IDPRODUCTO+"'>"+Row+RName+RCant+RAnch+RAlt+RVal+RCaracte/*+Dispo*/+opciones+"</tr>";
 				  	$('#detalleProducto').append(detalleProducto);
 				  	i++;
 				  

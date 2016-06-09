@@ -34,12 +34,12 @@ precioMismo_Cabezal	float,
 tipoProductoMismo_Cabezal	varchar(45));
 
 
-create table Perfil (
-idPerfil	  	int,
-codigoPerfil	varchar(45),
-nombrePerfil	varchar(45),
-precioPerfil	float,
-tipoProductoPerfil	varchar(45));
+create table PERFIL(
+idPerfil	  	int IDENTITY(1,1),
+tipoPerfil varchar(45),
+nombrePerfil varchar(45),
+colorPerfil varchar(45));
+
 
 create table Sentido (
 idSentido	  	int,

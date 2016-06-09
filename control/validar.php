@@ -3,7 +3,7 @@
 		$validar = new modelo_validar();
 
 	$opcion = $_POST['opcion'];
-
+		//error_log($opcion);
 	switch ($opcion) {
 		case 1:
 			$tipoproducto = $_POST['tipoproducto'];
@@ -67,7 +67,28 @@
 
 			echo json_encode($response);
 		break;
-
+		case 6:
+			$tipoproducto = $_POST['tipoproducto'];
+			$Resultado = $validar->Perfil($tipoproducto);
+			if($Resultado){
+				while ($row = odbc_fetch_array($Resultado)) {
+					$response["nombrePerfil"] = $row["nombrePerfil"];				
+					$json[] = $response;
+				}
+			}
+			echo json_encode($json);
+		break;
+		case 7:
+			$nombreperfil = $_POST['nombreperfil'];
+			$Resultado = $validar->Perfil_Color($nombreperfil);
+			if($Resultado){
+				while ($row = odbc_fetch_array($Resultado)) {
+					$response["colorPerfil"] = $row["colorPerfil"];				
+					$json[] = $response;
+				}
+			}
+			echo json_encode($json);
+		break;
 		default:
 			error_log('Ocurrio un error al momento de enviar los datos a validar.php opcion numero '.$opcion);
 		break;

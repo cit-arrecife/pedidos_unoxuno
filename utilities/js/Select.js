@@ -1,10 +1,10 @@
 
-
+document.write('<script src="../utilities/js/Adicionales.js" type="text/javascript"></script>');
 	function validar_tipo_producto(tipoproducto){
 
 				if(tipoproducto=='SELECCIONE'){
 					var select = document.getElementById("producto_tipo_presentacion");
-								while(select.options.length > 0)
+							while(select.options.length > 0)
 								{                
 				    				select.remove(0);
 				    			}
@@ -12,6 +12,7 @@
 								option.value = "SELECCIONE";
 					    		option.text = "-- Seleccione --";
 					    		select.add(option);
+
 
 				}else{
 				    $.ajax({
@@ -247,21 +248,27 @@
 		$('#da_producto_iva').html(parseInt(daProductoIva));
 		$('#da_producto_total').html(daProductoTotal);
 
+		var nombreAdicional = $('#da_cover_light').val();
+		console.log('nombre adicional '+nombreAdicional);
+		if(nombreAdicional != 'SELECCIONE'){
+			cover_light();
+			 setTimeout ("sumarAdicionales('#da_cover_light_precio');", 500); 
+		}
+
 	}
 
 	function sumarAdicionales(id){
 		//valores antes de adicional;
 		var subAnt = parseInt($('#da_producto_subtotal').text());
-
 		//datos del objeto
 		var ValorAgregar=parseInt($(id).text());
-		console.log(ValorAgregar);
+		//console.log(ValorAgregar);
 		var subDes = subAnt+ValorAgregar;
-		console.log(subDes);
+		//console.log(subDes);
 		var ivaDes =subDes * (16 / 100);
-		console.log(ivaDes);
+		//console.log(ivaDes);
 		var TotalDes = subDes+ivaDes;
-		console.log(TotalDes);
+		//console.log(TotalDes);
 		$('#da_producto_subtotal').html(subDes);
 		$('#da_producto_iva').html(parseInt(ivaDes));
 		$('#da_producto_total').html(TotalDes);
@@ -315,4 +322,93 @@
                 $('#da_motor_desc').val(parseInt(jsonResponse.Descu));
    
              });
+		}
+		function Perfil(tipoProducto){
+			var tipoproducto= tipoProducto;
+			console.log('tipo '+tipoProducto);
+				if(tipoproducto=='SELECCIONE'){
+					var select = document.getElementById("da_perfil");
+							while(select.options.length > 0)
+								{                
+				    				select.remove(0);
+				    			}
+				    			var option = document.createElement('option');
+								option.value = "SELECCIONE";
+					    		option.text = "-- Seleccione --";
+					    		select.add(option);
+				}else{
+				    $.ajax({
+				        data:  {tipoproducto: tipoproducto, opcion: 6},
+				        url:   '../control/validar.php',
+				        type:  'post',
+				      
+				        success:  function (response) {
+								Json =JSON.parse(response);
+								var select = document.getElementById("da_perfil");
+								while(select.options.length > 0)
+								{                
+				    				select.remove(0);
+				    			}
+				    			var option = document.createElement('option');
+								option.value = "SELECCIONE";
+					    		option.text = "-- Seleccione --";
+					    		select.add(option);
+								$.each(Json, function(index, val) {
+							 //   	console.log(val.tipoPresentacionProducto);
+							    	var option = document.createElement('option');
+									option.value = val.nombrePerfil;
+					    			option.text = val.nombrePerfil;
+					    			select.add(option);
+								});
+								
+
+				        }
+					}); // final del ajaz
+				}// final del else 
+				seleccionarTipoProducto(tipoproducto)
+		}
+		function PerfilColor(nombreperfil){
+			
+			var nombreperfil = nombreperfil;
+				if(nombreperfil=='SELECCIONE'){
+					var select = document.getElementById("da_perfil_color");
+							while(select.options.length > 0)
+								{                
+				    				select.remove(0);
+				    			}
+				    			var option = document.createElement('option');
+								option.value = "SELECCIONE";
+					    		option.text = "-- Seleccione --";
+					    		select.add(option);
+				}else{
+				    $.ajax({
+				        data:  {nombreperfil : nombreperfil,
+				        		 opcion: 7},
+				        url:   '../control/validar.php',
+				        type:  'post',
+				      
+				        success:  function (response) {
+								Json =JSON.parse(response);
+								var select = document.getElementById("da_perfil_color");
+								while(select.options.length > 0)
+								{                
+				    				select.remove(0);
+				    			}
+				    			var option = document.createElement('option');
+								option.value = "SELECCIONE";
+					    		option.text = "-- Seleccione --";
+					    		select.add(option);
+								$.each(Json, function(index, val) {
+							 //   	console.log(val.tipoPresentacionProducto);
+							    	var option = document.createElement('option');
+									option.value = val.colorPerfil;
+					    			option.text = val.colorPerfil;
+					    			select.add(option);
+								});
+								
+
+				        }
+					}); // final del ajaz
+				}// final del else 
+				seleccionarTipoProducto(tipoproducto)
 		}

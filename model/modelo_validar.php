@@ -44,7 +44,18 @@ ini_set('display_errors', '1');
 				$result = odbc_exec($this->db->connect(), $sql);
 				$row = odbc_fetch_array($result);
 				return $row;
-
+			}
+			public function Perfil($tipoproducto){
+				$sql="SELECT DISTINCT(nombrePerfil) FROM PERFIL WHERE tipoPerfil='$tipoproducto'";
+				//error_log($sql);
+				$result = odbc_exec($this->db->connect(), $sql);
+				return $result;
+			}
+			public function Perfil_Color($nombreperfil){
+				$sql="select colorPerfil from PERFIL WHERE nombrePerfil='$nombreperfil'";
+				error_log($sql);
+				$result = odbc_exec($this->db->connect(), $sql);
+				return $result;	
 			}
 			
 

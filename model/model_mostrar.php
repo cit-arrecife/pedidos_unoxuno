@@ -24,7 +24,7 @@
 
 		public function cargarProductos($idcliente, $nrodcto){
 
-			$sql="SELECT  IDPRODUCTO, DETALLE, CANTIDAD, ANCHO, ALTO, VALORUNIT
+			$sql="SELECT  IDPRODUCTO, DETALLE, CANTIDAD, ANCHO, ALTO, VALORUNIT, PRODUCTO
 				  FROM USUMVTRADE WHERE  NRODCTO = '$nrodcto'";
 			error_log($sql);
 			$result = odbc_exec($this->db->connect(), $sql);

@@ -33,6 +33,7 @@
 				$response['ANCHO']=$row['ANCHO'];
 				$response['ALTO']=$row['ALTO'];
 				$response['VALORUNIT']=$row['VALORUNIT'];
+				$response['PRODUCTO']=$row['PRODUCTO'];
 				$json[]=$response;
 			}
 				echo json_encode($json);

@@ -50,12 +50,12 @@ class registro{
 		}
 	}
 
-	public function Producto($cantidad, $descuentoDistri, $detalle, $iva, $valoruni, $alto, $ancho, $idCliente){
+	public function Producto($cantidad, $descuentoDistri, $detalle, $iva, $valoruni, $alto, $ancho, $idCliente, $producto){
 
 			$Nro = $this->validarCP($idCliente);
 
 			$sql="INSERT INTO USUMVTRADE VALUES
-				('MTPERSIANAS','$cantidad', '$Nro', 0, '$descuentoDistri', '$detalle', getdate(), '$iva','','','$Nro','','FR','FAC', '$valoruni', '$alto', '$ancho')";
+				('MTPERSIANAS','$cantidad', '$Nro', 0, '$descuentoDistri', '$detalle', getdate(), '$iva','','','$Nro','$producto','FR','FAC', '$valoruni', '$alto', '$ancho')";
 				error_log($sql);
 				$result=odbc_exec($this->db->connect(), $sql);
 

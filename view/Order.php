@@ -171,7 +171,7 @@
                                                 <th style="text-align:center;" width="5%">Alto</th>
                                                 <th style="text-align:center;" width="10%">Precio</th>
                                                 <th style="text-align:center;" width="10%">Características</th>
-                                                <th style="text-align:center;" width="15%">Disponibilidad</th>
+                                                <!-- <th style="text-align:center;" width="15%">Disponibilidad</th> -->
                                                 <th style="text-align:center;" width="10%">Seleccione</th>
                                             </tr>
                                         </thead>
