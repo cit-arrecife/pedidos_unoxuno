@@ -1,7 +1,7 @@
 function CargarEncabezado(codigo){
 
 	var idcliente = codigo;
-	console.log('ok jb');
+	//console.log('ok jb');
 		$.ajax({
 	        data:  {opcion : 'CargarEncabezado',
 	        		idcliente:idcliente	},
@@ -12,7 +12,7 @@ function CargarEncabezado(codigo){
 	        	Json = JSON.parse(response);	
 			$("#ro_detalle_fecha").html(Json.FECHA);
 			$('#nro_documento').text(Json.NRODCTO);
- 			console.log($('#nro_documento').text());
+ 			//console.log($('#nro_documento').text());
  			CargarProductos(idcliente);
 				        }
 		}); // final
@@ -42,12 +42,12 @@ function CargarEncabezado(codigo){
 		    	    
 					$.each(Json, function(index, val) {
 					var Row ='<td style="text-align:center" id="td_itemProducto'+val.IDPRODUCTO+'">'+i+'</td>';
-					var RName ='<td style="text-align:center">'+val.DETALLE+'</td>';
+					var RName ='<td style="text-align:center" class="txt">'+val.DETALLE+'</td>';
 					var RCant ='<td style="text-align:center">'+val.CANTIDAD+'</td>';
 					var RAnch='<td style="text-align:center">'+val.ANCHO+'</td>';
 					var RAlt='<td style="text-align:center">'+val.ALTO+'</td>';
 					var RVal='<td style="text-align:center" id="Val'+i+'">'+val.VALORUNIT+'</td>';
-					var RCaracte='<td style="text-align:center">'+val.PRODUCTO+'</td>';
+					var RCaracte='<td style="text-align:center" class="txt">'+val.PRODUCTO+'</td>';
 					// var Dispo='<td style="text-align:center"></td>';
 					var buttonModificarP = '<button id="bModificarP'+val.IDPRODUCTO+'" class="btn btn-warning" title="Modificar" data-toggle="modal" data-target="#modal_modificar_producto'+val.IDPRODUCTO+'"><span class="glyphicon glyphicon-list-alt"></span></button>';
 					var buttonEliminarP = '<button id="bEliminarP'+val.IDPRODUCTO+'" class="btn btn-danger" title="Eliminar" onclick=eliminarRowProducto("'+val.IDPRODUCTO+'")><span class="glyphicon glyphicon-remove"></span></button>';
@@ -64,15 +64,17 @@ function CargarEncabezado(codigo){
 
     	function calcularValores()
     	{
+    		console.log('Calcula Valores');
     		var filas = document.getElementById("detalleProducto").rows.length;
     		var subtotal = 0; var iva = 0; var total = 0;
-   			var id = '#val'+(contadorFilas+1)
+   			//var id = '#val'+(contadorFilas+1)
     		for (var contadorFilas = 0; contadorFilas < filas; contadorFilas++)
     		{
     			subtotal += parseFloat(document.getElementById("detalleProducto").rows[contadorFilas].cells[5].innerHTML, 10);
    			
     			iva = subtotal * 0.16;
     			total = subtotal + iva;
+    			console.log('sub '+subtotal+' iva '+ iva + ' total '+ total);
 	    	}
 
 	    	$('#ro_subtotal_distribuidor').html(subtotal);
@@ -99,5 +101,6 @@ function CargarEncabezado(codigo){
 		        		}
 		 	    }
 		 	}); // final
-    		calcularValores();
+		 	 setTimeout ("calcularValores();", 500);
+    		
     	}

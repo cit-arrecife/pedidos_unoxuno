@@ -69,6 +69,15 @@
 					.bor{border: solid 1px black;text-align: center;}
 					.bor h4, p {font-style: italic;font-weight: bold;}
 					.Datos{font-size: 11px; text-align:center;}
+
+
+					.alerta {
+						border: solid 2px red;
+						font-style:italic;
+						font-weight: bold;
+						text-align: center;
+					}
+
 		</style>
 
 </head>
@@ -122,7 +131,7 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-success" data-dismiss="modal">Continuar Agregando</button>
+						<button type="button" class="btn btn-success" data-dismiss="modal" onclick="limpiarCampos()">Continuar Agregando</button>
 						<button type="button" class="btn btn-danger" onclick="window.location ='Order.php'">Finalizar Pedido/Cotización</button>
 					</div>
 				</div>
@@ -136,6 +145,7 @@
 					</div>
 					<div class="modal-body">
 						<div class="alert alert-warning" role="alert" id="modal_error_mensaje">
+						<strong>Por favor verifica la informacion ingresada.</strong>
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -158,6 +168,11 @@
 				    	<div class="form-group col-sm-6">
 				    		<p style="font-size:85%;">Ejemplo: Habitación, Sala, Corredor. Este nombre saldrá en el sticker del empaque para facilitar la distribución de la mercancia.</p>
 			    		</div>
+			    	<div class="form-group col-sm-12" id="alert" style="display:none;">
+			    		<div class="alerta">
+			    			<p>Los campos no pueden quedar vacios</p>
+			    		</div>
+			    	</div>
 		    		<div class="form-group col-sm-4">
 				    	<div class="input_container">
 				    		<label>Tipo de Producto</label>
@@ -228,6 +243,11 @@
 					<form>
 
 						<div class="form-group col-sm-12">
+						<div class="form-group col-sm-12" id="alert2" style="display:none;">
+			    			<div class="alerta">
+			    				<p>Verifica los valores ingresados</p>
+			    			</div>
+			    		</div>
 							<div class="form-group col-sm-3">
 						    	<label>Cantidad</label>
 					    	</div>
@@ -327,6 +347,11 @@
 						<div class="panel-body">
 
 							<div class="form-group col-sm-12" id="dap_mando" style="display:none;">
+							<div class="form-group col-sm-12" id="alert3" style="display:none;">
+					    		<div class="alerta">
+					    			<p>Verifica las opciones</p>
+					    		</div>
+					    	</div>
 							    <div class="col-sm-3">
 								    <label>Mando</label>
 							    </div>

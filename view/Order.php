@@ -14,11 +14,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
-    <<script src="../utilities/js/Order.js" ></script>
-    <<script  type="text/javascript" >
+    <script src="../utilities/js/Order.js" ></script>
+    <script src="../utilities/js/realizarpedido.js" ></script>
+    <script  type="text/javascript" >
         $(document).ready(function (){
                 var codigo ='<?php echo $_SESSION['usuario_codigo']; ?>';
-                console.log(codigo);
+               // console.log(codigo);
                 $('#codusu').val(codigo);
                 CargarEncabezado(codigo);
                // CargarProductos(codigo);
@@ -59,6 +60,9 @@
             .navbar-right .dropdown-menu {left:0;right:auto;}
             .navbar-collapse .navbar-nav.navbar-right:last-child {
                 margin-right: 0;
+            }
+            .txt{
+                font-size: 12px;
             }
         }
     </style>
@@ -164,15 +168,15 @@
                                     <table id="tableProductos" class="table table-condensed">
                                         <thead>
                                             <tr>
-                                                <th style="text-align:center;" width="10%">Item</th>
-                                                <th style="text-align:center;" width="15%">Nombre</th>
-                                                <th style="text-align:center;" width="15%">Cantidad</th>
-                                                <th style="text-align:center;" width="10%">Ancho</th>
+                                                <th style="text-align:center;" width="5%">Item</th>
+                                                <th style="text-align:center;" width="20%">Nombre</th>
+                                                <th style="text-align:center;" width="5%">Cantidad</th>
+                                                <th style="text-align:center;" width="5%">Ancho</th>
                                                 <th style="text-align:center;" width="5%">Alto</th>
-                                                <th style="text-align:center;" width="10%">Precio</th>
-                                                <th style="text-align:center;" width="10%">Características</th>
+                                                <th style="text-align:center;" width="9%">Precio</th>
+                                                <th style="text-align:center;" width="25%">Características</th>
                                                 <!-- <th style="text-align:center;" width="15%">Disponibilidad</th> -->
-                                                <th style="text-align:center;" width="10%">Seleccione</th>
+                                                <th style="text-align:center;" width="8%">Seleccione</th>
                                             </tr>
                                         </thead>
                                         <tbody id="detalleProducto">
