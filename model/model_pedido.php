@@ -38,25 +38,27 @@ class pedido {
 	//FASE MVTRADE
 	
 	$sql = "SELECT CONSECUT FROM CONSECUT WHERE ORIGEN ='FAC' AND TIPODCTO='PD'";
-	error_log($sql);
+//	error_log($sql);
 	$result= odbc_exec($this->db->connect(), $sql);
 	$row = odbc_fetch_array($result);
 	$tconsecut =$row['CONSECUT'];	
 		$sql2="UPDATE CONSECUT SET CONSECUT=($tconsecut+1) WHERE ORIGEN ='FAC' AND TIPODCTO='PD'";
-		error_log($sql2);
+	//	error_log($sql2);
 		odbc_exec($this->db->connect(), $sql2);
 
 	$sql ="	INSERT INTO TRADE
 		   	(BRUTO, FECHA, NIT, NOTA, NRODCTO, ORIGEN, PASSWORDIN, TIPODCTO, TIPOMVTO)
 			VALUES
 			('$bruto', GETDATE(),'$codigo', 'PEDIDO WEB', ($tconsecut+1), 'FAC', 'WEBAPP', 'PD', '05')";
-				error_log($sql);
+	//		error_log($sql);
 	odbc_exec($this->db->connect(), $sql);
 
 	
 	$sql="SELECT IDPRODUCTO,CANTIDAD, DETALLE, PRODUCTO, VALORUNIT, ALTO, ANCHO FROM USUMVTRADE WHERE NRODCTO ='$tnrodcto'";
+	//error_log($sql);
+	//error_log('/////////////////////////////////////////////////////////////////////////////');
 	$result = odbc_exec($this->db->connect(), $sql);	
-	while($row =odbc_fetch_array($resultado)){
+	while($row =odbc_fetch_array($result)){
 		$cod = 'WEBAPP'.$row['IDPRODUCTO'];
 		$cantidad = $row['CANTIDAD'];
 		$detalle =$row['DETALLE'];
@@ -65,21 +67,22 @@ class pedido {
 		$alto = $row['ALTO'];
 		$ancho = $row['ANCHO'];
 		$sql="INSERT INTO MVTRADE
-				(BODEGA, CANTIDAD,CANVENTA, FACTURADO, FECHA, INTEGRADO, NOMBRE, NOTA, NRODCTO, PASSWORDIN, PRODUCTO, TIPODCTO, TIPOMVTO, UNDVENTA, VALORUNIT,VLRVENTA, ALTO, ANCHO, TARIVA)
+				(BODEGA, CANTIDAD, CANVENTA, FACTURADO, FECHA, INTEGRADO, NOMBRE, NOTA, NRODCTO, PASSWORDIN, PRODUCTO, TIPODCTO, TIPOMVTO, UNDVENTA, VALORUNIT,VLRVENTA, ALTO, ANCHO, TARIVA)
 			VALUES
-			('PTPERSIANA','$cantidad','$cantidad', 0, GETDATE(), 0,'$detalle', '$Producto',(tconsecut+1), 'WEBAPPIN', '$cod', 'PD','05', 'UND', '$valorunit', '$alto','$ancho','TAR1' )";
+			('PTPERSIANA','$cantidad','$cantidad', 0, GETDATE(), 0,'$detalle', '$producto',($tconsecut+1), 'WEBAPPIN', '$cod', 'PD','05', 'UND', '$valorunit', '$valorunit', '$alto','$ancho','TAR1' )";
+	//		error_log($sql);
 
 		odbc_exec($this->db->connect(), $sql);
 
 	}
 	$sql2="UPDATE USUTRADE SET FACTURADO='1' WHERE CODCLIENTE='$codigo' AND NRODCTO='$tnrodcto'";
-	error_log($sql2);
+//	error_log($sql2);
 		odbc_exec($this->db->connect(), $sql2);
 
 
 
 
-
+		return ($tconsecut+1);
 
 
 

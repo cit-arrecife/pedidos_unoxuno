@@ -100,6 +100,26 @@
             </nav>
             <!-- /MENU_NAV -->
         </div>
+       
+
+
+        <div class="modal fade" id="modalError" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Pedido Realizado Con Exito!</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-success" role="alert" id="modal_error_mensaje">
+                        <strong id="nrodcto"></strong>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal" onclick="window.location ='MyOrders.php'">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
         <div class="col-sm-9">
