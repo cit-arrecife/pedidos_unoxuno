@@ -303,6 +303,18 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 				document.getElementById("dap_junto_item").style.display = "block";
 				document.getElementById("dap_mismo_cabezal").style.display = "block";
 			}
+			else if (tipoProducto == "PANEL JAPONES")
+			{
+				document.getElementById("dap_perfil").style.display = "block";
+				document.getElementById("dap_direccion_tela").style.display = "block";
+				document.getElementById("dap_cover_light").style.display = "none";
+
+				document.getElementById("dap_mando").style.display = "block";
+				document.getElementById("dap_sentido").style.display = "block";
+				document.getElementById("dap_soporte_intermedio").style.display = "block";
+				document.getElementById("dap_junto_item").style.display = "block";
+				document.getElementById("dap_mismo_cabezal").style.display = "block";
+			}
 		}
 		function llamar_descu(nombre){
 

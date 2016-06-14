@@ -30,17 +30,17 @@ ini_set('display_errors', '1');
 		case 'CargarProductos':
 			
 			$nrodcto=trim($_POST['nrodcto']);
-			error_log($nrodcto);
+			//error_log($nrodcto);
 			$Resultado = $myorders->cargarProductos($nrodcto);
-			error_log(print_r($Resultado)); 
+			//error_log(print_r($Resultado)); 
 			if($Resultado){
 			while($row = odbc_fetch_array($Resultado)){
-				$response['NOTA']=$row['NOTA'];
+				$response['NOMBRE']=$row['NOMBRE'];
 				$response['CANTIDAD']=$row['CANTIDAD'];
 				$response['ANCHO']=$row['ANCHO'];
 				$response['ALTO']=$row['ALTO'];
 				$response['VALORUNIT']=$row['VALORUNIT'];
-				$response['PRODUCTO']=$row['PRODUCTO'];
+				$response['NOTA']=$row['NOTA'];
 				$json[]=$response;
 			}
 				echo json_encode($json);

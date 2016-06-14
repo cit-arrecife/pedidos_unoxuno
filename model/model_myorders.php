@@ -29,7 +29,7 @@ ini_set('display_errors', '1');
 				  AND M.TIPODCTO='PD'
 				  AND T.NIT ='$idcliente'";
 
-			error_log($sql);
+		
 			$result = odbc_exec($this->db->connect(), $sql);
 
 			return $result;
@@ -37,7 +37,7 @@ ini_set('display_errors', '1');
 
 		public function cargarProductos($nrodcto){
 
-			$sql="SELECT  NOTA, CANTIDAD, ANCHO, ALTO, VALORUNIT, PRODUCTO
+			$sql="SELECT  NOMBRE, CANTIDAD, ANCHO, ALTO, VALORUNIT, NOTA
 				  FROM MVTRADE WHERE  NRODCTO = '$nrodcto'
 				  AND FACTURADO='0'
 				  AND ORIGEN ='FAC'
