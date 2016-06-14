@@ -110,11 +110,6 @@
 		</div>
 		
 
-
-		<div class="col-sm-9">
-
-			<div id="notificacion"></div>
-
 			<!-- /Modal ver detalle -->
 			<div class="modal fade" id="modalVerDetalle" tabindex="-1" role="dialog">
 				<div class="modal-dialog">
@@ -150,6 +145,11 @@
 				</div>
 			</div>
 
+
+		<div class="col-sm-9">
+
+			<div id="notificacion"></div>
+
 			<div class="panel panel-default">
 			 	<div class="panel-heading">
 			    	<div class="panel-title" style="color:#CA0707 !important;"><h4><strong>Mis pedidos y cotizaciones</strong></h4></div>
@@ -166,7 +166,7 @@
 								<div class="form-group col-sm-4">
 							    	<div class="input_container">
 							    		<label>Código Pedido</label>
-							    		<input type="text" min="1" id="producto_cantidad" class="form-control" placeholder="Codigo del Pedido/Cotización"></input>
+							    		<input type="text" min="1" id="codigoPedido" name="incodigoPedido" onkeyup="BuscarProducto()" class="form-control" placeholder="Codigo del Pedido/Cotización"></input>
 							    	</div>
 						    	</div>
 
