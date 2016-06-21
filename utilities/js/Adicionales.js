@@ -282,18 +282,19 @@
 				}
 			}
 			function Llenar_motor(tipomotor){
-				var tipoproducto =$('#producto_tipo').val();
-				 $.ajax({
-			        data:  {tipo_motor: tipomotor,
-			        		tipo_producto: tipoproducto,
-			        		elegir: 0},
-			        url:   '../control/control_propio.php',
-			        type:  'post',
-			      
-			        success:  function (response) {
-						Json =JSON.parse(response);
-						var select = document.getElementById("da_motor");
-						while(select.options.length > 0)
+				if(tipomotor=='SELECCIONE'){
+					var valor = parseInt($('#Motor_valor').text());
+					console.log('valor '+valor);
+					if(valor != 0){
+						restarAdicionales('#Motor_valor');
+						$('#Motor_valor').text(0);
+						$('#Motor_valor_db').text(0);
+						document.getElementById("Datos").style.display = "none";
+
+					}
+
+					var select = document.getElementById("da_motor");
+					while(select.options.length > 0)
 						{                
 		    				select.remove(0);
 		    			}
@@ -301,46 +302,74 @@
 						option.value = "SELECCIONE";
 			    		option.text = "-- Seleccione --";
 			    		select.add(option);
-						$.each(Json, function(index, val) {
-					    	console.log(val.descripcionMotor);
-					    	var option = document.createElement('option');
-							option.value = val.descripcionMotor;
-			    			option.text = val.descripcionMotor;
-			    			select.add(option);
-						});
-				   }
-				}); // final del ajaz
-			}
-			function precio_motor(motor){
-				if(motor != 'SELECCIONE' ){
-				var tipoproducto =$('#producto_tipo').val();
+				}else{
+					var tipoproducto =$('#producto_tipo').val();
 					 $.ajax({
-				        data:  {tipo_motor: motor,
+				        data:  {tipo_motor: tipomotor,
 				        		tipo_producto: tipoproducto,
-				        		elegir: 1},
+				        		elegir: 0},
 				        url:   '../control/control_propio.php',
-				  	      type:  'post',
-				    
+				        type:  'post',
+				      
 				        success:  function (response) {
 							Json =JSON.parse(response);
-							$('#Motor_valor').text(Json.precioMotor);
-							$('#Motor_valor_db').text(Json.precioMotor);
-							descmotor();
-							detalle_motor(motor);
-
+							var select = document.getElementById("da_motor");
+							while(select.options.length > 0)
+							{                
+			    				select.remove(0);
+			    			}
+			    			var option = document.createElement('option');
+							option.value = "SELECCIONE";
+				    		option.text = "-- Seleccione --";
+				    		select.add(option);
+							$.each(Json, function(index, val) {
+						    	console.log(val.descripcionMotor);
+						    	var option = document.createElement('option');
+								option.value = val.descripcionMotor;
+				    			option.text = val.descripcionMotor;
+				    			select.add(option);
+							});
 					   }
 					}); // final del ajaz
-				}else{
-					value =$('#Motor_valor').text();
-					if(value != 0){
-						restarAdicionales('#Motor_valor');
-
-					}
-					$('#Motor_valor').text(0);
-					$('#Motor_valor_db').text(0);
-					descmotor();
-					detalle_motor(motor);
 				}
+			}
+			function precio_motor(motor){
+					if(motor != 'SELECCIONE' ){
+					var valor = parseInt($('#Motor_valor').text());
+					console.log('valor '+valor);
+					if(valor != 0){
+						restarAdicionales('#Motor_valor');
+					}
+						console.log('resto adicionales');
+						var tipoproducto =$('#producto_tipo').val();
+						 $.ajax({
+					        data:  {tipo_motor: motor,
+					        		tipo_producto: tipoproducto,
+					        		elegir: 1},
+					        url:   '../control/control_propio.php',
+					  	      type:  'post',
+					    
+					        success:  function (response) {
+								Json =JSON.parse(response);
+								$('#Motor_valor').text(Json.precioMotor);
+								$('#Motor_valor_db').text(Json.precioMotor);
+								descmotor();
+								detalle_motor(motor);
+
+						   }
+						}); // final del ajaz
+					
+					}else{
+						value =$('#Motor_valor').text();
+						if(value != 0){
+							restarAdicionales('#Motor_valor');
+
+						}
+						$('#Motor_valor').text(0);
+						$('#Motor_valor_db').text(0);
+						descmotor();
+						detalle_motor(motor);
+					}
 			}
 			function detalle_motor(motor){
 				if(motor != 'SELECCIONE' ){
@@ -393,5 +422,18 @@
 		$('#da_producto_subtotal').html(subDes);
 		$('#da_producto_iva').html(parseInt(ivaDes));
 		$('#da_producto_total').html(TotalDes);
+
+		if(id=='#Motor_valor'){
+			var sindesc=parseInt($('#Motor_valor_db').text());
+		}else if (id=='#da_cover_light_precio') {
+			var sindesc=parseInt($('#h_cover_light_precio').text());
+		}
+
+		var subAntcli = parseInt($('#da_cli_subtotal').text());
+
+		$('#da_cli_subtotal').html(subAntcli-sindesc);
+		$('#da_cli_iva').html(parseInt(subAntcli-sindesc*(16 /100)));
+		$('#da_cli_total').html(subAntcli-sindesc + sindesc*(16 /100));
+
 
 	}

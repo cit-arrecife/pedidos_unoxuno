@@ -248,6 +248,11 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 		$('#da_producto_iva').html(parseInt(daProductoIva));
 		$('#da_producto_total').html(daProductoTotal);
 
+		var cliProductoSubtotal = productoPrecioL * productoCantidad;
+		$('#da_cli_subtotal').html(cliProductoSubtotal);
+		$('#da_cli_iva').html(parseInt(cliProductoSubtotal*(16 /100)));
+		$('#da_cli_total').html(cliProductoSubtotal + cliProductoSubtotal*(16 /100));
+
 		var nombreAdicional = $('#da_cover_light').val();
 		console.log('nombre adicional '+nombreAdicional);
 		if(nombreAdicional != 'SELECCIONE'){
@@ -272,6 +277,18 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 		$('#da_producto_subtotal').html(subDes);
 		$('#da_producto_iva').html(parseInt(ivaDes));
 		$('#da_producto_total').html(TotalDes);
+		console.log('este es el id '+id);
+		if(id=='#Motor_valor'){
+			var sindesc=parseInt($('#Motor_valor_db').text());
+		}else if (id=='#da_cover_light_precio') {
+			var sindesc=parseInt($('#h_cover_light_precio').text());
+		}
+
+		var subcli = parseInt($('#da_cli_subtotal').text());
+		var totcli = subcli+sindesc;
+		$('#da_cli_subtotal').html(totcli);
+		$('#da_cli_iva').html(parseInt(totcli*(16 /100)));
+		$('#da_cli_total').html(totcli + totcli*(16 /100));
 
 	}
 

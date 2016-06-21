@@ -487,8 +487,8 @@
 							    </div>
 							  
 						    	<div class="col-sm-3" style="text-align:right;">
-						    		<label id="h_cover_light_precio" style="display:none;">0</label>
-								    <label style="color:#CA0707;">$</label><label style="color:#CA0707;" id="da_cover_light_precio" >0</label>
+						    		<label style="color:#CA0707;"></label><label style="color:#CA0707;" id="da_cover_light_precio" >0.00</label>
+								    <label id="h_cover_light_precio" style="display:non;">0.00</label>
 							    </div>
 							</div>
 
@@ -615,8 +615,8 @@
 							    </div>
 
 						    	<div class="col-sm-3" style="text-align:right;">
-						    	<label id="Motor_valor_db" style="display:none;">0.00</label>
-								<label id="Motor_valor" style="color:#CA0707;">$0.00</label>
+						    	<label id="Motor_valor" style="color:#CA0707;">0.00</label>
+						    	<label id="Motor_valor_db" style="display:non;">0.00</label>
 							    </div>
 							</div>
 							<div  id="Datos" style="display:none;">
@@ -630,7 +630,7 @@
 								    <label style="color:#CA0707;">RPM: </label>
 								    	<label id="RPM">---/---</label>
 								    <label style="color:#CA0707;">Amperaje: </label>
-								    	<label id="Amperaje">---/---</label>
+								    	<label id="Amperaje">---/---</label> 
 							    </div>
 							</div>
 						
@@ -644,28 +644,47 @@
 						<div class="panel-body">
 
 							<div class="form-group col-sm-12">
-							    <div class="col-sm-9">
+								<div class="col-sm-4 col-sm-offset-4" style="text-align:right;">
+								    <label style="color:#CA0707;">Distribuidor<label>
+							    </div>
+							    <div class="col-sm-4" style="text-align:right;">
+								    <label style="color:#000;">Cliente<label>
+							    </div>
+
+
+
+
+							    <div class="col-sm-4">
 								    <label>SubTotal</label>
 							    </div>
 
-						    	<div class="col-sm-3" style="text-align:right;">
+						    	<div class="col-sm-4" style="text-align:right;">
 								    <label style="color:#CA0707;">$<label><label style="color:#CA0707;" id="da_producto_subtotal">0.00</label>
 							    </div>
+							    <div class="col-sm-4" style="text-align:right;">
+								    <label style="color:#000;">$<label><label style="color:#000;" id="da_cli_subtotal">0.00</label>
+							    </div>
 
-							    <div class="col-sm-9">
+							    <div class="col-sm-4">
 								    <label>IVA</label>
 							    </div>
 
-						    	<div class="col-sm-3" style="text-align:right;">
+						    	<div class="col-sm-4" style="text-align:right;">
 								    <label style="color:#CA0707;">$<label><label style="color:#CA0707;" id="da_producto_iva">0.00</label>
 							    </div>
+							    <div class="col-sm-4" style="text-align:right;">
+								    <label style="color:#000;">$<label><label style="color:#000;" id="da_cli_iva">0.00</label>
+							    </div>
 
-							    <div class="col-sm-9">
+							    <div class="col-sm-4">
 								    <label>Total</label>
 							    </div>
 
-						    	<div class="col-sm-3" style="text-align:right;">
+						    	<div class="col-sm-4" style="text-align:right;">
 								    <label style="color:#CA0707;">$<label><label style="color:#CA0707;" id="da_producto_total">0.00</label>
+							    </div>
+							    <div class="col-sm-4" style="text-align:right;">
+								    <label style="color:#000;">$<label><label style="color:#000;" id="da_cli_total">0.00</label>
 							    </div>
 							</div>
 

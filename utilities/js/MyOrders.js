@@ -27,7 +27,7 @@ function CargarPedidos(codigo){
 
 				if(Json != null && Json != undefined){
 					jsonGLobal = Json;
-					console.log(jsonGLobal);
+					//console.log(jsonGLobal);
 				}
 	 	    }
  		}); // final
@@ -36,7 +36,7 @@ function CargarPedidos(codigo){
 function verDetalle(numDocumento){
 	
 	var nrodcto = numDocumento;
-	console.log(nrodcto);
+	//console.log(nrodcto);
 	$.ajax({
         data:  {opcion : 'CargarProductos',
         		nrodcto: nrodcto},
