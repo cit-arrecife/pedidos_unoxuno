@@ -208,7 +208,7 @@ function limpiarCampos(){
 	    	'da_perfil',
 	    	'da_perfil_color',
 	    	'da_direccion_tela',
-	    	'da_mando',
+	    	//'da_mando',
 	    	'da_motor'
 	    ];
 
@@ -225,6 +225,10 @@ function limpiarCampos(){
 	    });
 	    $('#producto_tipo').prop('selectedIndex', 0);
 	    $('#da_motor_tipo').prop('selectedIndex', 0);
+	    $('#da_mando').prop('selectedIndex', 0);
+	    $('#da_sistema').prop('selectedIndex', 0);
+	    $('#da_telos').prop('selectedIndex', 0);
+	    $('#da_apertura').prop('selectedIndex', 0);
 	    $('#producto_cantidad').val(1);
 		$('#producto_ancho').val(1);
 		$('#producto_alto').val(1);

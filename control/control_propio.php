@@ -65,7 +65,7 @@
 	else{
 	$Nombre = $_POST['usuario_nombre'];
 	
-	 $descuento_distribuidor_statico =$m_propio->Cargar_descuento_distri($Nombre);
+	 $descuento_distribuidor_statico =$m_propio->Cargar_descuento_distri(trim($Nombre));
 
 		if($descuento_distribuidor_statico){
 				$response["Descu"] = $descuento_distribuidor_statico["DESCCOMER"];

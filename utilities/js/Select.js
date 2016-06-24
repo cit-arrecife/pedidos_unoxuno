@@ -137,6 +137,7 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 		}// final del else 
 	}
 	function validar_color_tela(tela){
+
 		if(tela=='SELECCIONE'){
 			var select = document.getElementById("producto_tela_color");
 			while(select.options.length > 0)
@@ -149,12 +150,15 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 			select.add(option);
 
 		}else{
+			//console.log('la tela es '+ tela);
+			var tipotela =$('#producto_tipo_tela').val();
 		    $.ajax({
-		        data:  {tela: tela, opcion: 4},
+		        data:  {tipotela: tipotela, tela: tela, opcion: 4},
 		        url:   '../control/validar.php',
 		        type:  'post',
 		      
 		        success:  function (response) {
+		      
 						Json =JSON.parse(response);
 						var select = document.getElementById("producto_tela_color");
 						while(select.options.length > 0)
@@ -216,39 +220,38 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 		}// final del else
 	}
 	function calcularValores(){
-		//DATOS INICIALES
-		//console.log('ingreso a la funcion valores');
-		var productoPrecioL = $('#producto_precio_lista').text();
+
+		var productoPreciodb = $('#producto_precio_db').text();
 		var productoCantidad = $('#producto_cantidad').val();
-		//console.log(productoPrecioL+'  -  '+ productoCantidad);
-		var productoPrecioCantidad = productoPrecioL * productoCantidad;
-		//console.log(productoPrecioCantidad);
-		var productoDescuentoDistribuidor = $('#producto_descuento_distribuidor').val();
-		var productoDescuentoAdicional = $('#producto_descuento_adicional').val();
-	
 		var ancho = $('#producto_ancho').val();
-		var alto = $('#producto_alto').val();
-
-
-		var productoPrecioDescuento = productoPrecioL - (productoPrecioL * (productoDescuentoDistribuidor / 100)) - (productoPrecioL * (productoDescuentoAdicional / 100));
-		if (productoPrecioDescuento < 0) {
-				productoPrecioDescuento = 0;
-			}
-		$('#producto_precio_descuento').html(productoPrecioDescuento);
-		//console.log(productoPrecioDescuento);
-		
+		var alto = $('#producto_alto').val();		
 		var dimenciones = ancho * alto;
-		productoCantidad = productoCantidad *dimenciones;
+		var valproducto =(dimenciones * productoCantidad) * productoPreciodb;
 
-		var daProductoSubtotal = productoPrecioDescuento * productoCantidad;
+		$('#producto_precio_lista').text(valproducto);
+
+		var prodDescDist = $('#producto_descuento_distribuidor').val();
+		var prodDescAdi = $('#producto_descuento_adicional').val();
+
+		var total_desc = parseInt(prodDescDist)+parseInt(prodDescAdi);
+		var prodpreciodesc =valproducto - (valproducto *(total_desc /100));
+		$('#producto_precio_descuento').html(prodpreciodesc);
+
+
+		
+
+
+		var daProductoSubtotal = prodpreciodesc;
 		//console.log(daProductoSubtotal);
 		var daProductoIva = daProductoSubtotal * (16 / 100);
 		var daProductoTotal = daProductoSubtotal + daProductoIva;
+
 		$('#da_producto_subtotal').html(daProductoSubtotal);
 		$('#da_producto_iva').html(parseInt(daProductoIva));
 		$('#da_producto_total').html(daProductoTotal);
 
-		var cliProductoSubtotal = productoPrecioL * productoCantidad;
+
+		var cliProductoSubtotal = valproducto;
 		$('#da_cli_subtotal').html(cliProductoSubtotal);
 		$('#da_cli_iva').html(parseInt(cliProductoSubtotal*(16 /100)));
 		$('#da_cli_total').html(cliProductoSubtotal + cliProductoSubtotal*(16 /100));
@@ -258,6 +261,12 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 		if(nombreAdicional != 'SELECCIONE'){
 			cover_light();
 			 setTimeout ("sumarAdicionales('#da_cover_light_precio');", 500); 
+		}
+		var nombrecenefa = $('#da_cenefa').val();
+		//console.log('nombre adicional '+nombreAdicional);
+		if(nombrecenefa != 'SELECCIONE'){
+			cenefa();
+			 setTimeout ("sumarAdicionales('#da_cenefa_precio');", 500); 
 		}
 
 	}
@@ -282,6 +291,8 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 			var sindesc=parseInt($('#Motor_valor_db').text());
 		}else if (id=='#da_cover_light_precio') {
 			var sindesc=parseInt($('#h_cover_light_precio').text());
+		}else if (id=='#da_cenefa_precio') {
+			var sindesc=parseInt($('#h_cenefa_precio').text());
 		}
 
 		var subcli = parseInt($('#da_cli_subtotal').text());
@@ -299,6 +310,9 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 			{
 				document.getElementById("dap_junto_item").style.display = "none";
 				document.getElementById("dap_mismo_cabezal").style.display = "none";
+				document.getElementById("dap_telos").style.display = "none";
+				document.getElementById("dap_apertura").style.display = "none";
+				document.getElementById("dap_cenefa").style.display = "none";
 
 				document.getElementById("dap_mando").style.display = "block";
 				document.getElementById("dap_perfil").style.display = "block";
@@ -313,24 +327,32 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 				document.getElementById("dap_perfil").style.display = "none";
 				document.getElementById("dap_direccion_tela").style.display = "none";
 				document.getElementById("dap_cover_light").style.display = "none";
+				document.getElementById("dap_telos").style.display = "none";
+				document.getElementById("dap_apertura").style.display = "none";
+				document.getElementById("dap_sentido").style.display = "none";
+				document.getElementById("dap_cenefa").style.display = "none";
 
 				document.getElementById("dap_mando").style.display = "block";
-				document.getElementById("dap_sentido").style.display = "block";
 				document.getElementById("dap_soporte_intermedio").style.display = "block";
 				document.getElementById("dap_junto_item").style.display = "block";
 				document.getElementById("dap_mismo_cabezal").style.display = "block";
 			}
 			else if (tipoProducto == "PANEL JAPONES")
 			{
+				document.getElementById("dap_soporte_intermedio").style.display = "none";
+				document.getElementById("dap_junto_item").style.display = "none";
+				document.getElementById("dap_mismo_cabezal").style.display = "none";
+				document.getElementById("dap_cover_light").style.display = "none";
+				document.getElementById("dap_sentido").style.display = "none";
+
 				document.getElementById("dap_perfil").style.display = "block";
 				document.getElementById("dap_direccion_tela").style.display = "block";
-				document.getElementById("dap_cover_light").style.display = "none";
-
 				document.getElementById("dap_mando").style.display = "block";
-				document.getElementById("dap_sentido").style.display = "block";
-				document.getElementById("dap_soporte_intermedio").style.display = "block";
-				document.getElementById("dap_junto_item").style.display = "block";
-				document.getElementById("dap_mismo_cabezal").style.display = "block";
+				document.getElementById("dap_telos").style.display = "block";
+				document.getElementById("dap_apertura").style.display = "block";
+				document.getElementById("dap_cenefa").style.display = "block";
+
+
 			}
 		}
 		function llamar_descu(nombre){
@@ -340,15 +362,16 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 			$.post("../control/control_propio.php",{ usuario_nombre:nombre }, function (data){
 				var jsonResponse = JSON.parse(data);
 			    $('#producto_descuento_distribuidor').val(parseInt(jsonResponse.Descu));
-                $('#da_mando_descuento').val(parseInt(jsonResponse.Descu));  
-                $('#da_perfil_descuento').val(parseInt(jsonResponse.Descu));
-                $('#da_direccion_tela_descuento').val(parseInt(jsonResponse.Descu));
-                $('#da_sentido_descuento').val(parseInt(jsonResponse.Descu));
-  				$('#da_soporte_intermedio_descuento').val(parseInt(jsonResponse.Descu));
+      //           $('#da_mando_descuento').val(parseInt(jsonResponse.Descu));  
+      //           $('#da_perfil_descuento').val(parseInt(jsonResponse.Descu));
+      //           $('#da_direccion_tela_descuento').val(parseInt(jsonResponse.Descu));
+      //           $('#da_sentido_descuento').val(parseInt(jsonResponse.Descu));
+  				// $('#da_soporte_intermedio_descuento').val(parseInt(jsonResponse.Descu));
                 $('#da_cover_light_descuento').val(parseInt(jsonResponse.Descu));
-                $('#da_junto_item_descuento').val(parseInt(jsonResponse.Descu));
-                $('#da_mismo_cabezal_descuento').val(parseInt(jsonResponse.Descu));
+                // $('#da_junto_item_descuento').val(parseInt(jsonResponse.Descu));
+                // $('#da_mismo_cabezal_descuento').val(parseInt(jsonResponse.Descu));
                 $('#da_motor_desc').val(parseInt(jsonResponse.Descu));
+                $('#da_cenefa_descuento').val(parseInt(jsonResponse.Descu));
    
              });
 		}
@@ -440,4 +463,18 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 					}); // final del ajaz
 				}// final del else 
 				seleccionarTipoProducto(tipoproducto)
+		}
+		function sistema(sistema){
+			if (sistema=='MANUAL'){
+				document.getElementById("panel_sistema").style.display = "none";
+
+			}else if (sistema =='MOTORIZADO') {
+				document.getElementById("panel_sistema").style.display = "block";
+				
+			}else if (sistema=='SELECCIONE') {
+
+				
+			}
+
+
 		}

@@ -17,7 +17,7 @@ ini_set('display_errors', '1');
 
 		public function Cargar_descuento_distri($Nombre){
 			$sql="SELECT DESCCOMER FROM MTPROCLI WHERE NOMBRE ='$Nombre'";
-			
+			error_log($sql);
 			$result = odbc_exec($this->db->connect(), $sql);
 			$row = odbc_fetch_array($result);
 			return $row;

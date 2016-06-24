@@ -45,6 +45,7 @@
 			echo json_encode($json);
 		break;
 		case 4:
+			$tipotela =$_POST['tipotela'];
 			$tela =$_POST['tela'];
 			$Resultado = $validar->validar_color($tela);
 			if($Resultado){

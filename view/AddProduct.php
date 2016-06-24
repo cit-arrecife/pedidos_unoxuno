@@ -286,17 +286,19 @@
 				    	</div>
 
 				    	<div class="form-group col-sm-12">
-				    		<div class="form-group col-sm-6"></div>
-
+				    		<div class="form-group col-sm-3"><label>Sistema</label></div>
 				    		<div class="form-group col-sm-3">
-						    	<p style="font-size:85%;">Ingrese el descuento adicional en caso de que aplique</p>
+						    	<select id="da_sistema" class="form-control" onchange="sistema(this.value);adicional('Sistema', this.value,'')" >
+							    		<option value="SELECCIONE">-- Seleccione --</option>
+							    		<option value="MANUAL">MANUAL</option>
+							    		<option value="MOTORIZADO">MOTORIZADO</option>
+							    	</select>
 					    	</div>
-					    	
-					    	<div class="form-group col-sm-3" style="text-align:right;">
+					    	<div class="form-group col-sm-6"></div>
+					    						    	
+				    		<div class="form-group col-sm-1 col-sm-offset-11">
 						    	<label style="color:#CA0707;">Total</label>
-					    	</div>
-
-				    		<div class="form-group col-sm-9">
+					    	</div><div class="form-group col-sm-9">
 						    	<label>Precio Unitario</label>
 					    	</div>
 					    	
@@ -436,17 +438,60 @@
 							    		<option value="CONTRARIO-NVR">CONTRARIO-NVR</option>
 							    	</select>
 						    	</div>
-
-							    <!-- <div class="col-sm-2">
-								    <input type="number" min="0" max="100" id="da_sentido_descuento" onkeyup="validarDescuento(this.id)" onchange="validarDescuento(this.id)" class="form-control" value="0" placeholder="Descuento" disabled style="display:none;">
+							</div>
+							<div class="form-group col-sm-12" id="dap_telos" style="display:none;">
+								<div class="col-sm-3">
+								    <label>Numero de Telos</label>
 							    </div>
 
-						    	<div class="col-sm-3" style="text-align:right;">
-						    		<label id="h_sentido_precio" style="display:none;">0</label>
-								    <label style="color:#CA0707;">$</label><label style="color:#CA0707;" id="da_sentido_precio">0</label>
-							    </div> -->
+							    <div class="col-sm-4">
+							    	<select id="da_telos" class="form-control" onchange="adicional('Nro Telos', this.value,'')" >
+							    		<option value="SELECCIONE">-- Seleccione --</option>
+							    		<option value="2">2</option><option value="3">3</option>
+							    		<option value="4">4</option><option value="5">5</option>
+							    		<option value="6">6</option><option value="7">7</option>
+							    		<option value="8">8</option><option value="9">9</option>
+							    		<option value="10">10</option>
+							    		
+							    	</select>
+						    	</div>
 							</div>
-							    
+							<div class="form-group col-sm-12" id="dap_apertura" style="display:none;">
+								<div class="col-sm-3">
+								    <label>Tipo Apertura</label>
+							    </div>
+
+							    <div class="col-sm-4">
+							    	<select id="da_apertura" class="form-control" onchange="adicional('Apertura', this.value,'')" >
+							    		<option value="SELECCIONE">-- Seleccione --</option>
+							    		<option value="DERECHA">DERECHA</option>
+							    		<option value="IZQUIERDA">IZQUIERDA</option>
+							    		<option value="EXTREMOS">EXTREMOS</option>
+							    		<option value="CENTROS">CENTROS</option>
+							    	</select>
+						    	</div>
+							</div>        
+							<div class="form-group col-sm-12" id="dap_cenefa" style="display:none;">
+								<div class="col-sm-3">
+								    <label>Cenefa</label>
+							    </div>
+
+							    <div class="col-sm-4">
+							    	<select id="da_cenefa" class="form-control" onchange="cenefa(); adicional('Cenefa', this.value,'da_cenefa_precio')" >
+							    		<option value="SELECCIONE">-- Seleccione --</option>
+							    		<option value="ALUMINIO">ALUMINIO</option>
+							    		<option value="TELA">TELA</option>
+							    	</select>
+						    	</div>
+						    	<div class="col-sm-2">
+								   	<input type="number" min="0" max="100" id="da_cenefa_descuento" onkeyup="validarDescuento(this.id)" onchange="validarDescuento(this.id)" class="form-control" value="0" placeholder="Descuento" disabled style="display:none;">
+							    </div>
+							  
+						    	<div class="col-sm-3" style="text-align:right;">
+							    	<label style="color:#CA0707;"></label><label style="color:#CA0707;" id="da_cenefa_precio" >0.00</label>
+								    <label id="h_cenefa_precio" style="display:non;">0.00</label>
+							    </div>
+							</div>        
 							<div class="form-group col-sm-12" id="dap_soporte_intermedio" style="display:none;">
 							    <div class="col-sm-3">
 								    <label>Soporte Intermedio</label>
@@ -502,6 +547,7 @@
 							    		<option value="SELECCIONE">-- Seleccione --</option>
 							    		<option value="AL SIGUIENTE ITEM">AL SIGUIENTE ITEM</option>
 							    		<option value="AL ANTERIOR ITEM">AL ANTERIOR ITEM</option>
+							    		<option value="NO APLICA">NO APLICA</option>
 							    	</select>
 						    	</div>
 
@@ -526,6 +572,7 @@
 							    		<option value="JUNTO AL SIGUIENTE">JUNTO AL SIGUIENTE</option>
 							    		<option value="JUNTO AL ANTERIOR">JUNTO AL ANTERIOR</option>
 							    		<option value="JUNTO CON EL ANTERIOR Y SIGUIENTE">JUNTO CON EL ANTERIOR Y SIGUIENTE</option>
+							    		<option value="NO APLICA">NO APLICA</option>
 							    	</select>
 						    	</div>
 

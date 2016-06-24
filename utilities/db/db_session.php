@@ -30,12 +30,12 @@
 
 		$sql = " SELECT NIT, NOMBRE FROM MTPROCLI
 		WHERE NIT = '$codigoUsuario' AND PASSWORDLOG = '$passwordUsuario' ";
-		error_log($sql);
-		$result = odbc_exec($conn, $sql);
+		
+		$result = odbc_exec($db->connect(), $sql);
 		
 		$row = odbc_fetch_array($result);
 		
-		;
+		
 		if ($row) {
 			$_SESSION['usuario_codigo'] = $row["NIT"];
 			$_SESSION['usuario_nombre'] = $row["NOMBRE"];

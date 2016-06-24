@@ -169,7 +169,7 @@
 					if (nombreAdicional == "SELECCIONE")
 					{
 					var value =$('#da_cover_light_precio').text();
-					console.log(value);
+					//console.log(value);
 						if(value != 0){
 							restarAdicionales('#da_cover_light_precio');
 						}
@@ -195,7 +195,7 @@
 		    		});
 					}
 					
-					console.log('');
+					
 			}
 			
 			function validarDescuento(descuento)
@@ -279,6 +279,12 @@
 					descuentoAdicional = $('#da_mismo_cabezal_descuento').val();
 					precioTotalAdicional = precioAdicional - (precioAdicional * descuentoAdicional / 100);
 					$('#da_mismo_cabezal_precio').html(precioTotalAdicional);
+				}
+				else if (tipoProducto =="PANEL JAPONES") {
+					precioAdicional = $('#h_cenefa_precio').text();
+					descuentoAdicional = $('#da_cenefa_descuento').val();
+					precioTotalAdicional = precioAdicional - (precioAdicional * descuentoAdicional / 100);
+					$('#da_cenefa_precio').html(precioTotalAdicional);	
 				}
 			}
 			function Llenar_motor(tipomotor){
@@ -427,6 +433,8 @@
 			var sindesc=parseInt($('#Motor_valor_db').text());
 		}else if (id=='#da_cover_light_precio') {
 			var sindesc=parseInt($('#h_cover_light_precio').text());
+		}else if (id=='#da_cenefa_precio') {
+			var sindesc=parseInt($('#h_cenefa_precio').text());
 		}
 
 		var subAntcli = parseInt($('#da_cli_subtotal').text());
@@ -437,3 +445,31 @@
 
 
 	}
+	function cenefa(){
+				var cenefa = 45000;
+				
+				var nombreAdicional = $('#da_cenefa').val();
+								
+							
+				var hAdicional = $('#h_cenefa_precio');
+
+					if (nombreAdicional == "SELECCIONE" || nombreAdicional == "ALUMINIO")
+					{
+					var value =$('#da_cenefa_precio').text();
+					//console.log(value);
+						if(value != 0){
+							restarAdicionales('#da_cenefa_precio');
+						}
+						hAdicional.html(0);
+                    	cal();
+					}
+					else
+					{
+						var ancho =$('#producto_ancho').val();
+						var valCenefa = ancho *45000;
+						hAdicional.html(valCenefa);
+						cal();
+					}
+					
+					
+			}
