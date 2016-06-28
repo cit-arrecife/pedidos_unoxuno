@@ -354,22 +354,37 @@
 					    			<p>Verifica las opciones</p>
 					    		</div>
 					    	</div>
+					    	<div class="form-group col-sm-12">
+					    	<div class="col-sm-3 col-sm-offset-6" style="text-align: center;">
+					    	   <label>Instalacion</label>	
+					    	</div>
+							<div class="col-sm-1 col-sm-offset-1" style="color:#CA0707; text-align: center;">
+							   <label>Distri</label>
+							</div>
+							<div class="col-sm-1" style="text-align: center;">
+							   <label>Cliente</label>
+							</div>
+						</div>
 							    <div class="col-sm-3">
 								    <label>Mando</label>
 							    </div>
 
-							    <div class="col-sm-4">
+							    <div class="col-sm-3">
 							    	<select id="da_mando" class="form-control" onchange="adicional('Mando', this.value, '')" >
 							    		<option value="SELECCIONE">-- Seleccione --</option>
 							    		<option value="IZQUIERDO">IZQUIERDO</option>
 				    					<option value="DERECHO">DERECHO</option>
 							    	</select>
 						    	</div>
-
-						<!-- 	    <div class="col-sm-2">
-								    <input type="number" min="0" max="100" id="da_mando_descuento" onkeyup="validarDescuento(this.id)" onchange="validarDescuento(this.id)" class="form-control" value="0" placeholder="Descuento" disabled style="display:none;">
-							    </div>
-
+						    	<div class="col-sm-3">
+							    	<select id="da_insta_mando" class="form-control" onchange="adicional('Mando Instal', this.value, '')" >
+							    		<option value="SELECCIONE">-- Seleccione --</option>
+							    		<option value="TECHO">PARED</option>
+				    					<option value="PARED">TECHO</option>
+							    	</select>
+						    	</div>
+						
+<!-- 
 						    	<div class="col-sm-3" style="text-align:right;">
 						    		<label id="h_mando_precio" style="display:none;">0</label>
 								    <label style="color:#CA0707;">$</label><label style="color:#CA0707;" id="da_mando_precio">0</label>
@@ -381,14 +396,14 @@
 								    <label>Perfil</label>
 							    </div>
 
-							    <div class="col-sm-4">
+							    <div class="col-sm-3">
 							    <LABEL>Tipo de Pefil</LABEL><br>
 							    	<select id="da_perfil" class="form-control" onchange="PerfilColor(this.value);adicional('Perfil', this.value,'')" >
 							    		<option value="SELECCIONE">-- Seleccione --</option>
 							    	</select>
 						    	</div>
 
-							    <div class="col-sm-4">
+							    <div class="col-sm-3">
 								<!--     <input type="number" min="0" max="100" id="da_perfil_descuento" onkeyup="validarDescuento(this.id)" onchange="validarDescuento(this.id)" class="form-control" value="0" placeholder="Descuento" disabled style="display:none;"> -->
 								     <label>Color</label><br>
 								    <select id="da_perfil_color" class="form-control" onchange="adicional('Perfil Color', this.value, '')">
@@ -407,7 +422,7 @@
 								    <label>Dirección de la Tela</label>
 							    </div>
 
-							    <div class="col-sm-4">
+							    <div class="col-sm-3">
 							    	<select id="da_direccion_tela" class="form-control" onchange="adicional('Dir Tela', this.value,'')" >
 							    		<option value="SELECCIONE">-- Seleccione --</option>
 							    		<option value="NORMAL">NORMAL</option>
@@ -415,7 +430,13 @@
 				    					<option value="ATRAVESADA Y ANADIDA">ATRAVESADA Y AÑADIDA</option>
 							    	</select>
 						    	</div>
-
+						    	<div class="col-sm-3">
+							    	<select id="da_insta_tela" class="form-control" onchange="adicional('Tela Instal', this.value, '')" >
+							    		<option value="SELECCIONE">-- Seleccione --</option>
+							    		<option value="TECHO">PARED</option>
+				    					<option value="PARED">TECHO</option>
+							    	</select>
+						    	</div>
 							   <!--  <div class="col-sm-2">
 								    <input type="number" min="0" max="100" id="da_direccion_tela_descuento" onkeyup="validarDescuento(this.id)" onchange="validarDescuento(this.id)" class="form-control" value="0" placeholder="Descuento" disabled style="display:none;">
 							    </div>
@@ -431,11 +452,18 @@
 								    <label>Sentido</label>
 							    </div>
 
-							    <div class="col-sm-4">
+							    <div class="col-sm-3">
 							    	<select id="da_sentido" class="form-control" onchange="adicional('Sentido', this.value,'')" >
 							    		<option value="SELECCIONE">-- Seleccione --</option>
 							    		<option value="NORMAL">NORMAL</option>
 							    		<option value="CONTRARIO-NVR">CONTRARIO-NVR</option>
+							    	</select>
+						    	</div>
+						    	<div class="col-sm-3">
+							    	<select id="da_insta_sentido" class="form-control" onchange="adicional('Sentido Instal', this.value, '')" >
+							    		<option value="SELECCIONE">-- Seleccione --</option>
+							    		<option value="TECHO">PARED</option>
+				    					<option value="PARED">TECHO</option>
 							    	</select>
 						    	</div>
 							</div>
@@ -444,7 +472,7 @@
 								    <label>Numero de Telos</label>
 							    </div>
 
-							    <div class="col-sm-4">
+							    <div class="col-sm-3">
 							    	<select id="da_telos" class="form-control" onchange="adicional('Nro Telos', this.value,'')" >
 							    		<option value="SELECCIONE">-- Seleccione --</option>
 							    		<option value="2">2</option><option value="3">3</option>
@@ -455,13 +483,20 @@
 							    		
 							    	</select>
 						    	</div>
+						    	<div class="col-sm-3">
+							    	<select id="da_insta_telos" class="form-control" onchange="adicional('Telos Instal', this.value, '')" >
+							    		<option value="SELECCIONE">-- Seleccione --</option>
+							    		<option value="TECHO">PARED</option>
+				    					<option value="PARED">TECHO</option>
+							    	</select>
+						    	</div>
 							</div>
 							<div class="form-group col-sm-12" id="dap_apertura" style="display:none;">
 								<div class="col-sm-3">
 								    <label>Tipo Apertura</label>
 							    </div>
 
-							    <div class="col-sm-4">
+							    <div class="col-sm-3">
 							    	<select id="da_apertura" class="form-control" onchange="adicional('Apertura', this.value,'')" >
 							    		<option value="SELECCIONE">-- Seleccione --</option>
 							    		<option value="DERECHA">DERECHA</option>
@@ -470,25 +505,41 @@
 							    		<option value="CENTROS">CENTROS</option>
 							    	</select>
 						    	</div>
+						    	<div class="col-sm-3">
+							    	<select id="da_insta_apertura" class="form-control" onchange="adicional('Apertura Instal', this.value, '')" >
+							    		<option value="SELECCIONE">-- Seleccione --</option>
+							    		<option value="TECHO">PARED</option>
+				    					<option value="PARED">TECHO</option>
+							    	</select>
+						    	</div>
 							</div>        
 							<div class="form-group col-sm-12" id="dap_cenefa" style="display:none;">
 								<div class="col-sm-3">
 								    <label>Cenefa</label>
 							    </div>
 
-							    <div class="col-sm-4">
+							    <div class="col-sm-3">
 							    	<select id="da_cenefa" class="form-control" onchange="cenefa(); adicional('Cenefa', this.value,'da_cenefa_precio')" >
 							    		<option value="SELECCIONE">-- Seleccione --</option>
 							    		<option value="ALUMINIO">ALUMINIO</option>
 							    		<option value="TELA">TELA</option>
 							    	</select>
 						    	</div>
-						    	<div class="col-sm-2">
+						    	<div class="col-sm-3">
+							    	<select id="da_insta_cenefa" class="form-control" onchange="adicional('Cenefa Instal', this.value, '')" >
+							    		<option value="SELECCIONE">-- Seleccione --</option>
+							    		<option value="TECHO">PARED</option>
+				    					<option value="PARED">TECHO</option>
+							    	</select>
+						    	</div>
+						    	<div class="col-sm-1">
 								   	<input type="number" min="0" max="100" id="da_cenefa_descuento" onkeyup="validarDescuento(this.id)" onchange="validarDescuento(this.id)" class="form-control" value="0" placeholder="Descuento" disabled style="display:none;">
 							    </div>
 							  
-						    	<div class="col-sm-3" style="text-align:right;">
-							    	<label style="color:#CA0707;"></label><label style="color:#CA0707;" id="da_cenefa_precio" >0.00</label>
+						    	<div class="col-sm-1" style="text-align:right;">
+							    	<label style="color:#CA0707;" id="da_cenefa_precio" >0.00</label>
+							    </div>
+							    <div class="col-sm-1" style="text-align:right;">
 								    <label id="h_cenefa_precio" style="display:non;">0.00</label>
 							    </div>
 							</div>        
@@ -497,11 +548,18 @@
 								    <label>Soporte Intermedio</label>
 							    </div>
 
-							    <div class="col-sm-4">
+							    <div class="col-sm-3">
 							    	<select id="da_soporte_intermedio" class="form-control" onchange="adicional('Soporte', this.value,'')" >
 							    		<option value="SELECCIONE">-- Seleccione --</option>
 							    		<option value="DEPENDIENTE">DEPENDIENTE</option>
 							    		<option value="INDEPENDIENTE">INDEPENDIENTE</option>
+							    	</select>
+						    	</div>
+						    	<div class="col-sm-3">
+							    	<select id="da_insta_soporte" class="form-control" onchange="adicional('Soporte Instal', this.value, '')" >
+							    		<option value="SELECCIONE">-- Seleccione --</option>
+							    		<option value="TECHO">PARED</option>
+				    					<option value="PARED">TECHO</option>
 							    	</select>
 						    	</div>
 
@@ -520,20 +578,29 @@
 								    <label>Cover Light</label>
 							    </div>
 
-							    <div class="col-sm-4">
+							    <div class="col-sm-3">
 							    	<select id="da_cover_light" class="form-control" onchange="cover_light();adicional('Cover', this.value, 'da_cover_light_precio')">
 							    		<option value="SELECCIONE">-- Seleccione --</option>
 							    		<option value="SI">SI</option>
 							    	</select>
 						    	</div>
+						    	<div class="col-sm-3">
+							    	<select id="da_insta_cover" class="form-control" onchange="adicional('Cover Instal', this.value, '')" >
+							    		<option value="SELECCIONE">-- Seleccione --</option>
+							    		<option value="TECHO">PARED</option>
+				    					<option value="PARED">TECHO</option>
+							    	</select>
+						    	</div>
 
-							    <div class="col-sm-2">
+							    <div class="col-sm-1">
 								    <input type="number" min="0" max="100" id="da_cover_light_descuento" onkeyup="validarDescuento(this.id)" onchange="validarDescuento(this.id)" class="form-control" value="0" placeholder="Descuento" disabled style="display:none;">
 							    </div>
 							  
-						    	<div class="col-sm-3" style="text-align:right;">
-						    		<label style="color:#CA0707;"></label><label style="color:#CA0707;" id="da_cover_light_precio" >0.00</label>
-								    <label id="h_cover_light_precio" style="display:non;">0.00</label>
+						    	<div class="col-sm-1" style="text-align:right;">
+						    		<label style="color:#CA0707;" id="da_cover_light_precio" >0.00</label>
+							    </div>
+							    <div class="col-sm-1" style="text-align:right;">
+							    	<label id="h_cover_light_precio" style="display:non;">0.00</label>
 							    </div>
 							</div>
 
@@ -542,12 +609,19 @@
 								    <label>Junto Item</label>
 							    </div>
 
-							    <div class="col-sm-4">
+							    <div class="col-sm-3">
 							    	<select id="da_junto_item" class="form-control" onchange="adicional('Junto Item', this.value,'')" >
 							    		<option value="SELECCIONE">-- Seleccione --</option>
 							    		<option value="AL SIGUIENTE ITEM">AL SIGUIENTE ITEM</option>
 							    		<option value="AL ANTERIOR ITEM">AL ANTERIOR ITEM</option>
 							    		<option value="NO APLICA">NO APLICA</option>
+							    	</select>
+						    	</div>
+						    	<div class="col-sm-3">
+							    	<select id="da_insta_item" class="form-control" onchange="adicional('Junto Item Instal', this.value, '')" >
+							    		<option value="SELECCIONE">-- Seleccione --</option>
+							    		<option value="TECHO">PARED</option>
+				    					<option value="PARED">TECHO</option>
 							    	</select>
 						    	</div>
 
@@ -566,13 +640,20 @@
 								    <label>Mismo Cabezal</label>
 							    </div>
 
-							    <div class="col-sm-4">
-							    	<select id="da_mismo_cabezal" class="form-control" onchange="adicional('Cabezal', this.value,'')" onblur ="sumarAdicionales('#da_mismo_cabezal_precio')">
+							    <div class="col-sm-3">
+							    	<select id="da_mismo_cabezal" class="form-control" onchange="adicional('Cabezal', this.value,'')" >
 							    		<option value="SELECCIONE">-- Seleccione --</option>
 							    		<option value="JUNTO AL SIGUIENTE">JUNTO AL SIGUIENTE</option>
 							    		<option value="JUNTO AL ANTERIOR">JUNTO AL ANTERIOR</option>
 							    		<option value="JUNTO CON EL ANTERIOR Y SIGUIENTE">JUNTO CON EL ANTERIOR Y SIGUIENTE</option>
 							    		<option value="NO APLICA">NO APLICA</option>
+							    	</select>
+						    	</div>
+						    	<div class="col-sm-3">
+							    	<select id="da_insta_cabezal" class="form-control" onchange="adicional('Cabezal Instal', this.value, '')" >
+							    		<option value="SELECCIONE">-- Seleccione --</option>
+							    		<option value="TECHO">PARED</option>
+				    					<option value="PARED">TECHO</option>
 							    	</select>
 						    	</div>
 
@@ -626,12 +707,20 @@
 						</div>
 					</div>
 
-					<div class="panel panel-default" id="panel_sistema">
+					<div class="panel panel-default" id="panel_sistema" style="display:none;">
 						<div class="panel-heading">
 			    			<div class="panel-title">Sistema</div>
 						</div>
 						<div class="panel-body">
 						<div class="form-group col-sm-12">
+							<div class="col-sm-2 col-sm-offset-8" style="color:#CA0707; text-align: center;">
+							   <label>Distribuidor</label>
+							</div>
+							<div class="col-sm-2" style="text-align: center;">
+							   <label>Cliente</label>
+							</div>
+						</div>
+							<div class="form-group col-sm-12">
 							    <div class="col-sm-3">
 								    <label>Tipo Motor</label>
 							    </div>
@@ -656,15 +745,30 @@
 							    		<option selected value="SELECCIONE" >-- Seleccione --</option>
 							    	</select>
 						    	</div>
+						    	
 
-							    <div class="col-sm-2">
+							    <div class="col-sm-2" style="display:none;">
 								 <input type="number" min="0" max="100" id="da_motor_desc" onkeyup="motorDescuento(this.value)" onchange="motorDescuento(this.value)" class="form-control" value="0" placeholder="Descuento" disabled>
 							    </div>
 
-						    	<div class="col-sm-3" style="text-align:right;">
-						    	<label id="Motor_valor" style="color:#CA0707;">0.00</label>
-						    	<label id="Motor_valor_db" style="display:non;">0.00</label>
+						    	<div class="col-sm-2 col-sm-offset-1" style="text-align:center;">
+						    		<label id="Motor_valor" style="color:#CA0707;">0.00</label>
 							    </div>
+							    <div class="col-sm-2" style="text-align:center;">
+							   		<label id="Motor_valor_db">0.00</label>
+							    </div>
+							</div>
+							<div class="form-group col-sm-12">
+							    <div class="col-sm-3">
+								    <label>Instalacion</label>
+							    </div>
+							    <div class="col-sm-4">
+							    	<select id="da_insta_motor" class="form-control" onchange="adicional('Motor Instal', this.value, '')" >
+							    		<option value="SELECCIONE">-- Seleccione --</option>
+							    		<option value="TECHO">PARED</option>
+				    					<option value="PARED">TECHO</option>
+							    	</select>
+						    	</div>
 							</div>
 							<div  id="Datos" style="display:none;">
 							   <div class="Datos">

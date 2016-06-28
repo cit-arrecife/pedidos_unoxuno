@@ -151,9 +151,11 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 
 		}else{
 			//console.log('la tela es '+ tela);
-			var tipotela =$('#producto_tipo_tela').val();
+			var tipo =$('#producto_tipo_tela').val();
+			console.log('el tipó ' + tipo);
+			console.log('la tela '+ tela);
 		    $.ajax({
-		        data:  {tipotela: tipotela, tela: tela, opcion: 4},
+		        data:  {tipo: tipo, tela: tela, opcion: 4},
 		        url:   '../control/validar.php',
 		        type:  'post',
 		      
@@ -210,6 +212,7 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 		    			document.getElementById("datos_adicionales").style.display = "block";
 		    			document.getElementById("datos_complementarios").style.display = "block";
 	    				productoPrecio = Json.Precio;
+	    				
 		    			$('#producto_precio_lista').html(parseInt(productoPrecio));
 		    			$('#producto_precio_db').html(parseInt(productoPrecio));
 		    			calcularValores();

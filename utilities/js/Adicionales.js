@@ -280,7 +280,8 @@
 					precioTotalAdicional = precioAdicional - (precioAdicional * descuentoAdicional / 100);
 					$('#da_mismo_cabezal_precio').html(precioTotalAdicional);
 				}
-				else if (tipoProducto =="PANEL JAPONES") {
+				else if (tipoProducto == "PANEL JAPONES") {
+
 					precioAdicional = $('#h_cenefa_precio').text();
 					descuentoAdicional = $('#da_cenefa_descuento').val();
 					precioTotalAdicional = precioAdicional - (precioAdicional * descuentoAdicional / 100);
@@ -342,11 +343,11 @@
 			function precio_motor(motor){
 					if(motor != 'SELECCIONE' ){
 					var valor = parseInt($('#Motor_valor').text());
-					console.log('valor '+valor);
+				//	console.log('valor '+valor);
 					if(valor != 0){
 						restarAdicionales('#Motor_valor');
 					}
-						console.log('resto adicionales');
+					//	console.log('resto adicionales');
 						var tipoproducto =$('#producto_tipo').val();
 						 $.ajax({
 					        data:  {tipo_motor: motor,
@@ -446,30 +447,26 @@
 
 	}
 	function cenefa(){
-				var cenefa = 45000;
-				
-				var nombreAdicional = $('#da_cenefa').val();
-								
-							
-				var hAdicional = $('#h_cenefa_precio');
-
-					if (nombreAdicional == "SELECCIONE" || nombreAdicional == "ALUMINIO")
-					{
-					var value =$('#da_cenefa_precio').text();
-					//console.log(value);
-						if(value != 0){
-							restarAdicionales('#da_cenefa_precio');
-						}
-						hAdicional.html(0);
-                    	cal();
-					}
-					else
-					{
-						var ancho =$('#producto_ancho').val();
-						var valCenefa = ancho *45000;
-						hAdicional.html(valCenefa);
-						cal();
-					}
-					
-					
+		var cenefa = 45000;
+		var nombreAdicional = $('#da_cenefa').val();
+		var hAdicional = $('#h_cenefa_precio');
+		if (nombreAdicional == "SELECCIONE" || nombreAdicional == "ALUMINIO")
+			{
+			var value =$('#da_cenefa_precio').text();
+			console.log(value);
+				if(value != 0){
+					restarAdicionales('#da_cenefa_precio');
+				}
+				hAdicional.html(0);
+            	cal();
 			}
+			else
+			{
+				var ancho =$('#producto_ancho').val();
+				var valCenefa = ancho *45000;
+				hAdicional.html(valCenefa);
+				cal();
+			}
+		
+
+	}

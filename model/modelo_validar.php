@@ -29,9 +29,9 @@ ini_set('display_errors', '1');
 				$result = odbc_exec($this->db->connect(), $sql);
 				return $result;
 			}
-			public function validar_color($tipotela, $tela){
-				$sql = "SELECT colorTela from COLORESPRODUCTO WHERE tipoTela ='$tipotela' AND nombreTela ='$tela'";
-				error_log($sql);
+			public function validar_color($tipo, $tela){
+				$sql = "SELECT colorTela from COLORESPRODUCTO WHERE tipoTela ='$tipo' AND nombreTela ='$tela'";
+				error_log("LA CONSULTA  ".$sql);
 				$result = odbc_exec($this->db->connect(), $sql);
 				return $result;
 			}

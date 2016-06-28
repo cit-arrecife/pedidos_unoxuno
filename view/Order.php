@@ -107,7 +107,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Pedido Realizado Con Exito!</h4>
+                        <h4 class="modal-title" id="Mtitulo"></h4>
                     </div>
                     <div class="modal-body">
                         <div class="alert alert-success" role="alert" id="modal_error_mensaje">
@@ -115,7 +115,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-warning" data-dismiss="modal" onclick="window.location ='MyOrders.php'">Aceptar</button>
+                        <button type="button" id="Mfooter" class="btn btn-warning" data-dismiss="modal" onclick="window.location ='MyOrders.php'">Aceptar</button>
                     </div>
                 </div>
             </div>
@@ -287,7 +287,7 @@
 
                     <div class="col-sm-12">
                        <!--  <button class="btn btn-danger" type="button" onclick="realizarCotizacion()" style="background-color:#CA0707 !important;">Guardar como Cotización</button> -->
-                        <button class="btn btn-danger" type="button" onclick="realizarPedido()" style="background-color:#CA0707 !important;">Realizar Pedido</button>
+                        <button id="btnPedido" class="btn btn-danger" type="button" onclick="realizarPedido()" style="background-color:#CA0707 !important;" >Realizar Pedido</button>
                     </div>
                     
                 </div>
@@ -298,4 +298,5 @@
 
 
                     </body>
+
                     </html>

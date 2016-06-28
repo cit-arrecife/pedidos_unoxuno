@@ -67,6 +67,7 @@
 		descuentoDistri = $('#producto_descuento_distribuidor').val();
 		descuentoAddic = $('#producto_descuento_adicional').val();
 		valorUnitario =$('#da_producto_subtotal').text();
+		var observaciones =$('#dc_producto_observaciones').val();
 		var detalle =nombreEspacio+' '+tipoProducto+'-'+tipoPresentacion+'-'+tipoTela+'-'+tela+'-'+colorTela;
 		var producto='';
 		$.each(Adicionales, function(index, val){
@@ -84,7 +85,8 @@
 	        		alto:altoProducto,
 	        		ancho:anchoProducto,
 	        		idusuario:idusuario,
-	        		producto:producto
+	        		producto:producto,
+	        		observaciones: observaciones
 	        		},
 	        url:   '../control/registro.php',
 	        type:  'post',
@@ -168,7 +170,8 @@ function validar(){
 		var cantidad=$('#producto_cantidad').val();
 		var ancho =$('#producto_ancho').val();
 		var alto =$('#producto_alto').val();
-		if(cantidad <= 0 || ancho <= 0 || alto <= 0){
+		var sistem=$('#da_sistema').val();
+		if(cantidad <= 0 || ancho <= 0 || alto <= 0 || sistem =='SELECCIONE'){
 			 $('#modalError').modal({backdrop: 'static', keyboard: false});
 			 document.getElementById("alert2").style.display = "block";
 		}
@@ -176,26 +179,78 @@ function validar(){
 			 document.getElementById("alert2").style.display = "none";
 			 passed++
 		}
+		switch (tipo) {
+			case 'ENROLLABLE':
 
-		var perfil =$('#da_perfil').val();
-		var color =$('#da_perfil_color').val();
-		var sentido =$('#da_direccion_tela').val();
-		var mando =$('#da_mando').val();
-		var sistema =$('#da_motor').val();
-		if(perfil == 'SELECCIONE' || color == 'SELECCIONE' || sentido == 'SELECCIONE' || mando == 'SELECCIONE' || sistema == 'SELECCIONE')
-		{
+			if(sistem == 'MANUAL'){
+				var sistema ='MANUAL';
+			}else{
+				var sistema =$('#da_motor').val();
+			}
 
-			 $('#modalError').modal({backdrop: 'static', keyboard: false});
-			 document.getElementById("alert3").style.display = "block";
+				var perfil =$('#da_perfil').val();
+				var color =$('#da_perfil_color').val();
+				var sentido =$('#da_direccion_tela').val();
+				var mando =$('#da_mando').val();
+				
+				if(perfil == 'SELECCIONE' || color == 'SELECCIONE' || sentido == 'SELECCIONE' || mando == 'SELECCIONE' || sistema == 'SELECCIONE')
+				{
+
+					 $('#modalError').modal({backdrop: 'static', keyboard: false});
+					 document.getElementById("alert3").style.display = "block";
+				}
+				else
+				{
+					 document.getElementById("alert3").style.display = "none";
+					 passed++;
+				}
+			break;
+			case 'PANEL JAPONES':
+			var mando =$('#da_mando').val();
+			var perfil =$('#da_perfil').val();
+			var sentido =$('#da_direccion_tela').val();
+			var cenefa =$('#da_cenefa').val();
+			var telos =$('#da_telos').val();
+			var apertura =$('#da_apertura').val();
+			if(mando == 'SELECCIONE' || perfil == 'SELECCIONE' || sentido == 'SELECCIONE' || cenefa == 'SELECCIONE' || telos == 'SELECCIONE' || apertura =='SELECCIONE')
+				{
+				 $('#modalError').modal({backdrop: 'static', keyboard: false});
+				 document.getElementById("alert3").style.display = "block";
+				}
+				else
+				{
+				 document.getElementById("alert3").style.display = "none";
+				 passed++;
+				}
+			break;
+			case 'SHEER':
+				var mando =$('#da_mando').val();
+				if(mando == 'SELECCIONE' )
+				{
+				 $('#modalError').modal({backdrop: 'static', keyboard: false});
+				 document.getElementById("alert3").style.display = "block";
+				}
+				else
+				{
+				 document.getElementById("alert3").style.display = "none";
+				 passed++;
+				}
+			break;
+			default:
+				// statements_def
+				break;
 		}
-		else
-		{
-			 document.getElementById("alert3").style.display = "none";
-			 passed++;
-		}
+
+
+
+
+		
 		if (passed == 3) { return true;}
 
 }
+
+
+
 function limpiarCampos(){
 		document.getElementById("datos_iniciales").style.display = "none";
 	    document.getElementById("datos_adicionales").style.display = "none";
@@ -223,12 +278,37 @@ function limpiarCampos(){
 			option.text = "-- Seleccione --";
 			select.add(option);
 	    });
+
+
+	    var limpiar =[
+	    	'da_insta_mando',
+	    	'da_insta_tela',
+	    	'da_insta_telos',
+	    	'da_insta_soporte',
+	    	'da_insta_sentido',
+	    	'da_insta_motor',
+	    	'da_insta_item',
+	    	'da_insta_cover',
+	    	'da_insta_cenefa',
+	    	'da_insta_cabezal',
+	    	'da_insta_apertura',
+	    	'da_soporte_intermedio',
+	    	'da_junto_item'
+	    	];
+	    	$.each(limpiar, function(index, val){
+			$('#'+val).prop('selectedIndex', 0);	    	
+	   	    });
+
+
 	    $('#producto_tipo').prop('selectedIndex', 0);
 	    $('#da_motor_tipo').prop('selectedIndex', 0);
 	    $('#da_mando').prop('selectedIndex', 0);
 	    $('#da_sistema').prop('selectedIndex', 0);
 	    $('#da_telos').prop('selectedIndex', 0);
 	    $('#da_apertura').prop('selectedIndex', 0);
+
+
+
 	    $('#producto_cantidad').val(1);
 		$('#producto_ancho').val(1);
 		$('#producto_alto').val(1);

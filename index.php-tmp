@@ -1,15 +1,14 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
-print $_SERVER['DOCUMENT_ROOT'];
+print$_SERVER['DOCUMENT_ROOT'];
 ?>
 <?php
-    session_start();
+session_start();
 
-    if(isset($_SESSION['usuario_codigo']))
-    {
-        header("location: view/MyOrders.php");
-    }
+if (isset($_SESSION['usuario_codigo'])) {
+	header("location: view/MyOrders.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +31,7 @@ print $_SERVER['DOCUMENT_ROOT'];
         .header h2{height:44px; line-height:44px; color:#fff; text-align:center}
         .login{padding:0 20px}
         .login span.un{width:10%; text-align:center; color:#0C6; border-radius:3px 0 0 3px}
-        .text{background:#12192C; width:90%; border-radius:0 3px 3px 0; border:none; outline:none; color:#999; font-family: 'Source Sans Pro', sans-serif} 
+        .text{background:#12192C; width:90%; border-radius:0 3px 3px 0; border:none; outline:none; color:#999; font-family: 'Source Sans Pro', sans-serif}
         .text,.login span.un{display:inline-block; vertical-align:top; height:40px; line-height:40px; background:#12192C;}
 
         .btn{height:40px; border:none; background:#0C6; width:100%; outline:none; font-family: 'Source Sans Pro', sans-serif; font-size:20px; font-weight:bold; color:#eee; border-bottom:solid 3px #093; border-radius:3px; cursor:pointer}
@@ -105,7 +104,7 @@ print $_SERVER['DOCUMENT_ROOT'];
 				<div class="panel panel-primary">
 					<div class="panel-heading">INICIAR SESIÓN</div>
 					<div class="panel-body">
-					
+
 						<form role="form">
                             <div class="form-group">
                                 <label>Usuario:</label>
@@ -123,7 +122,7 @@ print $_SERVER['DOCUMENT_ROOT'];
                             </div>
                             <button class="btn btn-primary" type="button" title="Ingresar" onclick="login()">Aceptar</button>
                         </form>
-						
+
 					</div>
 				</div>
 			</div>
@@ -149,7 +148,7 @@ print $_SERVER['DOCUMENT_ROOT'];
 
                         if (jsonResponse.Success == 0) {
                             $('#notificacion').html(jsonResponse.Mensaje);
-                            
+
                         } else if (jsonResponse.Success == 1) {
                             console.log('usuario validado');
                              window.location.href = 'view/MyOrders.php';
@@ -159,7 +158,7 @@ print $_SERVER['DOCUMENT_ROOT'];
                     //         type: "POST",
                     //         url: "utilities/db/db_session.php",
                     //         data: { codigo_usuario: codigo, password_usuario: password }
-                    //     }).done(function(data) {                
+                    //     }).done(function(data) {
 
                     //     var jsonResponse = JSON.parse(data);
                     //     if (jsonResponse.Success == 0) {
@@ -167,15 +166,15 @@ print $_SERVER['DOCUMENT_ROOT'];
                     //         console.log(jsonResponse.Success);
                     //     } else if (jsonResponse.Success == 1) {
                     //          window.location.href = 'view/MyOrders.php';
-                        
+
                     //     }
-                        
+
                     // });
             }
-            
+
         }
 
     </script>
-    
+
   </body>
 </html>

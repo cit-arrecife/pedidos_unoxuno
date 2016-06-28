@@ -30,8 +30,9 @@ switch ($opcion) {
 		$ancho=$_POST['ancho'];
 		$idCliente=$_POST['idusuario'];
 		$producto=$_POST['producto'];
+		$observaciones =$_POST['observaciones'];
 
-		$resultado= $registro->Producto($cantidad, $descuentoDistri, $detalle, $iva, $valoruni, $alto, $ancho, $idCliente, $producto);
+		$resultado= $registro->Producto($cantidad, $descuentoDistri, $detalle, $iva, $valoruni, $alto, $ancho, $idCliente, $producto, $observaciones);
 			       	
 		echo $resultado;
 

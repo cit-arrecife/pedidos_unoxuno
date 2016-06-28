@@ -45,9 +45,9 @@
 			echo json_encode($json);
 		break;
 		case 4:
-			$tipotela =$_POST['tipotela'];
+			$tipo =$_POST['tipo'];
 			$tela =$_POST['tela'];
-			$Resultado = $validar->validar_color($tela);
+			$Resultado = $validar->validar_color($tipo, $tela);
 			if($Resultado){
 				while ($row = odbc_fetch_array($Resultado)) {
 					$response["colorTela"] = $row["colorTela"];
