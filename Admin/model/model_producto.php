@@ -1,0 +1,63 @@
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+?>
+<?php 
+
+class productos{
+
+	private $db;
+
+	function __construct() {
+		require_once '../db/connect.php';
+		$this->db = new connect();
+		$this->db->connect();
+	}
+
+	public function cargarproductos(){
+		$sql ="SELECT * FROM PRODUCTOSUNO WHERE  NOT (tipoProducto IS NULL AND telaProducto IS NULL AND Precio IS NULL)";
+		//error_log($sql);
+		$result =odbc_exec($this->db->connect(), $sql);
+		return $result;
+	}
+	public function NuevoProducto($prod, $pres, $tipo, $tela, $precio){
+		$sql =" INSERT INTO PRODUCTOSUNO 
+				(tipoProducto, tipoPresentacionProducto, tipoTelaProducto, telaProducto, Precio)
+				VALUES ('$prod', '$pres', '$tipo', '$tela','$precio')";
+		//error_log($sql);
+		$result =odbc_exec($this->db->connect(), $sql);
+		return $result;
+	}
+	public function verproducto($id){
+		$sql ="SELECT * FROM PRODUCTOSUNO WHERE idProducto ='$id'";
+		//error_log($sql);
+		$result =odbc_exec($this->db->connect(), $sql);
+		return $result;
+	}
+	public function Actualizar($id,$prod, $pres, $tipo, $tela, $precio){
+		$sql =" UPDATE PRODUCTOSUNO SET tipoProducto='$prod',
+										tipoPresentacionProducto= '$pres',
+										tipoTelaProducto= '$tipo',
+										telaProducto='$tela',
+										Precio='$precio'
+										WHERE idProducto='$id'";
+		//error_log($sql);
+		$result =odbc_exec($this->db->connect(), $sql);
+		return $result;
+	}
+	public function Eliminar($id){
+		$sql =" DELETE FROM PRODUCTOSUNO WHERE idProducto='$id'";
+		//error_log($sql);
+		$result =odbc_exec($this->db->connect(), $sql);
+		return $result;
+	}
+
+
+
+
+
+
+}
+
+
+ ?>

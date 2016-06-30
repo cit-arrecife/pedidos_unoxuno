@@ -6,16 +6,18 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Administrador UnoxUno</title>
+	<title>Colores x Producto</title>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="../public/font-awesome/css/font-awesome.css">
-	<script src="../public/js/usuadmin.js" type="text/javascript"></script>
+   	<link rel="stylesheet" href="../public/font-awesome/css/font-awesome.css">
+	<script src="../public/js/colores.js" type="text/javascript"></script>
+
+
 </head>
 <script type="text/javascript">
 	$(document).ready(function(){
-		cargarusuarios();
+		cargartipo();
 	});
 </script>
 <style type="text/css">
@@ -94,22 +96,25 @@
 						</div>
 						<div class="modal-body ">
 							<div class="col-sm-2">
-								<i class="fa fa-user" style="font-size:120px; color:#CA0707; "></i>
+								<i class="fa fa-shopping-cart" style="font-size:120px; color:#CA0707; text-align:center;"></i>
 							</div>
 								<div class="col-sm-9">
 									<input type="text" name="id" id="Uid" class="col-sm-offset-1 form-control" placeholder="Nombre" disabled style="display:none;">
 								</div>
 								<div class="col-sm-9">
-									<input type="text" name="Name" id="Uname" class="col-sm-offset-1 form-control" placeholder="Nombre" disabled>
+									<input type="text" id="Uprod" class="col-sm-offset-1 form-control" placeholder="Producto (Ej: Enrollable, Panel Japones, Sheer)" disabled>
 								</div>
 								<div class="col-sm-9">
-									<input type="text" name="User" id="Uuser" class="col-sm-offset-1 form-control" placeholder="Usuario" disabled>
+									<input type="text" name="User" id="Upres" class="col-sm-offset-1 form-control" placeholder="Presentacion" disabled>
 								</div>
 								<div class="col-sm-9">
-									<input type="password" name="Pass" id="Upass" class="col-sm-offset-1 form-control" placeholder="Contraseña" disabled>
+									<input type="text"  id="Utipo" class="col-sm-offset-1 form-control" placeholder="Tipo" disabled>
 								</div>
 								<div class="col-sm-9">
-									<input type="password" name="Pass2" id="Upass2" class="col-sm-offset-1 form-control" placeholder="Repetir Contraseña" disabled>
+									<input type="text" id="Utela" class="col-sm-offset-1 form-control" placeholder="Tela" disabled>
+								</div>
+								<div class="col-sm-9 col-sm-offset-2">
+									<input type="text" id="Uprecio" class="col-sm-offset-1 form-control" placeholder="Precio" disabled>
 								</div>
 								<div class="col-sm-9 col-sm-offset-3">
 									<label id="validacion" style="font-size:10px; color:#CA0707; "></label>
@@ -125,29 +130,32 @@
 					</div>
 				</div>
 			</div>
-			<div class="modal fade " id="nuevousuario" tabindex="-1" role="dialog">
+			<div class="modal fade " id="nuevoproducto" tabindex="-1" role="dialog">
 				<div class="modal-dialog" >
 					<div class="modal-content">
 						<div class="modal-header" style="background-color:#CA0707;">
 							<button type="button" class="close" data-dismiss="modal"  style="color:black;">Cerrar</button>
-						<h4 id="titulomodal" style="color:white;">Nuevo Usuario</h4>
-						
+							<h4 id="titulomodal" style="color:white;">Nuevo Producto</h4>
 						</div>
-						<div class="modal-body ">
+						<div class="modal-body " >
 							<div class="col-sm-2">
-								<i class="fa fa-user" style="font-size:120px; color:#CA0707; "></i>
+								<i class="fa fa-shopping-cart" style="font-size:120px; color:#CA0707; text-align:center;"></i>
 							</div>
 								<div class="col-sm-9">
-									<input type="text" name="Name" id="NUname" class="col-sm-offset-1 form-control" placeholder="Nombre" >
+									<input type="text" name="prod" id="Nprod" class="col-sm-offset-1 form-control" placeholder="Producto (Ej: Enrollable, Panel Japones, Sheer)" >
+								</div>
+						
+								<div class="col-sm-9" >
+									<input type="text" name="pres" id="Npres" class="col-sm-offset-1 form-control" placeholder="Presentacion" >
 								</div>
 								<div class="col-sm-9">
-									<input type="text" name="User" id="NUuser" class="col-sm-offset-1 form-control" placeholder="Usuario" >
+									<input type="text" name="tipo" id="Ntipo" class="col-sm-offset-1 form-control" placeholder="Tipo  " >
 								</div>
 								<div class="col-sm-9">
-									<input type="password" name="Pass" id="NUpass" class="col-sm-offset-1 form-control" placeholder="Contraseña" >
+									<input type="text" name="tela" id="Ntela" class="col-sm-offset-1 form-control" placeholder="Tela" >
 								</div>
-								<div class="col-sm-9">
-									<input type="password" name="Pass2" id="NUpass2" class="col-sm-offset-1 form-control" placeholder="Repetir Contraseña" >
+								<div class="col-sm-9 col-sm-offset-2">
+									<input type="text" name="precio" id="Nprecio" class="col-sm-offset-1 form-control" placeholder="Precio" >
 								</div>
 								<div class="col-sm-9 col-sm-offset-3">
 									<label id="validacionA" style="font-size:10px; color:#CA0707; "></label>
@@ -155,7 +163,7 @@
 						</div>
 						<div class="modal-footer ">
 						<div class="col-sm-10 "><br>
-							<button type="button" class="btn" onclick="GuardarNuevoUsuario()" >Guardar</button>
+							<button type="button" class="btn" onclick="GuardarNuevoproducto()" >Guardar</button>
 							<button type="button" class="btn" data-dismiss="modal">Cancelar</button>
 						</div>
 							
@@ -173,7 +181,7 @@
 	<div class="container col-sm-12 col-sm-offset-1" >
 		<nav class="col-sm-12 ">
 			<ul class="nav navbar-nav">
-				<li><a href="Productos.php" style="font-size:17px;">
+				<li class="active"><a href="Productos.php" style="font-size:17px;">
 					<i class="fa fa-briefcase" style="font-size:25px;"></i>
 					PRODUCTOS
 					</a>
@@ -183,7 +191,7 @@
 					ADICIONALES
 					</a>
 				</li>
-				<li class="active"><a href="Administrador.php" style="font-size:17px;">
+				<li ><a href="Administrador.php" style="font-size:17px;">
 					<i class="fa fa-cog " aria-hidden="true" style="font-size:25px;"></i>
 					ADMINISTRAR</a></li>
 				<li><a href="../db/logout.php"  class="active" style="font-size:17px;">
@@ -228,43 +236,81 @@
     </div>
 </div>
 
-<div class="form-group col-sm-3">
+<!-- <div class="form-group col-sm-2">
   <div>
     <div>
-    	<button type="button" class="btn btn-danger"  onclick="nuevousuario()" style="font-size:18px; background-color:#CA0707 !important;">
+    	<button type="button" class="btn btn-danger"  onclick="nuevoproducto()" style="font-size:18px; background-color:#CA0707 !important;">
         <i class="fa fa-plus" aria-hidden="true" style="font-size:18px; "></i>
-		Nuevo Usuario
+		Nuevo Producto
+        </button>
+        
+    </div>
+  </div>
+</div> -->
+<div class="form-group col-sm-2">
+  <div>
+    <div>
+    	<button type="button" class="btn btn-danger"  onclick="window.location='Productos.php'" style="font-size:18px; background-color:#CA0707 !important;">
+        <i class="fa" aria-hidden="true" style="font-size:18px; "></i>
+		Productos
         </button>
         
     </div>
   </div>
 </div>
 
-
  <div class="form-group col-sm-9">
     <div class="panel panel-danger">
         <div class="panel-heading" style="background-color:#CA0707 !important;">
-            <h3 class="panel-title" style="color:#FFF !important;"><strong>Usuarios</strong></h3>
+            <h3 class="panel-title" style="color:#FFF !important;"><strong>Colores por Producto</strong></h3>
         </div>
         <div class="panel-body">
-        
-            <div class="table-responsive">
-                <table id="tableusers" class="table table-condensed">
+        	<div class="panel-heading" style="background-color:#E8E8E8 !important; ">
+        	    <h3 class="panel-title" style="color:#000 !important; "><strong>Producto</strong></h3>
+		    </div>
+		   
+		    <div class="col-sm-12 panel-body">
+			    <div class="col-sm-3 col-sm-offset-1">
+			    	<label style="font-size:12px;">Tipo de Tela: </label>
+			    </div>
+			    <div class="col-sm-3">
+			    	<select id="da_tipo_tela_col" class="form-control" standard title="Tipo de Tela..." onchange="nombretela(this.value)">
+			    	</select>	
+			    </div> 	
+		    </div>
+		    <div class="col-sm-12">
+		    	<div class="col-sm-3 col-sm-offset-1">
+		    		<label style="font-size:12px;">Nombre de la Tela: </label>
+		    	</div>
+			    <div class="col-sm-3">
+			    	<select id="da_tela_color" class="form-control" standard title="Nombre de la Tela..." onchange="colores()">
+			    	<option value="SELECCIONE">-- Seleccione --</option>}
+			    	option
+			    	</select>	
+			    </div>
+		    </div>
+        </div>
+        <div class="panel-body " id="colores" style="display:none;">
+        	<div class="panel-heading" style="background-color:#E8E8E8 !important; ">
+        	    <h3 class="panel-title" style="color:#000 !important; "><strong>Colores</strong></h3>
+		    </div>
+
+		    <div class="table-responsive">
+                <table id="tablecolores" class="table table-condensed">
                     <thead>
                         <tr>
                             <th style="text-align:center; display:none" width="1%">id</th>
-                            <th style="text-align:center;" width="20%">Nombre</th>
-                            <th style="text-align:center;" width="20%">Codigo</th>
-                            <th style="text-align:center;" width="20%">Contraseña</th>
+                            <th style="text-align:center;" width="20%">Color</th>
                             <th style="text-align:center;" width="20%">Seleccione</th>
                         </tr>
                     </thead>
-                    <tbody id="detalleUsuario">
+                    <tbody id="detallecolores">
                     </tbody>
                     <tfoot>
                     </tfoot>
                 </table>
             </div>
+
 
         </div>
     </div>
@@ -274,3 +320,27 @@
 	
 </body>
 </html>
+
+
+<!-- <table id="tableusers" class="table table-condensed" >
+                    <thead>
+                        <tr>
+                            <th style="text-align:center; display:none" width="1%">id</th>
+                            <th style="text-align:center;" width="20%">Producto</th>
+                            <th style="text-align:center;" width="20%">Presentacion</th>
+                            <th style="text-align:center;" width="20%">Tipo</th>
+                            <th style="text-align:center;" width="20%">Tela</th>
+                            <th style="text-align:center;" width="20%">Precio</th>
+                            <th style="text-align:center;" width="20%">Seleccione</th>
+                        </tr>
+                    </thead>
+             </table>
+        
+            <div class="table-responsive" style="height:380px; overflow-y: scroll;">
+                <table id="tableusers" class="table table-condensed" >
+                  <tbody id="detalleUsuario">
+                    </tbody>
+                    <tfoot>
+                    </tfoot>
+                </table>
+            </div> -->
