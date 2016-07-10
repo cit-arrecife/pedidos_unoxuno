@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
-print $_SERVER['DOCUMENT_ROOT'];
+//print $_SERVER['DOCUMENT_ROOT'];
 ?>
 <?php
     session_start();
@@ -143,15 +143,15 @@ print $_SERVER['DOCUMENT_ROOT'];
                 $('#notificacion').html(mensaje);
             } else {
                     $.post("utilities/db/db_session.php",{ codigo_usuario: codigo, password_usuario: password }, function (data){
-                        console.log(data);
+                       // console.log(data);
                         var jsonResponse = JSON.parse(data);
-                        console.log(jsonResponse);
+                       // console.log(jsonResponse);
 
                         if (jsonResponse.Success == 0) {
                             $('#notificacion').html(jsonResponse.Mensaje);
                             
                         } else if (jsonResponse.Success == 1) {
-                            console.log('usuario validado');
+                        //    console.log('usuario validado');
                              window.location.href = 'view/MyOrders.php';
                         }
                     });

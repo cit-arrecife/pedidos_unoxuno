@@ -66,7 +66,7 @@
 		altoProducto = $('#producto_alto').val();
 		descuentoDistri = $('#producto_descuento_distribuidor').val();
 		descuentoAddic = $('#producto_descuento_adicional').val();
-		valorUnitario =$('#da_producto_subtotal').text();
+		valorUnitario =$('#da_cli_subtotal').text();
 		var observaciones =$('#dc_producto_observaciones').val();
 		var detalle =nombreEspacio+' '+tipoProducto+'-'+tipoPresentacion+'-'+tipoTela+'-'+tela+'-'+colorTela;
 		var producto='';

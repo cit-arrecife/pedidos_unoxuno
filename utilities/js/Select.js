@@ -196,7 +196,31 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 		    document.getElementById("datos_adicionales").style.display = "none";
 		    document.getElementById("datos_complementarios").style.display = "none";
 
-		}else{
+		}else if (tipoproducto =='SHEER'){
+				var alto = $('#producto_alto').val();
+				var ancho = $('#producto_ancho').val();
+			 $.ajax({
+		        data:  {ancho:ancho,
+						alto:alto,
+						telaproducto: telaproducto,
+		        		 opcion: 9},
+		        url:   '../control/validar.php',
+		        type:  'post',
+		        success:  function (data) {
+						Json =JSON.parse(data);
+						console.log(Json.Precio);
+						document.getElementById("datos_iniciales").style.display = "block";
+		    			document.getElementById("datos_adicionales").style.display = "block";
+		    			document.getElementById("datos_complementarios").style.display = "block";
+	    				productoPrecio = Json.Precio;
+	    				console.log(productoPrecio);
+		    			$('#producto_precio_lista').html(parseInt(productoPrecio));
+		    			$('#producto_precio_db').html(parseInt(productoPrecio));
+		    			calcularValores();
+		        }
+			}); // final del ajaz
+
+		}else {
 		    $.ajax({
 		        data:  {tipoproducto: tipoproducto,
 		        		presentacionproducto: presentacionproducto,
@@ -205,19 +229,15 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 		        		 opcion: 5},
 		        url:   '../control/validar.php',
 		        type:  'post',
-		      
 		        success:  function (response) {
 						Json =JSON.parse(response);
 						document.getElementById("datos_iniciales").style.display = "block";
 		    			document.getElementById("datos_adicionales").style.display = "block";
 		    			document.getElementById("datos_complementarios").style.display = "block";
 	    				productoPrecio = Json.Precio;
-	    				
 		    			$('#producto_precio_lista').html(parseInt(productoPrecio));
 		    			$('#producto_precio_db').html(parseInt(productoPrecio));
 		    			calcularValores();
-
-
 		        }
 			}); // final del ajaz
 		}// final del else
@@ -323,6 +343,9 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 				document.getElementById("dap_sentido").style.display = "block";
 				document.getElementById("dap_soporte_intermedio").style.display = "block";
 				document.getElementById("dap_cover_light").style.display = "block";
+				$('#sistema_motor').show();
+				$('#dap_bolsillo').hide();
+				$('#dap_bolsillo2').hide();
 
 			}
 			else if (tipoProducto == "SHEER")
@@ -339,6 +362,9 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 				document.getElementById("dap_soporte_intermedio").style.display = "block";
 				document.getElementById("dap_junto_item").style.display = "block";
 				document.getElementById("dap_mismo_cabezal").style.display = "block";
+				$('#sistema_motor').show();
+				$('#dap_bolsillo').hide();
+				$('#dap_bolsillo2').hide();
 			}
 			else if (tipoProducto == "PANEL JAPONES")
 			{
@@ -354,8 +380,31 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 				document.getElementById("dap_telos").style.display = "block";
 				document.getElementById("dap_apertura").style.display = "block";
 				document.getElementById("dap_cenefa").style.display = "block";
+				$('#sistema_motor').show();
+				$('#dap_bolsillo').hide();
+				$('#dap_bolsillo2').hide();
+
+			}
+			else if (tipoProducto=='TELOS') {
+				document.getElementById("dap_soporte_intermedio").style.display = "none";
+				document.getElementById("dap_junto_item").style.display = "none";
+				document.getElementById("dap_mismo_cabezal").style.display = "none";
+				document.getElementById("dap_cover_light").style.display = "none";
+				document.getElementById("dap_sentido").style.display = "none";
+				document.getElementById("dap_apertura").style.display = "none";
+				document.getElementById("dap_cenefa").style.display = "none";
+				document.getElementById("dap_direccion_tela").style.display = "none";
+				document.getElementById("dap_mando").style.display = "none";
+				$('#sistema_motor').hide();
+				$('#dap_bolsillo').show();
+				$('#dap_bolsillo2').show();
 
 
+				document.getElementById("dap_perfil").style.display = "none";
+				document.getElementById("dap_telos").style.display = "block";
+				
+
+				
 			}
 		}
 		function llamar_descu(nombre){
@@ -400,6 +449,51 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 				        success:  function (response) {
 								Json =JSON.parse(response);
 								var select = document.getElementById("da_perfil");
+								while(select.options.length > 0)
+								{                
+				    				select.remove(0);
+				    			}
+				    			var option = document.createElement('option');
+								option.value = "SELECCIONE";
+					    		option.text = "-- Seleccione --";
+					    		select.add(option);
+								$.each(Json, function(index, val) {
+							 //   	console.log(val.tipoPresentacionProducto);
+							    	var option = document.createElement('option');
+									option.value = val.nombrePerfil;
+					    			option.text = val.nombrePerfil;
+					    			select.add(option);
+								});
+								
+
+				        }
+					}); // final del ajaz
+				}// final del else 
+				seleccionarTipoProducto(tipoproducto);
+				Bolsillo(tipoProducto);
+		}
+		function Bolsillo(tipoProducto){
+			var tipoproducto= tipoProducto;
+			console.log('tipo '+tipoProducto);
+				if(tipoproducto=='SELECCIONE'){
+					var select = document.getElementById("da_bolsillo");
+							while(select.options.length > 0)
+								{                
+				    				select.remove(0);
+				    			}
+				    			var option = document.createElement('option');
+								option.value = "SELECCIONE";
+					    		option.text = "-- Seleccione --";
+					    		select.add(option);
+				}else{
+				    $.ajax({
+				        data:  {tipoproducto: tipoproducto, opcion: 6},
+				        url:   '../control/validar.php',
+				        type:  'post',
+				      
+				        success:  function (response) {
+								Json =JSON.parse(response);
+								var select = document.getElementById("da_bolsillo");
 								while(select.options.length > 0)
 								{                
 				    				select.remove(0);
@@ -480,4 +574,36 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 			}
 
 
+		}
+
+		function coloraccesorio(tipo){
+			if (tipo=='SELECCION') {
+
+			}else{
+				$.ajax({
+					type:'post',
+					url:'../control/validar.php',
+					data:{opcion: 8, tipo:tipo},
+					success: function (data){
+						console.log(data);
+						Json = JSON.parse(data);
+						var select = document.getElementById("da_color_acceso");
+								while(select.options.length > 0)
+								{                
+				    				select.remove(0);
+				    			}
+				    			var option = document.createElement('option');
+								option.value = "SELECCIONE";
+					    		option.text = "-- Seleccione --";
+					    		select.add(option);
+						$.each(Json, function(index, val){
+							console.log(val);
+						var option = document.createElement('option');
+								option.value = val.COLOR;
+				    			option.text = val.COLOR;
+				    			select.add(option);
+						});
+					}	
+				});
+			}
 		}

@@ -177,12 +177,13 @@ include ('../utilities/db/db_session.php');
 		    		<div class="form-group col-sm-4">
 				    	<div class="input_container">
 				    		<label>Tipo de Producto</label>
-				    		<select id="producto_tipo" class="form-control" onchange="validar_tipo_producto(this.value)">
+				    		<select id="producto_tipo" class="form-control" onchange="validar_tipo_producto(this.value);coloraccesorio(this.value)">
 				    		<!-- seleccionarTipoProducto(this.value) -->
 				    			<option selected value="SELECCIONE" >-- Seleccione --</option>
 				    			<option value="ENROLLABLE">ENROLLABLE</option>
 				    			<option value="PANEL JAPONES">PANEL JAPONES</option>
 				    			<option value="SHEER">SHEER</option>
+				    			<option value="TELOS">SOLO TELOS</option>
 				    		</select>
 				    	</div>
 			    	</div>
@@ -285,8 +286,29 @@ include ('../utilities/db/db_session.php');
 					    		<p style="font-size:85%;">Ingrese el ancho en Metros con 2 decimales.<br>Por ejemplo: 1,25</p>
 					    	</div>
 				    	</div>
-
 				    	<div class="form-group col-sm-12">
+				    		<div class="col-sm-3">
+				    		<label>Color Accesorios</label>
+				    		</div>
+							<div class="col-sm-3">
+						    	<select id="da_color_acceso" class="form-control" onchange="adicional('Color Acesorio', this.value, '')" >
+						    		<option value="SELECCIONE">-- Seleccione --</option>
+						    	</select>
+					    	</div>
+				    	</div>
+				    	<div class="form-group col-sm-12" id="sistema_motor">
+				    		<div class="col-sm-3">
+				    		<label>Tipo Instalacion</label>
+				    		</div>
+							<div class="col-sm-3">
+						    	<select id="da_instalacion" class="form-control" onchange="adicional('Mando Instal', this.value, '')" >
+						    		<option value="SELECCIONE">-- Seleccione --</option>
+						    		<option value="TECHO">PARED</option>
+			    					<option value="PARED">TECHO</option>
+						    	</select>
+					    	</div>
+				    	</div>
+				    	<div class="form-group col-sm-12" id="sistema_motor">
 				    		<div class="form-group col-sm-3"><label>Sistema</label></div>
 				    		<div class="form-group col-sm-3">
 						    	<select id="da_sistema" class="form-control" onchange="sistema(this.value);adicional('Sistema', this.value,'')" >
@@ -295,6 +317,9 @@ include ('../utilities/db/db_session.php');
 							    		<option value="MOTORIZADO">MOTORIZADO</option>
 							    	</select>
 					    	</div>
+					    </div>
+
+				    	<div class="form-group col-sm-12">
 					    	<div class="form-group col-sm-6"></div>
 
 				    		<div class="form-group col-sm-1 col-sm-offset-11">
@@ -357,7 +382,7 @@ include ('../utilities/db/db_session.php');
 					    	</div>
 					    	<div class="form-group col-sm-12">
 					    	<div class="col-sm-3 col-sm-offset-6" style="text-align: center;">
-					    	   <label>Instalacion</label>
+					    	   <label></label>
 					    	</div>
 							<div class="col-sm-1 col-sm-offset-1" style="color:#CA0707; text-align: center;">
 							   <label>Distri</label>
@@ -365,7 +390,7 @@ include ('../utilities/db/db_session.php');
 							<div class="col-sm-1" style="text-align: center;">
 							   <label>Cliente</label>
 							</div>
-						</div>
+							</div>
 							    <div class="col-sm-3">
 								    <label>Mando</label>
 							    </div>
@@ -377,13 +402,7 @@ include ('../utilities/db/db_session.php');
 				    					<option value="DERECHO">DERECHO</option>
 							    	</select>
 						    	</div>
-						    	<div class="col-sm-3">
-							    	<select id="da_insta_mando" class="form-control" onchange="adicional('Mando Instal', this.value, '')" >
-							    		<option value="SELECCIONE">-- Seleccione --</option>
-							    		<option value="TECHO">PARED</option>
-				    					<option value="PARED">TECHO</option>
-							    	</select>
-						    	</div>
+
 
 <!--
 						    	<div class="col-sm-3" style="text-align:right;">
@@ -398,23 +417,64 @@ include ('../utilities/db/db_session.php');
 							    </div>
 
 							    <div class="col-sm-3">
-							    <LABEL>Tipo de Pefil</LABEL><br>
-							    	<select id="da_perfil" class="form-control" onchange="PerfilColor(this.value);adicional('Perfil', this.value,'')" >
+							    	<select id="da_perfil" class="form-control" onchange="adicional('Perfil', this.value,'')" >
 							    		<option value="SELECCIONE">-- Seleccione --</option>
 							    	</select>
 						    	</div>
 
-							    <div class="col-sm-3">
-								<!--     <input type="number" min="0" max="100" id="da_perfil_descuento" onkeyup="validarDescuento(this.id)" onchange="validarDescuento(this.id)" class="form-control" value="0" placeholder="Descuento" disabled style="display:none;"> -->
-								     <label>Color</label><br>
-								    <select id="da_perfil_color" class="form-control" onchange="adicional('Perfil Color', this.value, '')">
-							    	<option value="SELECCIONE">-- Seleccione --</option>
-							    	</select>
-							    </div>
-
 						    	<div class="col-sm-3" style="text-align:right;">
 						    		<!-- <label id="h_perfil_precio" style="display:none;">0</label>
 								    <label style="color:#CA0707;">$</label><label style="color:#CA0707;" id="da_perfil_precio">0</label> -->
+							    </div>
+							</div>
+							<div class="form-group col-sm-12" id="dap_bolsillo" style="display:none;">
+							<div class="form-group col-sm-12">
+					    	<div class="col-sm-3 col-sm-offset-6" style="text-align: center;">
+					    	   <label></label>
+					    	</div>
+							<div class="col-sm-1 col-sm-offset-1" style="color:#CA0707; text-align: center;">
+							   <label>Distri</label>
+							</div>
+							<div class="col-sm-1" style="text-align: center;">
+							   <label>Cliente</label>
+							</div>
+							</div>
+							    <div class="col-sm-3">
+								    <label>Bolsillo</label>
+							    </div>
+
+							    <div class="col-sm-3">
+							    	<select id="da_bolsillo" class="form-control" onchange="adicional('Bolsillo', this.value,'')" >
+							    		<option value="SELECCIONE">-- Seleccione --</option>
+							    	</select>
+						    	</div>
+
+						    	<div class="col-sm-6" style="text-align:right;">
+
+							    </div>
+							</div>
+							<div class="form-group col-sm-12" id="dap_bolsillo2" style="display:none;">
+							    <div class="col-sm-3">
+								    <label>Perfil</label>
+							    </div>
+
+							    <div class="col-sm-3">
+							    	<select id="da_bolsillo_perfil" class="form-control" onchange="" >
+							    		<option value="SELECCIONE">-- Seleccione --</option>
+							    		<option value="SI">SI</option>
+							    		<option value="NO">NO</option>
+							    	</select>
+						    	</div>
+
+								<div class="col-sm-4">
+								   	<input type="number" min="0" max="100" id="da_cenefa_descuento" onkeyup="validarDescuento(this.id)" onchange="validarDescuento(this.id)" class="form-control" value="0" placeholder="Descuento" disabled style="display:none;">
+							    </div>
+
+						    	<div class="col-sm-1" style="text-align:right;">
+							    	<label style="color:#CA0707;" id="da_cenefa_precio" >0.00</label>
+							    </div>
+							    <div class="col-sm-1" style="text-align:right;">
+								    <label id="h_cenefa_precio" style="display:non;">0.00</label>
 							    </div>
 							</div>
 
@@ -431,13 +491,7 @@ include ('../utilities/db/db_session.php');
 				    					<option value="ATRAVESADA Y ANADIDA">ATRAVESADA Y AÑADIDA</option>
 							    	</select>
 						    	</div>
-						    	<div class="col-sm-3">
-							    	<select id="da_insta_tela" class="form-control" onchange="adicional('Tela Instal', this.value, '')" >
-							    		<option value="SELECCIONE">-- Seleccione --</option>
-							    		<option value="TECHO">PARED</option>
-				    					<option value="PARED">TECHO</option>
-							    	</select>
-						    	</div>
+
 							   <!--  <div class="col-sm-2">
 								    <input type="number" min="0" max="100" id="da_direccion_tela_descuento" onkeyup="validarDescuento(this.id)" onchange="validarDescuento(this.id)" class="form-control" value="0" placeholder="Descuento" disabled style="display:none;">
 							    </div>
@@ -460,13 +514,7 @@ include ('../utilities/db/db_session.php');
 							    		<option value="CONTRARIO-NVR">CONTRARIO-NVR</option>
 							    	</select>
 						    	</div>
-						    	<div class="col-sm-3">
-							    	<select id="da_insta_sentido" class="form-control" onchange="adicional('Sentido Instal', this.value, '')" >
-							    		<option value="SELECCIONE">-- Seleccione --</option>
-							    		<option value="TECHO">PARED</option>
-				    					<option value="PARED">TECHO</option>
-							    	</select>
-						    	</div>
+
 							</div>
 							<div class="form-group col-sm-12" id="dap_telos" style="display:none;">
 								<div class="col-sm-3">
@@ -484,13 +532,7 @@ include ('../utilities/db/db_session.php');
 
 							    	</select>
 						    	</div>
-						    	<div class="col-sm-3">
-							    	<select id="da_insta_telos" class="form-control" onchange="adicional('Telos Instal', this.value, '')" >
-							    		<option value="SELECCIONE">-- Seleccione --</option>
-							    		<option value="TECHO">PARED</option>
-				    					<option value="PARED">TECHO</option>
-							    	</select>
-						    	</div>
+
 							</div>
 							<div class="form-group col-sm-12" id="dap_apertura" style="display:none;">
 								<div class="col-sm-3">
@@ -506,13 +548,7 @@ include ('../utilities/db/db_session.php');
 							    		<option value="CENTROS">CENTROS</option>
 							    	</select>
 						    	</div>
-						    	<div class="col-sm-3">
-							    	<select id="da_insta_apertura" class="form-control" onchange="adicional('Apertura Instal', this.value, '')" >
-							    		<option value="SELECCIONE">-- Seleccione --</option>
-							    		<option value="TECHO">PARED</option>
-				    					<option value="PARED">TECHO</option>
-							    	</select>
-						    	</div>
+
 							</div>
 							<div class="form-group col-sm-12" id="dap_cenefa" style="display:none;">
 								<div class="col-sm-3">
@@ -526,14 +562,8 @@ include ('../utilities/db/db_session.php');
 							    		<option value="TELA">TELA</option>
 							    	</select>
 						    	</div>
-						    	<div class="col-sm-3">
-							    	<select id="da_insta_cenefa" class="form-control" onchange="adicional('Cenefa Instal', this.value, '')" >
-							    		<option value="SELECCIONE">-- Seleccione --</option>
-							    		<option value="TECHO">PARED</option>
-				    					<option value="PARED">TECHO</option>
-							    	</select>
-						    	</div>
-						    	<div class="col-sm-1">
+
+						    	<div class="col-sm-4">
 								   	<input type="number" min="0" max="100" id="da_cenefa_descuento" onkeyup="validarDescuento(this.id)" onchange="validarDescuento(this.id)" class="form-control" value="0" placeholder="Descuento" disabled style="display:none;">
 							    </div>
 
@@ -556,22 +586,8 @@ include ('../utilities/db/db_session.php');
 							    		<option value="INDEPENDIENTE">INDEPENDIENTE</option>
 							    	</select>
 						    	</div>
-						    	<div class="col-sm-3">
-							    	<select id="da_insta_soporte" class="form-control" onchange="adicional('Soporte Instal', this.value, '')" >
-							    		<option value="SELECCIONE">-- Seleccione --</option>
-							    		<option value="TECHO">PARED</option>
-				    					<option value="PARED">TECHO</option>
-							    	</select>
-						    	</div>
 
-							   <!--  <div class="col-sm-2">
-								    <input type="number" min="0" max="100" id="da_soporte_intermedio_descuento" onkeyup="validarDescuento(this.id)" onchange="validarDescuento(this.id)" class="form-control" value="0" placeholder="Descuento" disabled style="display:none;">
-							    </div>
 
-						    	<div class="col-sm-3" style="text-align:right;">
-								    <label id="h_soporte_intermedio_precio" style="display:none;">0</label>
-								    <label style="color:#CA0707;">$</label><label style="color:#CA0707;" id="da_soporte_intermedio_precio">0</label>
-							    </div> -->
 							</div>
 
 							<div class="form-group col-sm-12" id="dap_cover_light" style="display:none;">
@@ -585,15 +601,8 @@ include ('../utilities/db/db_session.php');
 							    		<option value="SI">SI</option>
 							    	</select>
 						    	</div>
-						    	<div class="col-sm-3">
-							    	<select id="da_insta_cover" class="form-control" onchange="adicional('Cover Instal', this.value, '')" >
-							    		<option value="SELECCIONE">-- Seleccione --</option>
-							    		<option value="TECHO">PARED</option>
-				    					<option value="PARED">TECHO</option>
-							    	</select>
-						    	</div>
 
-							    <div class="col-sm-1">
+							    <div class="col-sm-4">
 								    <input type="number" min="0" max="100" id="da_cover_light_descuento" onkeyup="validarDescuento(this.id)" onchange="validarDescuento(this.id)" class="form-control" value="0" placeholder="Descuento" disabled style="display:none;">
 							    </div>
 
@@ -618,22 +627,9 @@ include ('../utilities/db/db_session.php');
 							    		<option value="NO APLICA">NO APLICA</option>
 							    	</select>
 						    	</div>
-						    	<div class="col-sm-3">
-							    	<select id="da_insta_item" class="form-control" onchange="adicional('Junto Item Instal', this.value, '')" >
-							    		<option value="SELECCIONE">-- Seleccione --</option>
-							    		<option value="TECHO">PARED</option>
-				    					<option value="PARED">TECHO</option>
-							    	</select>
-						    	</div>
 
-							   <!--  <div class="col-sm-2">
-								    <input type="number" min="0" max="100" id="da_junto_item_descuento" onkeyup="validarDescuento(this.id)" onchange="validarDescuento(this.id)" class="form-control" value="0" placeholder="Descuento" disabled style="display:none;">
-							    </div>
 
-						    	<div class="col-sm-3" style="text-align:right;">
-						    		<label id="h_junto_item_precio" style="display:none;">0</label>
-								    <label style="color:#CA0707;">$</label><label style="color:#CA0707;" id="da_junto_item_precio">0</label>
-							    </div> -->
+
 							</div>
 
 							<div class="form-group col-sm-12" id="dap_mismo_cabezal" style="display:none;">
@@ -650,22 +646,7 @@ include ('../utilities/db/db_session.php');
 							    		<option value="NO APLICA">NO APLICA</option>
 							    	</select>
 						    	</div>
-						    	<div class="col-sm-3">
-							    	<select id="da_insta_cabezal" class="form-control" onchange="adicional('Cabezal Instal', this.value, '')" >
-							    		<option value="SELECCIONE">-- Seleccione --</option>
-							    		<option value="TECHO">PARED</option>
-				    					<option value="PARED">TECHO</option>
-							    	</select>
-						    	</div>
 
-							   <!--  <div class="col-sm-2">
-								    <input type="number" min="0" max="100" id="da_mismo_cabezal_descuento" onkeyup="validarDescuento(this.id)" onchange="validarDescuento(this.id)" class="form-control" value="0" placeholder="Descuento" disabled style="display:none;">
-							    </div>
-
-						    	<div class="col-sm-3" style="text-align:right;">
-						    		<label id="h_mismo_cabezal_precio" style="display:none;">0</label>
-								    <label style="color:#CA0707;">$</label><label style="color:#CA0707;" id="da_mismo_cabezal_precio">0</label>
-							    </div> -->
 							</div>
 
 						</div>

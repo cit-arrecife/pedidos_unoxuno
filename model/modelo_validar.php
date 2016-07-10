@@ -54,9 +54,29 @@ ini_set('display_errors', '1');
 			}
 			public function Perfil_Color($nombreperfil){
 				$sql="select colorPerfil from PERFIL WHERE nombrePerfil='$nombreperfil'";
-				error_log($sql);
+				//error_log($sql);
 				$result = odbc_exec($this->db->connect(), $sql);
 				return $result;	
+			}
+
+			public function coloraccesorio($tipoproducto){
+				$sql="select color from COLORACCESORIOS WHERE producto='$tipoproducto'";
+				//error_log($sql);
+				$result = odbc_exec($this->db->connect(), $sql);
+				return $result;	
+
+			}
+			public function preciosheer($ancho, $alto, $telaproducto){
+				$sql="SELECT precio FROM PRECIOSSHEER 
+						WHERE Anmin <=  '$ancho'
+						and  Anmax >= '$ancho'
+						and Almin <= '$alto'
+						and Almax >= '$alto'
+						AND Tipo LIKE '%$telaproducto%' ";
+				error_log($sql);
+				$result = odbc_exec($this->db->connect(), $sql);
+				$row = odbc_fetch_array($result);
+				return $row;
 			}
 			
 

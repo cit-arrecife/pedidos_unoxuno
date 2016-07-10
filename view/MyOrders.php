@@ -1,5 +1,6 @@
 <?php
 	include('../utilities/db/db_session.php');
+	//error_log(print_r($_SESSION));
 ?>
 
 <!DOCTYPE html>
@@ -66,7 +67,7 @@
 			}
 		</style>
 	</head>
-
+ 
 	<body>
 		
 		<div class="col-sm-3">

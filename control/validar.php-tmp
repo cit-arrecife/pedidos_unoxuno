@@ -90,6 +90,28 @@ switch ($opcion) {
 		}
 		echo json_encode($json);
 		break;
+	case 8:
+		$tipoproducto = $_POST['tipo'];
+		$Resultado    = $validar->coloraccesorio($tipoproducto);
+		if ($Resultado) {
+			while ($row = odbc_fetch_array($Resultado)) {
+				$response["COLOR"] = $row["color"];
+				$json[]            = $response;
+			}
+		}
+		echo json_encode($json);
+		break;
+	case 9:
+		$ancho        = $_POST['ancho'];
+		$alto         = $_POST['alto'];
+		$telaproducto = $_POST['telaproducto'];
+		$Resultado    = $validar->preciosheer($ancho, $alto, $telaproducto);
+		if ($Resultado) {
+			$response["Precio"] = $Resultado["precio"];
+		}
+
+		echo json_encode($response);
+		break;
 	default:
 		error_log('Ocurrio un error al momento de enviar los datos a validar.php opcion numero '.$opcion);
 		break;
