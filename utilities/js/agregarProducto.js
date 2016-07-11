@@ -171,13 +171,24 @@ function validar(){
 		var ancho =$('#producto_ancho').val();
 		var alto =$('#producto_alto').val();
 		var sistem=$('#da_sistema').val();
-		if(cantidad <= 0 || ancho <= 0 || alto <= 0 || sistem =='SELECCIONE'){
+		var colorAcces=$('#da_color_acceso').val();
+		var instalacion=$('#da_instalacion').val();
+
+		if(cantidad <= 0 || ancho <= 0 || alto <= 0  || colorAcces =='SELECCIONE'){
 			 $('#modalError').modal({backdrop: 'static', keyboard: false});
 			 document.getElementById("alert2").style.display = "block";
 		}
 		else{
+			if (tipo =='TELOS') {
 			 document.getElementById("alert2").style.display = "none";
-			 passed++
+			 passed++;
+			 }else if (instalacion=='SELECCIONE' || sistem =='SELECCIONE'){
+			 	$('#modalError').modal({backdrop: 'static', keyboard: false});
+			 	document.getElementById("alert2").style.display = "block";
+			 }else{
+			 	document.getElementById("alert2").style.display = "none";
+			 	passed++;
+			 }
 		}
 		switch (tipo) {
 			case 'ENROLLABLE':
@@ -189,11 +200,10 @@ function validar(){
 			}
 
 				var perfil =$('#da_perfil').val();
-				var color =$('#da_perfil_color').val();
 				var sentido =$('#da_direccion_tela').val();
 				var mando =$('#da_mando').val();
 				
-				if(perfil == 'SELECCIONE' || color == 'SELECCIONE' || sentido == 'SELECCIONE' || mando == 'SELECCIONE' || sistema == 'SELECCIONE')
+				if(perfil == 'SELECCIONE' ||  sentido == 'SELECCIONE' || mando == 'SELECCIONE' || sistema == 'SELECCIONE')
 				{
 
 					 $('#modalError').modal({backdrop: 'static', keyboard: false});
@@ -236,9 +246,23 @@ function validar(){
 				 passed++;
 				}
 			break;
+			case 'TELOS':
+				var bolsillo =$('#da_bolsillo').val();
+				var telos  =$('#da_telos').val();
+				if(bolsillo=='SELECCIONE' || telos =='SELECCIONE'){
+					console.log('SI ENTRO A TELOS VALIDAR ERROR');
+					 $('#modalError').modal({backdrop: 'static', keyboard: false});
+					 document.getElementById("alert3").style.display = "block";
+				}else{
+					 document.getElementById("alert3").style.display = "none";
+					 passed++;
+				}
+
+			break;
 			default:
 				// statements_def
 				break;
+				
 		}
 
 
@@ -256,15 +280,16 @@ function limpiarCampos(){
 	    document.getElementById("datos_adicionales").style.display = "none";
 	    document.getElementById("datos_complementarios").style.display = "none";
 	    campos =[
+	    	'producto_tipo',
 	    	'producto_tipo_presentacion',
 	    	'producto_tipo_tela',
 	    	'producto_tela',
 	    	'producto_tela_color',
 	    	'da_perfil',
-	    	'da_perfil_color',
 	    	'da_direccion_tela',
-	    	//'da_mando',
-	    	'da_motor'
+	    	'da_motor',
+	    	'da_color_acceso'
+	    	
 	    ];
 
 	    $.each(campos, function(index, val){
@@ -281,25 +306,18 @@ function limpiarCampos(){
 
 
 	    var limpiar =[
-	    	'da_insta_mando',
-	    	'da_insta_tela',
-	    	'da_insta_telos',
-	    	'da_insta_soporte',
-	    	'da_insta_sentido',
-	    	'da_insta_motor',
-	    	'da_insta_item',
-	    	'da_insta_cover',
-	    	'da_insta_cenefa',
-	    	'da_insta_cabezal',
-	    	'da_insta_apertura',
 	    	'da_soporte_intermedio',
-	    	'da_junto_item'
+	    	'da_junto_item',
+	    	'da_instalacion',
+	    	'da_sistema',
+	    	'da_mando',
+	    	'da_direccion_tela'
 	    	];
 	    	$.each(limpiar, function(index, val){
 			$('#'+val).prop('selectedIndex', 0);	    	
 	   	    });
 
-
+	    	$('#dc_producto_observaciones').val('');
 	    $('#producto_tipo').prop('selectedIndex', 0);
 	    $('#da_motor_tipo').prop('selectedIndex', 0);
 	    $('#da_mando').prop('selectedIndex', 0);

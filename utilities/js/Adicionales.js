@@ -287,6 +287,12 @@
 					precioTotalAdicional = precioAdicional - (precioAdicional * descuentoAdicional / 100);
 					$('#da_cenefa_precio').html(precioTotalAdicional);	
 				}
+				else if (tipoProducto == "TELOS") {
+					precioAdicional = $('#h_perf_bol_precio').text();
+					descuentoAdicional = $('#da_cenefa_descuento').val();
+					precioTotalAdicional = precioAdicional - (precioAdicional * descuentoAdicional / 100);
+					$('#da_perf_bol_precio').html(precioTotalAdicional);		
+				}
 			}
 			function Llenar_motor(tipomotor){
 				if(tipomotor=='SELECCIONE'){
@@ -436,6 +442,8 @@
 			var sindesc=parseInt($('#h_cover_light_precio').text());
 		}else if (id=='#da_cenefa_precio') {
 			var sindesc=parseInt($('#h_cenefa_precio').text());
+		}else if (id=='#da_perf_bol_precio') {
+			var sindesc=parseInt($('#h_perf_bol_precio').text());
 		}
 
 		var subAntcli = parseInt($('#da_cli_subtotal').text());
@@ -470,3 +478,28 @@
 		
 
 	}
+	function perfil_telos(valor){
+			var perfil_standar = 20000;
+			var perfil_elite = 35000;
+			var tipo = $('#producto_tipo_presentacion').val();
+			var hAdicional = $('#h_perf_bol_precio');
+			if (valor=='NO' || valor =='SELECCIONE') {
+				var value =$('#da_perf_bol_precio').text();
+				console.log(value);
+				if(value != 0){
+					restarAdicionales('#da_perf_bol_precio');
+				}
+				hAdicional.html(0);
+            	cal();
+			}else if (tipo =='ESTANDAR') {
+				var ancho =$('#producto_ancho').val();
+				var valCenefa = ancho *perfil_standar;
+				hAdicional.html(valCenefa);
+				cal();
+			}else if (tipo=='ELITE') {
+				var ancho =$('#producto_ancho').val();
+				var valCenefa = ancho * perfil_elite;
+				hAdicional.html(valCenefa);
+				cal();
+			}
+		}

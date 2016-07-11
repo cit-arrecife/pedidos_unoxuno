@@ -45,6 +45,30 @@ switch ($opcion) {
 			printjson_encode($json);
 		}
 		break;
+	case 4:
+		$tipo      = $_POST['tipo'];
+		$tela      = $_POST['tela'];
+		$color     = $_POST['color'];
+		$respuesta = $model->eliminarcolor($tipo, $tela, $color);
+		if ($respuesta) {
+			$response = 'Eliminado con Exito!';
+		} else {
+			$response = 'No se pudo eliminar el color Intente mas Tarde';
+		}
+		printjson_encode($response);
+		break;
+	case 5:
+		$tipo      = $_POST['tipo'];
+		$tela      = $_POST['tela'];
+		$color     = $_POST['color'];
+		$respuesta = $model->agregarcolor($tipo, $tela, $color);
+		if ($respuesta) {
+			$response = 'Creado con Exito!';
+		} else {
+			$response = 'No se pudo crear el color Intente mas Tarde';
+		}
+		printjson_encode($response);
+		break;
 	default:
 		# code...
 		break;

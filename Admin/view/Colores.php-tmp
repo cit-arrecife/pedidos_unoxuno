@@ -65,12 +65,15 @@ include ('../db/session.php');
 					.bor h4, p {font-style: italic;font-weight: bold;}
 					.Datos{font-size: 11px; text-align:center;}
 
-
 					.alerta {
 						border: solid 2px red;
 						font-style:italic;
 						font-weight: bold;
 						text-align: center;
+					}
+					.Scroller{
+						height:170px;
+						overflow-y: scroll;
 					}
 
 		</style>
@@ -86,93 +89,23 @@ include ('../db/session.php');
   </div>
 </div>
 
-			<div class="modal fade " id="modalusuario" tabindex="-1" role="dialog">
-				<div class="modal-dialog" >
-					<div class="modal-content">
-						<div class="modal-header" style="background-color:#CA0707;">
-							<button type="button" class="close" data-dismiss="modal"  style="color:black;" onclick="block()">Cerrar</button>
-						<h4 id="titulomodal" style="color:white;"></h4>
-
-						</div>
-						<div class="modal-body ">
-							<div class="col-sm-2">
-								<i class="fa fa-shopping-cart" style="font-size:120px; color:#CA0707; text-align:center;"></i>
-							</div>
-								<div class="col-sm-9">
-									<input type="text" name="id" id="Uid" class="col-sm-offset-1 form-control" placeholder="Nombre" disabled style="display:none;">
-								</div>
-								<div class="col-sm-9">
-									<input type="text" id="Uprod" class="col-sm-offset-1 form-control" placeholder="Producto (Ej: Enrollable, Panel Japones, Sheer)" disabled>
-								</div>
-								<div class="col-sm-9">
-									<input type="text" name="User" id="Upres" class="col-sm-offset-1 form-control" placeholder="Presentacion" disabled>
-								</div>
-								<div class="col-sm-9">
-									<input type="text"  id="Utipo" class="col-sm-offset-1 form-control" placeholder="Tipo" disabled>
-								</div>
-								<div class="col-sm-9">
-									<input type="text" id="Utela" class="col-sm-offset-1 form-control" placeholder="Tela" disabled>
-								</div>
-								<div class="col-sm-9 col-sm-offset-2">
-									<input type="text" id="Uprecio" class="col-sm-offset-1 form-control" placeholder="Precio" disabled>
-								</div>
-								<div class="col-sm-9 col-sm-offset-3">
-									<label id="validacion" style="font-size:10px; color:#CA0707; "></label>
-								</div>
-						</div>
-						<div class="modal-footer ">
-						<div class="col-sm-10" id="modalbtn"><br>
-
-
-						</div>
-
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="modal fade " id="nuevoproducto" tabindex="-1" role="dialog">
-				<div class="modal-dialog" >
-					<div class="modal-content">
-						<div class="modal-header" style="background-color:#CA0707;">
-							<button type="button" class="close" data-dismiss="modal"  style="color:black;">Cerrar</button>
-							<h4 id="titulomodal" style="color:white;">Nuevo Producto</h4>
-						</div>
-						<div class="modal-body " >
-							<div class="col-sm-2">
-								<i class="fa fa-shopping-cart" style="font-size:120px; color:#CA0707; text-align:center;"></i>
-							</div>
-								<div class="col-sm-9">
-									<input type="text" name="prod" id="Nprod" class="col-sm-offset-1 form-control" placeholder="Producto (Ej: Enrollable, Panel Japones, Sheer)" >
-								</div>
-
-								<div class="col-sm-9" >
-									<input type="text" name="pres" id="Npres" class="col-sm-offset-1 form-control" placeholder="Presentacion" >
-								</div>
-								<div class="col-sm-9">
-									<input type="text" name="tipo" id="Ntipo" class="col-sm-offset-1 form-control" placeholder="Tipo  " >
-								</div>
-								<div class="col-sm-9">
-									<input type="text" name="tela" id="Ntela" class="col-sm-offset-1 form-control" placeholder="Tela" >
-								</div>
-								<div class="col-sm-9 col-sm-offset-2">
-									<input type="text" name="precio" id="Nprecio" class="col-sm-offset-1 form-control" placeholder="Precio" >
-								</div>
-								<div class="col-sm-9 col-sm-offset-3">
-									<label id="validacionA" style="font-size:10px; color:#CA0707; "></label>
-								</div>
-						</div>
-						<div class="modal-footer ">
-						<div class="col-sm-10 "><br>
-							<button type="button" class="btn" onclick="GuardarNuevoproducto()" >Guardar</button>
-							<button type="button" class="btn" data-dismiss="modal">Cancelar</button>
-						</div>
-
-						</div>
-					</div>
-				</div>
-			</div>
-
-
+<div class="modal fade bd-example-modal-sm" tabindex="-2" role="dialog" id="coloradd" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content" style="text-align:center">
+      <h4 id="colortittle"></h4>
+      <div class="modal-body " style="text-align:center">
+    	<div >
+    		<label id="validacionC" style="font-size:10px; color:#CA0707; "></label>
+			<input type="text" name="prod" id="Ncolor" class="form-control" placeholder="Color" >
+		</div>
+      </div>
+      <div class="modal-footer" id="colorbtn" style="text-align:center">
+      	<button type="button" class="btn" onclick="Agregar()" >Guardar</button>
+		<button type="button" class="btn" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="navbar navbar-default col-sm-3 ">
 	<div class="navbar-header">
@@ -186,7 +119,7 @@ include ('../db/session.php');
 					PRODUCTOS
 					</a>
 				</li>
-				<li><a href="#" style="font-size:17px;">
+				<li><a href="Adicionales.php" style="font-size:17px;">
 					<i class="fa fa-wrench" aria-hidden="true" style="font-size:25px;"></i>
 					ADICIONALES
 					</a>
@@ -217,17 +150,17 @@ include ('../db/session.php');
     	  		<div class="container col-sm-12">
     	  	   	  <div class="datos  ">
             	  	<div class="col-sm-4">
-            	  		<label class="label label-default">Codigo de Usuario: <?php print$_SESSION['usuario_codigo'];?></label>
+            	  		<label class="label label-default">Codigo de Usuario: <?php print$_SESSION['_codigo'];?></label>
             	  	</div>
             	  </div>
             	  <div class="datos ">
             	  	<div class="col-sm-4">
-            	  		<label class="label label-default">Nombre de Usuario: <?php echo $_SESSION['usuario_nombre'];?></label>
+            	  		<label class="label label-default">Nombre de Usuario: <?php echo $_SESSION['_nombre'];?></label>
             	  	</div>
             	  </div>
             	  <div class="datos ">
             	  	<div class="col-sm-3">
-            	  		<label class="label label-default">Inicion de sesion: <?php echo $_SESSION['usuario_login'];?></label>
+            	  		<label class="label label-default">Inicion de sesion: <?php echo $_SESSION['_login'];?></label>
             	  	</div>
             	  </div>
     	  		</div>
@@ -300,17 +233,18 @@ include ('../db/session.php');
                     <thead>
                         <tr>
                             <th style="text-align:center; display:none" width="1%">id</th>
-                            <th style="text-align:center;" width="20%">Color</th>
-                            <th style="text-align:center;" width="20%">Seleccione</th>
+                            <th style="text-align:center;" width="60%">Color</th>
+                            <th style="text-align:center;" width="40%">Seleccione</th>
                         </tr>
                     </thead>
-                    <tbody id="detallecolores">
-                    </tbody>
-                    <tfoot>
-                    </tfoot>
                 </table>
             </div>
-
+            <div class="table-responsive" id="colorContent">
+            <table id="tableusers" class="table table-condensed" >
+            		<tbody id="detallecolores" >
+                    </tbody>
+             </table>
+			</div>
 
         </div>
     </div>

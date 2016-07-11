@@ -70,6 +70,10 @@ include ('../db/session.php');
 						font-weight: bold;
 						text-align: center;
 					}
+					.Scroller{
+						height:380px;
+						overflow-y: scroll;
+					}
 
 		</style>
 <body>
@@ -184,7 +188,7 @@ include ('../db/session.php');
 					PRODUCTOS
 					</a>
 				</li>
-				<li><a href="#" style="font-size:17px;">
+				<li><a href="Adicionales.php" style="font-size:17px;">
 					<i class="fa fa-wrench" aria-hidden="true" style="font-size:25px;"></i>
 					ADICIONALES
 					</a>
@@ -215,17 +219,17 @@ include ('../db/session.php');
     	  		<div class="container col-sm-12">
     	  	   	  <div class="datos  ">
             	  	<div class="col-sm-4">
-            	  		<label class="label label-default">Codigo de Usuario: <?php print$_SESSION['usuario_codigo'];?></label>
+            	  		<label class="label label-default">Codigo de Usuario: <?php print$_SESSION['_codigo'];?></label>
             	  	</div>
             	  </div>
             	  <div class="datos ">
             	  	<div class="col-sm-4">
-            	  		<label class="label label-default">Nombre de Usuario: <?php echo $_SESSION['usuario_nombre'];?></label>
+            	  		<label class="label label-default">Nombre de Usuario: <?php echo $_SESSION['_nombre'];?></label>
             	  	</div>
             	  </div>
             	  <div class="datos ">
             	  	<div class="col-sm-3">
-            	  		<label class="label label-default">Inicion de sesion: <?php echo $_SESSION['usuario_login'];?></label>
+            	  		<label class="label label-default">Inicion de sesion: <?php echo $_SESSION['_login'];?></label>
             	  	</div>
             	  </div>
     	  		</div>
@@ -278,7 +282,7 @@ include ('../db/session.php');
                     </thead>
              </table>
 
-            <div class="table-responsive" style="height:380px; overflow-y: scroll;">
+            <div class="table-responsive" id="productoContent">
                 <table id="tableusers" class="table table-condensed" >
                   <tbody id="detalleUsuario">
                     </tbody>

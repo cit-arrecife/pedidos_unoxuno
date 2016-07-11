@@ -1,5 +1,6 @@
 <?php
 	 include('../db/session.php');
+	 //error_log(print_r($_SESSION));
 ?>
 <!DOCTYPE html>
 <html>
@@ -69,6 +70,10 @@
 						font-style:italic;
 						font-weight: bold;
 						text-align: center;
+					}
+					.Scroller{
+						height:380px;
+						overflow-y: scroll;
 					}
 
 		</style>
@@ -178,7 +183,7 @@
 					PRODUCTOS
 					</a>
 				</li>
-				<li><a href="#" style="font-size:17px;">
+				<li><a href="Adicionales.php" style="font-size:17px;">
 					<i class="fa fa-wrench" aria-hidden="true" style="font-size:25px;"></i>
 					ADICIONALES
 					</a>
@@ -209,17 +214,17 @@
     	  		<div class="container col-sm-12">
     	  	   	  <div class="datos  ">
             	  	<div class="col-sm-4">
-            	  		<label class="label label-default">Codigo de Usuario: <?php print $_SESSION['usuario_codigo']; ?></label>
+            	  		<label class="label label-default">Codigo de Usuario: <?php print $_SESSION['_codigo']; ?></label>
             	  	</div>
             	  </div>
             	  <div class="datos ">
             	  	<div class="col-sm-4">
-            	  		<label class="label label-default">Nombre de Usuario: <?php echo $_SESSION['usuario_nombre']; ?></label>
+            	  		<label class="label label-default">Nombre de Usuario: <?php echo $_SESSION['_nombre']; ?></label>
             	  	</div>
             	  </div>
             	  <div class="datos ">
             	  	<div class="col-sm-3">
-            	  		<label class="label label-default">Inicion de sesion: <?php echo $_SESSION['usuario_login']; ?></label>
+            	  		<label class="label label-default">Inicion de sesion: <?php echo $_SESSION['_login']; ?></label>
             	  	</div>
             	  </div>
     	  		</div>
@@ -253,13 +258,17 @@
                     <thead>
                         <tr>
                             <th style="text-align:center; display:none" width="1%">id</th>
-                            <th style="text-align:center;" width="20%">Nombre</th>
-                            <th style="text-align:center;" width="20%">Codigo</th>
-                            <th style="text-align:center;" width="20%">Contraseña</th>
-                            <th style="text-align:center;" width="20%">Seleccione</th>
+                            <th style="text-align:center;" width="25%">Nombre</th>
+                            <th style="text-align:center;" width="25%">Codigo</th>
+                            <th style="text-align:center;" width="25%">Contraseña</th>
+                            <th style="text-align:center;" width="25%">Seleccione</th>
                         </tr>
                     </thead>
-                    <tbody id="detalleUsuario">
+                </table>
+            </div>
+             <div class="table-responsive" id="userContent">
+                <table id="tableusers" class="table table-condensed" >
+                  <tbody id="detalleUsuario">
                     </tbody>
                     <tfoot>
                     </tfoot>

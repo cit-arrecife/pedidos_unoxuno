@@ -316,6 +316,8 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 			var sindesc=parseInt($('#h_cover_light_precio').text());
 		}else if (id=='#da_cenefa_precio') {
 			var sindesc=parseInt($('#h_cenefa_precio').text());
+		}else if (id=='#da_perf_bol_precio') {
+			var sindesc=parseInt($('#h_perf_bol_precio').text());
 		}
 
 		var subcli = parseInt($('#da_cli_subtotal').text());
@@ -343,6 +345,7 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 				document.getElementById("dap_sentido").style.display = "block";
 				document.getElementById("dap_soporte_intermedio").style.display = "block";
 				document.getElementById("dap_cover_light").style.display = "block";
+				$('#instalacion').show();
 				$('#sistema_motor').show();
 				$('#dap_bolsillo').hide();
 				$('#dap_bolsillo2').hide();
@@ -362,6 +365,7 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 				document.getElementById("dap_soporte_intermedio").style.display = "block";
 				document.getElementById("dap_junto_item").style.display = "block";
 				document.getElementById("dap_mismo_cabezal").style.display = "block";
+				$('#instalacion').show();
 				$('#sistema_motor').show();
 				$('#dap_bolsillo').hide();
 				$('#dap_bolsillo2').hide();
@@ -380,6 +384,7 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 				document.getElementById("dap_telos").style.display = "block";
 				document.getElementById("dap_apertura").style.display = "block";
 				document.getElementById("dap_cenefa").style.display = "block";
+				$('#instalacion').show();
 				$('#sistema_motor').show();
 				$('#dap_bolsillo').hide();
 				$('#dap_bolsillo2').hide();
@@ -395,6 +400,7 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 				document.getElementById("dap_cenefa").style.display = "none";
 				document.getElementById("dap_direccion_tela").style.display = "none";
 				document.getElementById("dap_mando").style.display = "none";
+				$('#instalacion').hide();
 				$('#sistema_motor').hide();
 				$('#dap_bolsillo').show();
 				$('#dap_bolsillo2').show();
@@ -607,3 +613,4 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 				});
 			}
 		}
+

@@ -21,6 +21,7 @@ if (empty($_POST['codigo']) || empty($_POST['password'])) {
 
 	$codigo   = $_POST['codigo'];
 	$password = $_POST['password'];
+	 $password =md5($password);
 
 	$sql    = "SELECT CODIGO, NOMBRE FROM USUAPPADMIN WHERE CODIGO='$codigo' AND PASSWOORD ='$password'";
 	
@@ -30,9 +31,9 @@ if (empty($_POST['codigo']) || empty($_POST['password'])) {
 
 
 	if ($row) {
-		$_SESSION['usuario_codigo'] = $row['CODIGO'];
-		$_SESSION['usuario_nombre'] = $row['NOMBRE'];
-		$_SESSION['usuario_login'] = date('Y-m-d H:i:s');
+		$_SESSION['_codigo'] = $row['CODIGO'];
+		$_SESSION['_nombre'] = $row['NOMBRE'];
+		$_SESSION['_login'] = date('Y-m-d H:i:s');
 		$_SESSION['ADMINISTRADOR'] = 'Administrador';
 		$response["Success"]        = 1;
 

@@ -80,17 +80,22 @@ function colores(){
 		        type:  'post',
 	      
 	        success:  function (data) {
-	        	console.log(data);
+	        	//console.log(data);
 				Json =JSON.parse(data);
 				
 	    		$.each(Json, function(index, val) {
 	    			var value ="'"+val.TIPO+"','"+val.NOMBRE+"','"+val.COLOR+"'";
-	    			console.log(value);
+	    			var minus = '<i class="fa fa-minus" style="font-size:15px;"></i>';
+	    			var plus = '<i class="fa fa-plus" style="font-size:15px;"></i>';
+	    			//console.log(value);
 			     	var id = '<td style="text-align:center; display:none" width="1%"></td>';
-	                var color = '<td style="text-align:center;" width="20%">'+val.COLOR+'</td>';
-	                var boton ='<button class="btn btn-danger" title="Ver" onclick="verdetalle('+value+')">Ver</button>';
-	                var addBtn = '<td style="text-align:center">'+boton+'</td>';
-	                var total = '<tr class="lista" id="tr_'+val.ID+'">'+id+color+addBtn+'</tr>';
+	                var color = '<td style="text-align:center;" width="60%">'+val.COLOR+'</td>';
+	                var minus ='<button class="btn btn-danger" title="Ver" onclick="EliminarC('+value+')">'+minus+'</button>';
+	                var  plus ='<button class="btn btn-success" title="Ver" onclick="AgregarC()">'+plus+'</button>';
+	                var Botones = '<td style="text-align:center" width="40%">'+minus+plus+'</td>';
+	                
+	                var total = '<tr class="lista">'+id+color+Botones+'</tr>';
+	                scroll();
 	                $('#detallecolores').append(total);
 				});
 	        }
@@ -98,6 +103,76 @@ function colores(){
 		});
 	}
 
+}
 
+function scroll(){
+	var alto= $('#colorContent').height();
+	console.log('el widht es '+ alto );
+	if (alto > 169) {
+		$('#colorContent').addClass('Scroller');
 
+	}else{
+		$('#colorContent').removeClass('Scroller');		
+	}
+
+}
+function EliminarC(tipo,nombre,color){
+	var id ="'"+tipo+"','"+nombre+"','"+color+"'";
+	var cancel ='<button type="button" class="btn" data-dismiss="modal">Cancelar</button>';
+	var del='<button type="button" class="btn" onclick="Eliminar('+id+')">Eliminar</button>';
+
+	$('#oktitle').html('Se va a eliminar el Color '+ color);
+	$('#okbtn').html(del+cancel);
+	//$('#modalusuario').modal('hide');
+	$('#modalok').modal({backdrop: 'static', keyboard: false});
+
+}
+
+function Eliminar(tipo,nombre,color){
+	$.ajax({
+		type:'post',
+		url:'../controller/controller_colores.php',
+		data:{tipo:tipo, tela:nombre, color:color, opcion: 4},
+	success: function (data){
+			console.log(data);
+			alert(data);
+			$('#modalok').modal('hide');
+			colores();
+			scroll();
+			}
+	});
+}
+function AgregarC(){
+$('#coloradd').modal({backdrop: 'static', keyboard: false});
+}
+function Agregar(){
+	var mensaje;
+ 	var tipo = $('#da_tipo_tela_col').val();
+	var tela = $('#da_tela_color').val();
+	var color = $('#Ncolor').val();
+	$('#colortittle').html('Nuevo Color ');
+	if (color=='') {
+		mensaje='Debe Especificar el Color';		
+	}else{
+		document.getElementById('validacionC').style.display ='none';
+		$.ajax({
+			type:'post',
+			url:'../controller/controller_colores.php',
+			data:{tipo:tipo, tela:tela, color:color, opcion: 5},
+		success: function (data){
+				console.log(data);
+				alert(data);
+				$('#coloradd').modal('hide');
+				colores();
+				limpiarform();
+				}
+		});
+
+	}
+	document.getElementById('validacionC').style.display ='block';
+	$('#validacionC').html(mensaje);
+
+}
+function limpiarform(){
+	$('#Ncolor').val('');
 }

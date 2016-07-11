@@ -1,5 +1,6 @@
 function cargarproductos(){
-		$('#detalleUsuario tr').each(function(){ $(this).remove();})
+		//$('#detalleUsuario tr').each(function(){ $(this).remove();})
+		$('#detalleUsuario').empty();
 	$.ajax({
 			type :'post',
 			url : '../controller/controller_producto.php',
@@ -17,10 +18,22 @@ function cargarproductos(){
 	                var boton ='<button id="btnVer'+val.ID+'" class="btn btn-danger" title="Ver" onclick="verdetalle('+val.ID+')">Ver</button>';
 	                var addBtn = '<td style="text-align:center">'+boton+'</td>';
 	                var total = '<tr class="lista" id="tr_'+val.ID+'">'+id+prod+pres+tipo+tela+precio+addBtn+'</tr>';
+	                scroll();
 	                $('#detalleUsuario').append(total);
 				});
 			}	
 		});
+
+}
+function scroll(){
+	var alto= $('#productoContent').height();
+	console.log('el widht es '+ alto );
+	if (alto > 379) {
+		$('#productoContent').addClass('Scroller');
+
+	}else{
+		$('#productoContent').removeClass('Scroller');		
+	}
 
 }
 
@@ -71,6 +84,7 @@ function GuardarNuevoproducto(){
 					alert(data);
 					$('#nuevoproducto').modal('hide');
 					cargarproductos();
+					limpiarform();
 				}
 			});
 		}else{mensaje='El precio debe ser mayor a 0';	}
@@ -163,6 +177,14 @@ function Eliminar(id){
 					$('#modalusuario').modal('hide');
 					$('#modalok').modal('hide');
 					cargarproductos();
+					scroll();
 				}
 			});
+}
+function limpiarform(){
+	 $( "#Nprod" ).val('');
+	 $( "#Npres" ).val('');
+	 $( "#Ntipo" ).val('');
+	 $( "#Ntela" ).val('');
+	 $( "#Nprecio" ).val('');
 }

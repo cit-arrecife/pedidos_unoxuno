@@ -32,5 +32,15 @@ class colores {
 		$result = odbc_exec($this->db->connect(), $sql);
 		return $result;
 	}
-
+	public function eliminarcolor($tipo, $tela, $color) {
+		$sql    = "DELETE COLORESPRODUCTO where tipoTela='$tipo' AND nombreTela='$tela' AND colorTela='$color'";
+		$result = odbc_exec($this->db->connect(), $sql);
+		return $result;
+	}
+	public function agregarcolor($tipo, $tela, $color) {
+		$sql = "INSERT INTO  COLORESPRODUCTO VALUES ('$tipo','$tela','$color')";
+		error_log($sql);
+		$result = odbc_exec($this->db->connect(), $sql);
+		return $result;
+	}
 }

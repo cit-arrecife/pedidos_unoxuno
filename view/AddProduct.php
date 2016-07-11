@@ -295,7 +295,7 @@
 						    	</select>
 					    	</div>
 				    	</div>
-				    	<div class="form-group col-sm-12" id="sistema_motor">
+				    	<div class="form-group col-sm-12" id="instalacion">
 				    		<div class="col-sm-3">
 				    		<label>Tipo Instalacion</label>
 				    		</div>
@@ -307,7 +307,7 @@
 						    	</select>
 					    	</div>
 				    	</div>
-				    	<div class="form-group col-sm-12" id="sistema_motor">
+				    	<div class="form-group col-sm-12" id="sistema_motor" >
 				    		<div class="form-group col-sm-3"><label>Sistema</label></div>
 				    		<div class="form-group col-sm-3">
 						    	<select id="da_sistema" class="form-control" onchange="sistema(this.value);adicional('Sistema', this.value,'')" >
@@ -372,13 +372,12 @@
 			    			<div class="panel-title">Principales</div>
 						</div>
 						<div class="panel-body">
-
-							<div class="form-group col-sm-12" id="dap_mando" style="display:none;">
 							<div class="form-group col-sm-12" id="alert3" style="display:none;">
 					    		<div class="alerta">
 					    			<p>Verifica las opciones</p>
-					    		</div>
 					    	</div>
+					    	</div>
+							<div class="form-group col-sm-12" id="dap_mando" style="display:none;">
 					    	<div class="form-group col-sm-12">
 					    	<div class="col-sm-3 col-sm-offset-6" style="text-align: center;">
 					    	   <label></label>	
@@ -458,7 +457,7 @@
 							    </div>
 
 							    <div class="col-sm-3">
-							    	<select id="da_bolsillo_perfil" class="form-control" onchange="" >
+							    	<select id="da_bolsillo_perfil" class="form-control" onchange="perfil_telos(this.value); adicional('Perfil Telo', this.value, 'da_perf_bol_precio')" >
 							    		<option value="SELECCIONE">-- Seleccione --</option>
 							    		<option value="SI">SI</option>
 							    		<option value="NO">NO</option>
@@ -470,10 +469,10 @@
 							    </div>
 							  
 						    	<div class="col-sm-1" style="text-align:right;">
-							    	<label style="color:#CA0707;" id="da_cenefa_precio" >0.00</label>
+							    	<label style="color:#CA0707;" id="da_perf_bol_precio" >0.00</label>
 							    </div>
 							    <div class="col-sm-1" style="text-align:right;">
-								    <label id="h_cenefa_precio" style="display:non;">0.00</label>
+								    <label id="h_perf_bol_precio" style="display:non;">0.00</label>
 							    </div>
 							</div>
 							    

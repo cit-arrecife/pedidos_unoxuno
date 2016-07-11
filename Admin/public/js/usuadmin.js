@@ -12,16 +12,28 @@ function cargarusuarios(){
 				Json = JSON.parse(data);
 				$.each(Json, function(index, val){
 					var id = '<td style="text-align:center; display:none" width="1%">'+val.ID+'</td>';
-					var nom ='<td style="text-align:center;" width="20%">'+val.NOMBRE+'</td>';
-	                var cod  ='<td style="text-align:center;" width="20%">'+val.CODIGO+'</td>';
-	                var pass = '<td style="text-align:center;" width="20%">'+val.PASSWORD+'</td>';
+					var nom ='<td style="text-align:center;" width="25%">'+val.NOMBRE+'</td>';
+	                var cod  ='<td style="text-align:center;" width="25%">'+val.CODIGO+'</td>';
+	                var pass = '<td style="text-align:center;" width="25%">'+val.PASSWORD+'</td>';
 	                var boton ='<button id="btnVer'+val.ID+'" class="btn btn-danger" title="Ver" onclick="verdetalle('+val.ID+')">Ver</button>';
 	                var addBtn = '<td style="text-align:center">'+boton+'</td>';
 	                var total = '<tr class="lista" id="tr_'+val.ID+'">'+id+nom+cod+pass+addBtn+'</tr>';
 	                $('#detalleUsuario').append(total);
+	                scroll();
 				});
 			}	
 		});
+
+}
+function scroll(){
+	var alto= $('#userContent').height();
+	console.log('el widht es '+ alto );
+	if (alto > 379) {
+		$('#userContent').addClass('Scroller');
+
+	}else{
+		$('#userContent').removeClass('Scroller');		
+	}
 
 }
 
@@ -62,6 +74,7 @@ function GuardarNuevoUsuario(){
 					alert(data);
 					$('#nuevousuario').modal('hide');
 					cargarusuarios();
+					limpiarform();
 				}
 			});
 		}else{mensaje='Las contraseñas no coinciden';	}
@@ -144,6 +157,14 @@ function Eliminar(id){
 					$('#nuevousuario').modal('hide');
 					$('#modalok').modal('hide');
 					cargarusuarios();
+					scroll();
 				}
 			});
+}
+function limpiarform(){
+	 $( "#NUname" ).val('');
+	 $( "#NUuser" ).val('');
+	 $( "#NUpass" ).val('');
+	 $( "#NUpass2" ).val('');
+
 }
