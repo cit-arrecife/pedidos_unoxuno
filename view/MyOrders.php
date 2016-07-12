@@ -163,21 +163,29 @@
 						</div>
 						<div class="panel-body">
 							<form>
+							<div class="col-sm-12">	
 
-								<div class="form-group col-sm-4">
-							    	<div class="input_container">
-							    		<label>Código Pedido</label>
-							    		<input type="text" min="1" id="codigoPedido" name="incodigoPedido" onkeyup="BuscarProducto()" class="form-control" placeholder="Codigo del Pedido/Cotización"></input>
+								<div class="col-sm-4">
+										<input type="text" min="1" id="codigoPedido" name="incodigoPedido" onkeyup="paonde(this.value)" class="form-control" placeholder="Codigo del Pedido/Referencia"></input>	
+								</div>
+								<div class="col-sm-4">
+								<button class="btn btn-danger" type="button" onclick="BuscarProducto()" style="background-color:#CA0707 !important;">Buscar</button>
+								</div>
+								<!-- <div class="form-group col-sm-4">
+							    	<div class="">
+					 		    		<label>Código Pedido</label> 
+							    		
 							    	</div>
 						    	</div>
 
 						    	<div class="form-group col-sm-2">
 						    		<div class="input_container">
 							    		<br>
-						    			<button class="btn btn-danger" type="button" onclick="BuscarProducto()" style="background-color:#CA0707 !important;">Buscar</button>
+						    			
 						    		</div>
-						    	</div>
-						    	
+						    	</div> -->
+							</div>	
+								
 						    </form>
 						</div>
 					</div>
@@ -187,8 +195,9 @@
 				            
 							<thead>
 								<tr>
-									<th style="text-align:center; background-color:#CA0707; color:#FFF;" width="20%">Codigo</th>
-								    <th style="text-align:center; background-color:#CA0707; color:#FFF;" width="15%">Fecha</th>
+									<th style="text-align:center; background-color:#CA0707; color:#FFF;" width="7%">Codigo</th>
+									<th style="text-align:center; background-color:#CA0707; color:#FFF;" width="20%">Referencia</th>
+								    <th style="text-align:center; background-color:#CA0707; color:#FFF;" width="20%">Fecha</th>
 								    <th style="text-align:center; background-color:#CA0707; color:#FFF;" width="20%">Total</th>
 								    <th style="text-align:center; background-color:#CA0707; color:#FFF;" width="15%">Detalle</th>
 								</tr>

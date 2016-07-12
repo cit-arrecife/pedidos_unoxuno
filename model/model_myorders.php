@@ -21,7 +21,7 @@ ini_set('display_errors', '1');
 			//$sql="SELECT  IDPRODUCTO, DETALLE, CANTIDAD, ANCHO, ALTO, VALORUNIT, PRODUCTO
 			//	  FROM USUMVTRADE WHERE  NRODCTO = '$nrodcto'";
 
-			$sql="SELECT DISTINCT(T.NRODCTO), T.FECHA, T.BRUTO FROM TRADE T
+			$sql="SELECT DISTINCT(T.NRODCTO), T.REFERENCIAPEDIDO, T.FECHA, T.BRUTO FROM TRADE T
 				  JOIN MVTRADE M
 				  ON T.NRODCTO = M.NRODCTO
 				  AND M.FACTURADO ='0'
@@ -29,7 +29,7 @@ ini_set('display_errors', '1');
 				  AND M.TIPODCTO='PD'
 				  AND T.NIT ='$idcliente'";
 
-		
+			error_log($sql);
 			$result = odbc_exec($this->db->connect(), $sql);
 
 			return $result;

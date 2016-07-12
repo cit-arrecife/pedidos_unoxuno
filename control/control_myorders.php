@@ -19,6 +19,7 @@ ini_set('display_errors', '1');
 			if($Resultado){
 			while($row = odbc_fetch_array($Resultado)){
 				$response['NRODCTO']=$row['NRODCTO'];
+				$response['REFERENCIAPEDIDO']=$row['REFERENCIAPEDIDO'];
 				$response['FECHA']=$row['FECHA'];
 				$response['BRUTO']=$row['BRUTO'];
 				$json[]=$response;

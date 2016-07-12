@@ -13,14 +13,16 @@ function CargarPedidos(codigo){
 	      
 	        success:  function (response) {
 	        	var i=1;
+	        	console.log(response);
 	    	    Json = JSON.parse(response);		    	    
 				$.each(Json, function(index, val) {
 					var Cod ='<td style="text-align:center">'+val.NRODCTO+'</td>';
+					var Ref ='<td style="text-align:center">'+val.REFERENCIAPEDIDO+'</td>'; 
 					var Fec ='<td style="text-align:center">'+val.FECHA+'</td>';
 					var Tot ='<td style="text-align:center">'+val.BRUTO+'</td>';
 					var Btn = '<button id="btnVer'+val.NRODCTO+'" class="btn btn-danger" title="Ver" onclick="verDetalle('+val.NRODCTO+')">Ver</button>'; //<span class="glyphicon glyphicon-remove"></span>  -- 
 					var addBtn = '<td style="text-align:center">'+Btn+'</td>';
-					var detallePedido ="<tr>"+Cod+Fec+Tot+addBtn+"</tr>";
+					var detallePedido ="<tr>"+Cod+Ref+Fec+Tot+addBtn+"</tr>";
 				  	$('#detallePedido').append(detallePedido);
 				  	i++;				  
 				});
@@ -32,6 +34,39 @@ function CargarPedidos(codigo){
 	 	    }
  		}); // final
 }
+
+// function CargarPedidos(codigo){
+	
+// 	var idcliente = codigo;
+// 	//var nrodcto = $('#nro_documento').text();
+// 		$.ajax({
+// 	        data:  {opcion : 'CargarPedidos',
+// 	        		idcliente:idcliente},
+
+// 	        url:   '../control/control_myorders.php',
+// 	        type:  'post',
+	      
+// 	        success:  function (response) {
+// 	        	var i=1;
+// 	    	    Json = JSON.parse(response);		    	    
+// 				$.each(Json, function(index, val) {
+// 					var Cod ='<td style="text-align:center">'+val.NRODCTO+'</td>';
+// 					var Fec ='<td style="text-align:center">'+val.FECHA+'</td>';
+// 					var Tot ='<td style="text-align:center">'+val.BRUTO+'</td>';
+// 					var Btn = '<button id="btnVer'+val.NRODCTO+'" class="btn btn-danger" title="Ver" onclick="verDetalle('+val.NRODCTO+')">Ver</button>'; //<span class="glyphicon glyphicon-remove"></span>  -- 
+// 					var addBtn = '<td style="text-align:center">'+Btn+'</td>';
+// 					var detallePedido ="<tr>"+Cod+Fec+Tot+addBtn+"</tr>";
+// 				  	$('#detallePedido').append(detallePedido);
+// 				  	i++;				  
+// 				});
+
+// 				if(Json != null && Json != undefined){
+// 					jsonGLobal = Json;
+// 					//console.log(jsonGLobal);
+// 				}
+// 	 	    }
+//  		}); // final
+// }
 
 function verDetalle(numDocumento){
 	
@@ -70,31 +105,47 @@ function verDetalle(numDocumento){
 
 			$('#modalVerDetalle').modal({backdrop: 'static', keyboard: false});
  	    },
- 	    Done:function(){alert("WTF???....")}
+ 	    Done:function(){}
  	}); // final
 }
+
+
+
+function paonde(val){
+	if (!isNaN(val)) {
+		BuscarProducto();
+	}else{
+		BuscarProductoReferencia();
+	}
+
+}
+
+
+
+
 
 function BuscarProducto(){
     
     var i=1;
 	var codBuscar = $('input:text[name=incodigoPedido]').val();//$('#codigoPedido').val();
 	//alert(codBuscar);
-	console.log("Global");
-	console.log(jsonGLobal);
+//	console.log("Global");
+//	console.log(jsonGLobal);
 	if(codBuscar != "" && jsonGLobal != null && jsonGLobal != undefined){
 		$.each(jsonGLobal, function(index, val) {
 			var contNrodcto = val.NRODCTO;
-			console.log(val);
+	//		console.log(val);
 			if(contNrodcto.includes(codBuscar)){
 			  	if(i == 1){
 					$("#detallePedido").empty(); 
 			  	}
 				var Cod ='<td style="text-align:center">'+val.NRODCTO+'</td>';
+				var Ref ='<td style="text-align:center">'+val.REFERENCIAPEDIDO+'</td>'; 
 				var Fec ='<td style="text-align:center">'+val.FECHA+'</td>';
 				var Tot ='<td style="text-align:center">'+val.BRUTO+'</td>';
 				var Btn = '<button id="btnVer'+val.NRODCTO+'" class="btn btn-danger" title="Ver" onclick="verDetalle('+val.NRODCTO+')">Ver</button>'; //<span class="glyphicon glyphicon-remove"></span>  -- 
 				var addBtn = '<td style="text-align:center">'+Btn+'</td>';
-				var detallePedido ="<tr>"+Cod+Fec+Tot+addBtn+"</tr>";
+				var detallePedido ="<tr>"+Cod+Ref+Fec+Tot+addBtn+"</tr>";
 			  	$('#detallePedido').append(detallePedido);
 			  	i++;
 			}
@@ -104,17 +155,61 @@ function BuscarProducto(){
 			$("#detallePedido").empty(); 
 			$.each(jsonGLobal, function(index, val) {
 				var Cod ='<td style="text-align:center">'+val.NRODCTO+'</td>';
+				var Ref ='<td style="text-align:center">'+val.REFERENCIAPEDIDO+'</td>'; 
 				var Fec ='<td style="text-align:center">'+val.FECHA+'</td>';
 				var Tot ='<td style="text-align:center">'+val.BRUTO+'</td>';
 				var Btn = '<button id="btnVer'+val.NRODCTO+'" class="btn btn-danger" title="Ver" onclick="verDetalle('+val.NRODCTO+')">Ver</button>'; //<span class="glyphicon glyphicon-remove"></span>  -- 
 				var addBtn = '<td style="text-align:center">'+Btn+'</td>';
-				var detallePedido ="<tr>"+Cod+Fec+Tot+addBtn+"</tr>";
+				var detallePedido ="<tr>"+Cod+Ref+Fec+Tot+addBtn+"</tr>";
 			  	$('#detallePedido').append(detallePedido);
 			  	i++;
 			});		
 		}
 	}
 }
+
+
+// function BuscarProducto(){
+    
+//     var i=1;
+// 	var codBuscar = $('input:text[name=incodigoPedido]').val();//$('#codigoPedido').val();
+// 	//alert(codBuscar);
+// 	console.log("Global");
+// 	console.log(jsonGLobal);
+// 	if(codBuscar != "" && jsonGLobal != null && jsonGLobal != undefined){
+// 		$.each(jsonGLobal, function(index, val) {
+// 			var contNrodcto = val.NRODCTO;
+// 			console.log(val);
+// 			if(contNrodcto.includes(codBuscar)){
+// 			  	if(i == 1){
+// 					$("#detallePedido").empty(); 
+// 			  	}
+// 				var Cod ='<td style="text-align:center">'+val.NRODCTO+'</td>';
+// 				var Fec ='<td style="text-align:center">'+val.FECHA+'</td>';
+// 				var Tot ='<td style="text-align:center">'+val.BRUTO+'</td>';
+// 				var Btn = '<button id="btnVer'+val.NRODCTO+'" class="btn btn-danger" title="Ver" onclick="verDetalle('+val.NRODCTO+')">Ver</button>'; //<span class="glyphicon glyphicon-remove"></span>  -- 
+// 				var addBtn = '<td style="text-align:center">'+Btn+'</td>';
+// 				var detallePedido ="<tr>"+Cod+Fec+Tot+addBtn+"</tr>";
+// 			  	$('#detallePedido').append(detallePedido);
+// 			  	i++;
+// 			}
+// 		});
+// 	}else if(codBuscar == ""){
+// 		if(jsonGLobal != null && jsonGLobal != undefined){
+// 			$("#detallePedido").empty(); 
+// 			$.each(jsonGLobal, function(index, val) {
+// 				var Cod ='<td style="text-align:center">'+val.NRODCTO+'</td>';
+// 				var Fec ='<td style="text-align:center">'+val.FECHA+'</td>';
+// 				var Tot ='<td style="text-align:center">'+val.BRUTO+'</td>';
+// 				var Btn = '<button id="btnVer'+val.NRODCTO+'" class="btn btn-danger" title="Ver" onclick="verDetalle('+val.NRODCTO+')">Ver</button>'; //<span class="glyphicon glyphicon-remove"></span>  -- 
+// 				var addBtn = '<td style="text-align:center">'+Btn+'</td>';
+// 				var detallePedido ="<tr>"+Cod+Fec+Tot+addBtn+"</tr>";
+// 			  	$('#detallePedido').append(detallePedido);
+// 			  	i++;
+// 			});		
+// 		}
+// 	}
+// }
 
 
 
@@ -135,4 +230,51 @@ function OnChangeCodigoPedido(){
 		  	i++;
 		});		
 	}
+}
+
+
+
+
+
+function BuscarProductoReferencia(){
+    
+    var i=1;
+	var stringReferencia = $('input:text[name=incodigoPedido]').val();
+	
+	if(stringReferencia != "" && jsonGLobal != null && jsonGLobal != undefined){
+		$.each(jsonGLobal, function(index, val) {
+			var nombReferencia = val.REFERENCIAPEDIDO;
+			
+			if(nombReferencia.includes(stringReferencia)){
+			  	if(i == 1){
+					$("#detallePedido").empty(); 
+			  	}
+				var Cod ='<td style="text-align:center">'+val.NRODCTO+'</td>';
+				var Ref ='<td style="text-align:center">'+val.REFERENCIAPEDIDO+'</td>'; 
+				var Fec ='<td style="text-align:center">'+val.FECHA+'</td>';
+				var Tot ='<td style="text-align:center">'+val.BRUTO+'</td>';
+				var Btn = '<button id="btnVer'+val.NRODCTO+'" class="btn btn-danger" title="Ver" onclick="verDetalle('+val.NRODCTO+')">Ver</button>'; //<span class="glyphicon glyphicon-remove"></span>  -- 
+				var addBtn = '<td style="text-align:center">'+Btn+'</td>';
+				var detallePedido ="<tr>"+Cod+Ref+Fec+Tot+addBtn+"</tr>";
+			  	$('#detallePedido').append(detallePedido);
+			  	i++;
+			}
+		});
+	}else if(stringReferencia == ""){
+		if(jsonGLobal != null && jsonGLobal != undefined){
+			$("#detallePedido").empty(); 
+			$.each(jsonGLobal, function(index, val) {
+				var Cod ='<td style="text-align:center">'+val.NRODCTO+'</td>';
+				var Ref ='<td style="text-align:center">'+val.REFERENCIAPEDIDO+'</td>'; 
+				var Fec ='<td style="text-align:center">'+val.FECHA+'</td>';
+				var Tot ='<td style="text-align:center">'+val.BRUTO+'</td>';
+				var Btn = '<button id="btnVer'+val.NRODCTO+'" class="btn btn-danger" title="Ver" onclick="verDetalle('+val.NRODCTO+')">Ver</button>'; //<span class="glyphicon glyphicon-remove"></span>  -- 
+				var addBtn = '<td style="text-align:center">'+Btn+'</td>';
+				var detallePedido ="<tr>"+Cod+Ref+Fec+Tot+addBtn+"</tr>";
+			  	$('#detallePedido').append(detallePedido);
+			  	i++;
+			});		
+		}
+	}
+	
 }

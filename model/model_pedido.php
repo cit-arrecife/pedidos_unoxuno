@@ -10,7 +10,7 @@ class pedido {
 		$this->db->connect();
 	}
 
-	public function realizarPedido($codigo, $bru){
+	public function realizarPedido($codigo, $bru, $observacionP, $referenciaP){
 		$bruto = intval($bru);
 
 	$sql = "SELECT NRODCTO FROM USUTRADE WHERE CODCLIENTE ='$codigo' AND FACTURADO ='0'";
@@ -47,10 +47,10 @@ class pedido {
 		odbc_exec($this->db->connect(), $sql2);
 
 	$sql ="	INSERT INTO TRADE
-		   	(BRUTO, FECHA, NIT, NOTA, NRODCTO, ORIGEN, PASSWORDIN, TIPODCTO, TIPOMVTO)
+		   	(BRUTO, FECHA, NIT, NOTA, NRODCTO, ORIGEN, PASSWORDIN, TIPODCTO, TIPOMVTO, REFERENCIAPEDIDO )
 			VALUES
-			('$bruto', GETDATE(),'$codigo', 'PEDIDO WEB', ($tconsecut+1), 'FAC', 'WEBAPP', 'PD', '05')";
-	//		error_log($sql);
+			('$bruto', GETDATE(),'$codigo', '$observacionP', ($tconsecut+1), 'FAC', 'WEBAPP', 'PD', '05', '$referenciaP')";
+			error_log($sql);
 	odbc_exec($this->db->connect(), $sql);
 
 	

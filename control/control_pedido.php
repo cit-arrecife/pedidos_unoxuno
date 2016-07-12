@@ -7,7 +7,9 @@
 	if(isset($_POST['codigo'])){
 		$codigo =$_POST['codigo'];
 		$bruto =$_POST['bruto'];
-	$resultado = $m_pedido->realizarPedido($codigo, $bruto);
+		$referenciaP = $_POST['referenciaP'];
+		$observacionP = $_POST['observacionP'];
+	$resultado = $m_pedido->realizarPedido($codigo, $bruto, $observacionP, $referenciaP);
 	if ($resultado){
 		echo $resultado;
 		}
