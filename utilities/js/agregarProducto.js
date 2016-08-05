@@ -235,10 +235,27 @@ function validar(){
 			break;
 			case 'SHEER':
 				var mando =$('#da_mando').val();
+				var cabezal =$('#da_mismo_cabezal').val();
+				var soporte =$('#da_soporte_intermedio').val();
+				var item =$('#da_junto_item').val();
 				if(mando == 'SELECCIONE' )
 				{
 				 $('#modalError').modal({backdrop: 'static', keyboard: false});
 				 document.getElementById("alert3").style.display = "block";
+				}
+				else if (cabezal  !='SELECCIONE' && cabezal != 'NO APLICA'){
+					console.log(cabezal);
+					if( soporte =='SELECCIONE' || item== 'SELECCIONE'){
+						console.log(soporte+'  -  '+item);
+						$('#modalError').modal({backdrop: 'static', keyboard: false});
+				 		document.getElementById("alert3").style.display = "block";		
+					}
+					else
+					{
+					 document.getElementById("alert3").style.display = "none";
+					 passed++;
+					}
+
 				}
 				else
 				{
@@ -280,13 +297,11 @@ function limpiarCampos(){
 	    document.getElementById("datos_adicionales").style.display = "none";
 	    document.getElementById("datos_complementarios").style.display = "none";
 	    campos =[
-	    	'producto_tipo',
 	    	'producto_tipo_presentacion',
 	    	'producto_tipo_tela',
 	    	'producto_tela',
 	    	'producto_tela_color',
 	    	'da_perfil',
-	    	'da_direccion_tela',
 	    	'da_motor',
 	    	'da_color_acceso'
 	    	
@@ -306,10 +321,12 @@ function limpiarCampos(){
 
 
 	    var limpiar =[
+	    	'producto_tipo',
 	    	'da_soporte_intermedio',
 	    	'da_junto_item',
 	    	'da_instalacion',
 	    	'da_sistema',
+	    	'da_direccion_tela',
 	    	'da_mando',
 	    	'da_direccion_tela'
 	    	];

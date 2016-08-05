@@ -69,6 +69,7 @@
     <input type="text" id="codusu" style="display:none;"></input>
   </head>
   <body>
+  <!-- <button type="button" class="btn btn-success" onclick="porahora()">Abrir modal</button> -->
     <div class="col-sm-3">
             <!-- MENU_NAV -->
             <nav class="navbar navbar-default" role="navigation">
@@ -111,7 +112,9 @@
                     </div>
                     <div class="modal-body">
                         <div class="alert alert-success" role="alert" id="modal_error_mensaje">
-                        <strong id="nrodcto"></strong>
+                        <strong id="nrodcto"> 
+                        <img src="../utilities/images/load.gif" class="center-block" id="load">
+                        </strong>
                         </div>
                     </div>
                     <div class="modal-footer">

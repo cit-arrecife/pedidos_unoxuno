@@ -190,7 +190,7 @@
 			    	<div class="form-group col-sm-4">
 				    	<div class="input_container">
 				    		<label>Tipo de Presentación</label>
-				    		<select id="producto_tipo_presentacion" class="form-control" onchange="validar_tipo_presentacion(this.value);Perfil(this.value)">
+				    		<select id="producto_tipo_presentacion" class="form-control" onchange="validar_tipo_presentacion(this.value);Perfil(this.value);casetera()">
 				    		<option value="SELECCIONE">-- Seleccione --</option>
 				    		
 				    		</select>
@@ -208,8 +208,8 @@
 
 			    	<div class="form-group col-sm-8">
 				    	<div class="input_container">
-				    		<label>Tela</label>
-				    		<select id="producto_tela" class="form-control" onchange="validar_color_tela(this.value)">
+				    		<label>Referencia</label>
+				    		<select id="producto_tela" class="form-control" onchange="validar_color_tela(this.value);seleccionar_producto()">
 				    			<option value="SELECCIONE">-- Seleccione --</option>
 				    		</select>
 				    	</div>
@@ -218,7 +218,7 @@
 			    	<div class="form-group col-sm-4">
 				    	<div class="input_container">
 				    		<label>Color</label>
-				    		<select id="producto_tela_color" class="form-control" onchange="seleccionar_producto(this.value)">
+				    		<select id="producto_tela_color" class="form-control" onchange="seleccionar_producto()">
 				    			<option value="SELECCIONE">-- Seleccione --</option>
 				    		</select>
 				    	</div>
@@ -266,7 +266,7 @@
 					    	</div>
 
 					    	<div class="form-group col-sm-3">
-						    	<input type="number" min="0" id="producto_ancho" onkeyup="calcularValores()" onchange="calcularValores()" class="form-control" value="1.00" placeholder="Ancho">
+						    	<input type="number" min="0" id="producto_ancho" onkeyup="calcularValores()" onchange="calcularValores();perfil_telos()" class="form-control" value="1.00" placeholder="Ancho">
 					    	</div>
 
 					    	<div class="form-group col-sm-6">
@@ -324,7 +324,7 @@
 				    		<div class="form-group col-sm-1 col-sm-offset-11">
 						    	<label style="color:#CA0707;">Total</label>
 					    	</div><div class="form-group col-sm-9">
-						    	<label>Precio Unitario</label>
+						    	<label>Precio Publico</label>
 					    	</div>
 					    	
 					    	<div class="form-group col-sm-3" style="text-align:right;">
@@ -457,7 +457,7 @@
 							    </div>
 
 							    <div class="col-sm-3">
-							    	<select id="da_bolsillo_perfil" class="form-control" onchange="perfil_telos(this.value); adicional('Perfil Telo', this.value, 'da_perf_bol_precio')" >
+							    	<select id="da_bolsillo_perfil" class="form-control" onchange="perfil_telos(); adicional('Perfil Telo', this.value, 'da_perf_bol_precio')" >
 							    		<option value="SELECCIONE">-- Seleccione --</option>
 							    		<option value="SI">SI</option>
 							    		<option value="NO">NO</option>
@@ -478,7 +478,7 @@
 							    
 							<div class="form-group col-sm-12" id="dap_direccion_tela" style="display:none;">
 								<div class="col-sm-3">
-								    <label>Dirección de la Tela</label>
+								    <label>Sentido de la Tela</label>
 							    </div>
 
 							    <div class="col-sm-3">
@@ -502,7 +502,7 @@
 
 							<div class="form-group col-sm-12" id="dap_sentido" style="display:none;">
 								<div class="col-sm-3">
-								    <label>Sentido</label>
+								    <label>Tipo de Enrollado</label>
 							    </div>
 
 							    <div class="col-sm-3">
@@ -520,7 +520,7 @@
 							    </div>
 
 							    <div class="col-sm-3">
-							    	<select id="da_telos" class="form-control" onchange="adicional('Nro Telos', this.value,'')" >
+							    	<select id="da_telos" class="form-control" onchange="adicional('Nro Telos', this.value,'');perfil_telos()" >
 							    		<option value="SELECCIONE">-- Seleccione --</option>
 							    		<option value="2">2</option><option value="3">3</option>
 							    		<option value="4">4</option><option value="5">5</option>
@@ -571,7 +571,23 @@
 							    <div class="col-sm-1" style="text-align:right;">
 								    <label id="h_cenefa_precio" style="display:non;">0.00</label>
 							    </div>
-							</div>        
+							</div>    
+							<div class="form-group col-sm-12" id="dap_mismo_cabezal" style="display:none;">
+							    <div class="col-sm-3">
+								    <label>Mismo Cabezal</label>
+							    </div>
+
+							    <div class="col-sm-3">
+							    	<select id="da_mismo_cabezal" class="form-control" onchange="adicional('Cabezal', this.value,'')" >
+							    		<option value="SELECCIONE">-- Seleccione --</option>
+							    		<option value="JUNTO AL SIGUIENTE">JUNTO AL SIGUIENTE</option>
+							    		<option value="JUNTO AL ANTERIOR">JUNTO AL ANTERIOR</option>
+							    		<option value="JUNTO CON EL ANTERIOR Y SIGUIENTE">JUNTO CON EL ANTERIOR Y SIGUIENTE</option>
+							    		<option value="NO APLICA">NO APLICA</option>
+							    	</select>
+						    	</div>
+						    
+							</div>    
 							<div class="form-group col-sm-12" id="dap_soporte_intermedio" style="display:none;">
 							    <div class="col-sm-3">
 								    <label>Soporte Intermedio</label>
@@ -625,26 +641,20 @@
 							    		<option value="NO APLICA">NO APLICA</option>
 							    	</select>
 						    	</div>
-						    	
-
-							   
+				    							   
 							</div>
-
-							<div class="form-group col-sm-12" id="dap_mismo_cabezal" style="display:none;">
+							<div class="form-group col-sm-12" id="dap_casetera" style="display:none;">
+								 <div class="col-sm-3">
+								    <label>Cassetera</label>
+							    </div>
 							    <div class="col-sm-3">
-								    <label>Mismo Cabezal</label>
+							    	<select id="da_cassetera_referencia" class="form-control" onchange="adicional('Casetera', this.value)">
+							    		<option value="SELECCIONE">-- Seleccione --</option>
+						    			<option value="PLANA">PLANA</option>
+						    			<option value="NORMAL">NORMAL</option>
+						    		</select>
 							    </div>
 
-							    <div class="col-sm-3">
-							    	<select id="da_mismo_cabezal" class="form-control" onchange="adicional('Cabezal', this.value,'')" >
-							    		<option value="SELECCIONE">-- Seleccione --</option>
-							    		<option value="JUNTO AL SIGUIENTE">JUNTO AL SIGUIENTE</option>
-							    		<option value="JUNTO AL ANTERIOR">JUNTO AL ANTERIOR</option>
-							    		<option value="JUNTO CON EL ANTERIOR Y SIGUIENTE">JUNTO CON EL ANTERIOR Y SIGUIENTE</option>
-							    		<option value="NO APLICA">NO APLICA</option>
-							    	</select>
-						    	</div>
-						    
 							</div>
 
 						</div>
@@ -658,23 +668,21 @@
 
 							<div class="form-group col-sm-3">
 						    	<div class="input_container">
-						    		<label>Referencia</label>
-						    		<select id="da_cassetera_referencia" class="form-control" onchange="cargarNombreCassetera(this.value)">
+						    	<!-- 	<label>Referencia</label> -->
+						    		<select id="da_cassetera_referencia" class="form-control" onchange="adicional('Casetera', this.value)">
 						    			<option value="PLANA">PLANA</option>
 						    			<option value="NORMAL">NORMAL</option>
 						    		</select>
 						    	</div>
 					    	</div>
 
-					    	<div class="form-group col-sm-6">
+					    	<!-- <div class="form-group col-sm-6">
 						    	<div class="input_container">
 						    		<label>Nombre</label>
 						    		<select id="da_cassetera_nombre" class="form-control" onchange="cargarTipoCassetera(this.value)">
-						    			<option value="CASSETERA 100MM PLANA NEGRO">CASSETERA 100MM PLANA NEGRO</option>
-						    			<option value="CASSETERA 100MM PLANA BRONCE">CASSETERA 100MM PLANA BRONCE</option>
-						    			<option value="CASSETERA 100MM PLANA IVORY">CASSETERA 100MM PLANA IVORY</option>
-						    			<option value="CASSETERA 100MM PLANA SATIN">CASSETERA 100MM PLANA SATIN</option>
-						    			<option value="CASSETERA 100MM PLANA BLANCO">CASSETERA 100MM PLANA BLANCO</option>
+						    			<option value="PLANO">PLANO</option>
+						    			<option value="CURVO">CURVO</option>
+		
 						    		</select>
 						    	</div>
 					    	</div>
@@ -683,7 +691,7 @@
 						    	<label>Precio</label><br>
 						    	<label style="color:#CA0707;">$0.00</label>
 					    	</div>
-						
+						 -->
 						</div>
 					</div>
 
@@ -708,8 +716,8 @@
 							    <div class="col-sm-4">
 							    	<select id="da_motor_tipo" class="form-control" onchange="Llenar_motor(this.value)">
 							    		<option selected value="SELECCIONE" >-- Seleccione --</option>
-							    		<option value="ELECTRONICO">ELECTRONICO</option>
-							    		<option value="MECANICO">MECANICO</option>
+							    		<option value="INALAMBRICO">INALAMBRICO</option>
+							    		<option value="RADIOFRECUENCIA">RADIOFRECUENCIA</option>
 							    	</select>
 						    	</div>
 
@@ -738,7 +746,7 @@
 							   		<label id="Motor_valor_db">0.00</label>
 							    </div>
 							</div>
-							<div class="form-group col-sm-12">
+							<!-- <div class="form-group col-sm-12">
 							    <div class="col-sm-3">
 								    <label>Instalacion</label>
 							    </div>
@@ -749,7 +757,7 @@
 				    					<option value="PARED">TECHO</option>
 							    	</select>
 						    	</div>
-							</div>
+							</div> -->
 							<div  id="Datos" style="display:none;">
 							   <div class="Datos">
 								    <label style="color:#CA0707;">Activacion:</label>

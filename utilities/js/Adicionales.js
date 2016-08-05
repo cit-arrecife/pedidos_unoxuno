@@ -478,7 +478,15 @@
 		
 
 	}
-	function perfil_telos(valor){
+	function perfil_telos(){
+			var valor =$('#da_bolsillo_perfil').val();
+			var telos= $('#da_telos').val();
+			if(telos=='SELECCIONE'){
+				var nrotelos =1;
+			}else{
+				var nrotelos = $('#da_telos').val();
+			}
+
 			var perfil_standar = 20000;
 			var perfil_elite = 35000;
 			var tipo = $('#producto_tipo_presentacion').val();
@@ -493,12 +501,12 @@
             	cal();
 			}else if (tipo =='ESTANDAR') {
 				var ancho =$('#producto_ancho').val();
-				var valCenefa = ancho *perfil_standar;
+				var valCenefa = ancho *perfil_standar * nrotelos;
 				hAdicional.html(valCenefa);
 				cal();
 			}else if (tipo=='ELITE') {
 				var ancho =$('#producto_ancho').val();
-				var valCenefa = ancho * perfil_elite;
+				var valCenefa = ancho * perfil_elite * nrotelos;
 				hAdicional.html(valCenefa);
 				cal();
 			}

@@ -7,8 +7,8 @@ $m_pedido = new pedido();
 if (isset($_POST['codigo'])) {
 	$codigo       = $_POST['codigo'];
 	$bruto        = $_POST['bruto'];
-	$observacionP = $_POST['observacionP'];
 	$referenciaP  = $_POST['referenciaP'];
+	$observacionP = $_POST['observacionP'];
 	$resultado    = $m_pedido->realizarPedido($codigo, $bruto, $observacionP, $referenciaP);
 	if ($resultado) {
 		echo $resultado;

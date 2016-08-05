@@ -25,8 +25,8 @@ ini_set('display_errors', '1');
 		}
 
 		public function BuscarMotor($tipomotor, $tipoproducto){
-		$sql="SELECT descripcionMotor FROM MOTOR WHERE carreraMotor ='$tipomotor' AND tipoProducto='$tipoproducto'";
-			
+		$sql="SELECT descripcionMotor FROM MOTOR WHERE activacion ='$tipomotor' AND tipoProducto='$tipoproducto'";
+			error_log($sql);
 			$result = odbc_exec($this->db->connect(), $sql);
 			return $result;
 		}

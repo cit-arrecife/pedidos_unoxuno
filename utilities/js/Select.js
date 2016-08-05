@@ -184,12 +184,31 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 			}); // final del ajaz
 		}// final del else 
 	}
-	function seleccionar_producto(color){
+	function casetera(){
+
+		var tipo =$('#producto_tipo').val();
+		var presentacion =$('#producto_tipo_presentacion').val();
+
+		console.log(tipo +'  -  '+presentacion);;
+				
+				if(tipo=='ENROLLABLE'){
+					console.log('tipo');
+					if(presentacion=='PREMIUM'){
+						$('#dap_casetera').show();
+					}else{
+						$('#dap_casetera').hide();
+					}
+				}
+	}
+	function seleccionar_producto(){
+		
 		var tipoproducto = $('#producto_tipo').val();
 		var presentacionproducto = $('#producto_tipo_presentacion').val();
 		var tipoTelaProducto = $('#producto_tipo_tela').val();
 		var telaproducto = $('#producto_tela').val();
-		
+		var color =$('#producto_tela_color').val();
+
+
 
 		if(color=='SELECCIONE'){
 			document.getElementById("datos_iniciales").style.display = "none";
@@ -214,8 +233,8 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 		    			document.getElementById("datos_complementarios").style.display = "block";
 	    				productoPrecio = Json.Precio;
 	    				console.log(productoPrecio);
-		    			$('#producto_precio_lista').html(parseInt(productoPrecio));
-		    			$('#producto_precio_db').html(parseInt(productoPrecio));
+		    			$('#producto_precio_lista').html(parseInt(productoPrecio).toFixed(2));
+		    			$('#producto_precio_db').html(parseInt(productoPrecio).toFixed(2));
 		    			calcularValores();
 		        }
 			}); // final del ajaz
@@ -235,62 +254,132 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 		    			document.getElementById("datos_adicionales").style.display = "block";
 		    			document.getElementById("datos_complementarios").style.display = "block";
 	    				productoPrecio = Json.Precio;
-		    			$('#producto_precio_lista').html(parseInt(productoPrecio));
-		    			$('#producto_precio_db').html(parseInt(productoPrecio));
+		    			$('#producto_precio_lista').html(parseInt(productoPrecio).toFixed(2));
+		    			$('#producto_precio_db').html(parseInt(productoPrecio).toFixed(2));
 		    			calcularValores();
 		        }
 			}); // final del ajaz
 		}// final del else
 	}
 	function calcularValores(){
-
-		var productoPreciodb = $('#producto_precio_db').text();
-		var productoCantidad = $('#producto_cantidad').val();
-		var ancho = $('#producto_ancho').val();
-		var alto = $('#producto_alto').val();		
-		var dimenciones = ancho * alto;
-		var valproducto =(dimenciones * productoCantidad) * productoPreciodb;
-
-		$('#producto_precio_lista').text(valproducto);
-
-		var prodDescDist = $('#producto_descuento_distribuidor').val();
-		var prodDescAdi = $('#producto_descuento_adicional').val();
-
-		var total_desc = parseInt(prodDescDist)+parseInt(prodDescAdi);
-		var prodpreciodesc =valproducto - (valproducto *(total_desc /100));
-		$('#producto_precio_descuento').html(prodpreciodesc);
-
-
-		
-
-
-		var daProductoSubtotal = prodpreciodesc;
-		//console.log(daProductoSubtotal);
-		var daProductoIva = daProductoSubtotal * (16 / 100);
-		var daProductoTotal = daProductoSubtotal + daProductoIva;
-
-		$('#da_producto_subtotal').html(daProductoSubtotal);
-		$('#da_producto_iva').html(parseInt(daProductoIva));
-		$('#da_producto_total').html(daProductoTotal);
+		var tipo =$('#producto_tipo').val();
+		var color  =$('#producto_tela_color').val();
+		var telaproducto = $('#producto_tela').val();
+		if(tipo=='SHEER'){
+				var alto = $('#producto_alto').val();
+				var ancho = $('#producto_ancho').val();
+			 $.ajax({
+		        data:  {ancho:ancho,
+						alto:alto,
+						telaproducto: telaproducto,
+		        		 opcion: 9},
+		        url:   '../control/validar.php',
+		        type:  'post',
+		        success:  function (data) {
+						Json =JSON.parse(data);
+	    				productoPrecio = Json.Precio;
+		    			$('#producto_precio_lista').html(parseFloat(productoPrecio).toFixed(2));
+		    			$('#producto_precio_db').html(parseFloat(productoPrecio).toFixed(2));
+		    			
+		    			
+					   
+						var productoCantidad = $('#producto_cantidad').val();
+						var valproducto = productoCantidad * productoPrecio;
+						$('#producto_precio_lista').text(parseInt(valproducto).toFixed(2));
 
 
-		var cliProductoSubtotal = valproducto;
-		$('#da_cli_subtotal').html(cliProductoSubtotal);
-		$('#da_cli_iva').html(parseInt(cliProductoSubtotal*(16 /100)));
-		$('#da_cli_total').html(cliProductoSubtotal + cliProductoSubtotal*(16 /100));
+						var prodDescDist = $('#producto_descuento_distribuidor').val();
+						var prodDescAdi = $('#producto_descuento_adicional').val();
 
-		var nombreAdicional = $('#da_cover_light').val();
-		console.log('nombre adicional '+nombreAdicional);
-		if(nombreAdicional != 'SELECCIONE'){
-			cover_light();
-			 setTimeout ("sumarAdicionales('#da_cover_light_precio');", 500); 
+						var total_desc = parseInt(prodDescDist)+parseInt(prodDescAdi);
+						var prodpreciodesc =valproducto - (valproducto *(total_desc /100));
+						$('#producto_precio_descuento').html(parseInt(prodpreciodesc).toFixed(2));
+
+
+						var daProductoSubtotal = prodpreciodesc;
+						//console.log(daProductoSubtotal);
+						var daProductoIva = daProductoSubtotal * (16 / 100);
+						var daProductoTotal = daProductoSubtotal + daProductoIva;
+
+						$('#da_producto_subtotal').html(parseInt(daProductoSubtotal).toFixed(2));
+						$('#da_producto_iva').html(parseInt(daProductoIva).toFixed(2));
+						$('#da_producto_total').html(parseInt(daProductoTotal).toFixed(2));
+
+
+						var cliProductoSubtotal = valproducto;
+						$('#da_cli_subtotal').html(parseInt(cliProductoSubtotal).toFixed(2));
+						$('#da_cli_iva').html(parseInt(cliProductoSubtotal*(16 /100)).toFixed(2));
+						$('#da_cli_total').html(parseInt(cliProductoSubtotal + cliProductoSubtotal*(16 /100)).toFixed(2));
+
+						var nombreAdicional = $('#da_cover_light').val();
+						//console.log('nombre adicional '+nombreAdicional);
+						if(nombreAdicional != 'SELECCIONE'){
+							cover_light();
+							 setTimeout ("sumarAdicionales('#da_cover_light_precio');", 500); 
+						}
+						var nombrecenefa = $('#da_cenefa').val();
+						//console.log('nombre adicional '+nombreAdicional);
+						if(nombrecenefa != 'SELECCIONE'){
+							cenefa();
+							 setTimeout ("sumarAdicionales('#da_cenefa_precio');", 500); 
+						}
+
+
+		        }
+			}); // final del ajaz
+
+
+			
 		}
-		var nombrecenefa = $('#da_cenefa').val();
-		//console.log('nombre adicional '+nombreAdicional);
-		if(nombrecenefa != 'SELECCIONE'){
-			cenefa();
-			 setTimeout ("sumarAdicionales('#da_cenefa_precio');", 500); 
-		}
+		else{
+			var productoPreciodb = $('#producto_precio_db').text();
+			var productoCantidad = $('#producto_cantidad').val();
+			var ancho = $('#producto_ancho').val();
+			var alto = $('#producto_alto').val();		
+			var dimenciones = ancho * alto;
+			var valproducto =(dimenciones * productoCantidad) * productoPreciodb;
+
+			$('#producto_precio_lista').text(parseInt(valproducto).toFixed(2));
+
+			var prodDescDist = $('#producto_descuento_distribuidor').val();
+			var prodDescAdi = $('#producto_descuento_adicional').val();
+
+			var total_desc = parseInt(prodDescDist)+parseInt(prodDescAdi);
+			var prodpreciodesc =valproducto - (valproducto *(total_desc /100));
+			$('#producto_precio_descuento').html(parseInt(prodpreciodesc).toFixed(2));
+
+
+			var daProductoSubtotal = prodpreciodesc;
+			//console.log(daProductoSubtotal);
+			var daProductoIva = daProductoSubtotal * (16 / 100);
+			var daProductoTotal = daProductoSubtotal + daProductoIva;
+
+			$('#da_producto_subtotal').html(parseInt(daProductoSubtotal).toFixed(2));
+			$('#da_producto_iva').html(parseInt(daProductoIva).toFixed(2));
+			$('#da_producto_total').html(parseInt(daProductoTotal).toFixed(2));
+
+
+			var cliProductoSubtotal = valproducto;
+			$('#da_cli_subtotal').html(parseInt(cliProductoSubtotal).toFixed(2));
+			$('#da_cli_iva').html(parseInt(cliProductoSubtotal*(16 /100)).toFixed(2));
+			$('#da_cli_total').html(parseInt(cliProductoSubtotal + cliProductoSubtotal*(16 /100)).toFixed(2));
+
+			var nombreAdicional = $('#da_cover_light').val();
+			//console.log('nombre adicional '+nombreAdicional);
+			if(nombreAdicional != 'SELECCIONE'){
+				cover_light();
+				 setTimeout ("sumarAdicionales('#da_cover_light_precio');", 500); 
+			}
+			var nombrecenefa = $('#da_cenefa').val();
+			//console.log('nombre adicional '+nombreAdicional);
+			if(nombrecenefa != 'SELECCIONE'){
+				cenefa();
+				 setTimeout ("sumarAdicionales('#da_cenefa_precio');", 500); 
+			}
+
+			}	
+
+			
 
 	}
 
@@ -306,9 +395,9 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 		//console.log(ivaDes);
 		var TotalDes = subDes+ivaDes;
 		//console.log(TotalDes);
-		$('#da_producto_subtotal').html(subDes);
-		$('#da_producto_iva').html(parseInt(ivaDes));
-		$('#da_producto_total').html(TotalDes);
+		$('#da_producto_subtotal').html(parseInt(subDes).toFixed(2));
+		$('#da_producto_iva').html(parseInt(ivaDes).toFixed(2));
+		$('#da_producto_total').html(parseInt(TotalDes).toFixed(2));
 		console.log('este es el id '+id);
 		if(id=='#Motor_valor'){
 			var sindesc=parseInt($('#Motor_valor_db').text());
@@ -322,9 +411,9 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 
 		var subcli = parseInt($('#da_cli_subtotal').text());
 		var totcli = subcli+sindesc;
-		$('#da_cli_subtotal').html(totcli);
-		$('#da_cli_iva').html(parseInt(totcli*(16 /100)));
-		$('#da_cli_total').html(totcli + totcli*(16 /100));
+		$('#da_cli_subtotal').html(parseInt(totcli).toFixed(2));
+		$('#da_cli_iva').html(parseInt(totcli*(16 /100)).toFixed(2));
+		$('#da_cli_total').html(totcli + totcli*(16 /100).toFixed(2));
 
 	}
 
@@ -350,6 +439,8 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 				$('#dap_bolsillo').hide();
 				$('#dap_bolsillo2').hide();
 
+				
+
 			}
 			else if (tipoProducto == "SHEER")
 			{
@@ -369,6 +460,7 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 				$('#sistema_motor').show();
 				$('#dap_bolsillo').hide();
 				$('#dap_bolsillo2').hide();
+				$('#dap_casetera').show();
 			}
 			else if (tipoProducto == "PANEL JAPONES")
 			{
@@ -379,7 +471,7 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 				document.getElementById("dap_sentido").style.display = "none";
 
 				document.getElementById("dap_perfil").style.display = "block";
-				document.getElementById("dap_direccion_tela").style.display = "block";
+				document.getElementById("dap_direccion_tela").style.display = "none";
 				document.getElementById("dap_mando").style.display = "block";
 				document.getElementById("dap_telos").style.display = "block";
 				document.getElementById("dap_apertura").style.display = "block";
@@ -388,7 +480,7 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 				$('#sistema_motor').show();
 				$('#dap_bolsillo').hide();
 				$('#dap_bolsillo2').hide();
-
+				$('#dap_casetera').hide();
 			}
 			else if (tipoProducto=='TELOS') {
 				document.getElementById("dap_soporte_intermedio").style.display = "none";
@@ -404,6 +496,7 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 				$('#sistema_motor').hide();
 				$('#dap_bolsillo').show();
 				$('#dap_bolsillo2').show();
+				$('#dap_casetera').hide();
 
 
 				document.getElementById("dap_perfil").style.display = "none";
@@ -470,6 +563,13 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 					    			option.text = val.nombrePerfil;
 					    			select.add(option);
 								});
+
+								
+									 $('#da_bolsillo_perfil').prop('selectedIndex', 0);
+									 $('#h_perf_bol_precio').text('0.00');
+									 $('#da_perf_bol_precio').text('0.00');
+
+								
 								
 
 				        }
@@ -591,7 +691,7 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 					url:'../control/validar.php',
 					data:{opcion: 8, tipo:tipo},
 					success: function (data){
-						console.log(data);
+						//console.log(data);
 						Json = JSON.parse(data);
 						var select = document.getElementById("da_color_acceso");
 								while(select.options.length > 0)
@@ -603,7 +703,7 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 					    		option.text = "-- Seleccione --";
 					    		select.add(option);
 						$.each(Json, function(index, val){
-							console.log(val);
+						//	console.log(val);
 						var option = document.createElement('option');
 								option.value = val.COLOR;
 				    			option.text = val.COLOR;

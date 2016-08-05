@@ -64,7 +64,7 @@ function CargarEncabezado(codigo){
 
     	function calcularValores()
     	{
-    		console.log('Calcula Valores');
+    	//	console.log('Calcula Valores');
     		var filas = document.getElementById("detalleProducto").rows.length;
     		var subtotal = 0; var iva = 0; var total = 0;
    			//var id = '#val'+(contadorFilas+1)
@@ -74,12 +74,14 @@ function CargarEncabezado(codigo){
    			
     			iva = subtotal * 0.16;
     			total = subtotal + iva;
-    			console.log('sub '+subtotal+' iva '+ iva + ' total '+ total);
+    		//	console.log('sub '+subtotal+' iva '+ iva + ' total '+ total);
 	    	}
 
 	    	$('#ro_subtotal_distribuidor').html(subtotal);
 	    	$('#ro_iva_distribuidor').html(parseInt(iva));
 	    	$('#ro_total_distribuidor').html(total);
+
+	    	
     	}
 
 	function eliminarRowProducto(idproducto)
