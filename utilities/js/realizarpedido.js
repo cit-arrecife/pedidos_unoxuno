@@ -1,3 +1,4 @@
+document.write('<script src="../utilities/js/Adicionales.js" type="text/javascript"></script>');
 function realizarPedido(){
 
 
@@ -6,7 +7,7 @@ function realizarPedido(){
 	$('#Mfooter').hide();
 	$('#modalError').modal({backdrop: 'static', keyboard: false});
  	var codigo = $('#codusu').val();
- 	var bruto = $('#ro_subtotal_distribuidor').text();
+ 	var bruto = SinF($('#ro_subtotal_distribuidor').text());
  	var descu =$('#ro_total_distribuidor').text();
  	var referenciaP  = $('#referencias_order').val();
  	var observacionP = $('#observaciones_order').val();

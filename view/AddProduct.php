@@ -328,8 +328,8 @@
 					    	</div>
 					    	
 					    	<div class="form-group col-sm-3" style="text-align:right;">
-					    		<label id="producto_precio_db" style="display:none">0.00</label>
-						    	<label style="color:#CA0707;">$</label><label style="color:#CA0707;" id="producto_precio_lista">0.00</label>
+					    		<label id="producto_precio_db" style="display:none" >0</label>
+						    	<label style="color:#CA0707;">$</label><label style="color:#CA0707;" id="producto_precio_lista">0</label>
 					    	</div>
 
 					    	<div class="form-group col-sm-3">

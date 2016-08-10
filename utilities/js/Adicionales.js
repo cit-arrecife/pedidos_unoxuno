@@ -168,7 +168,7 @@
 
 					if (nombreAdicional == "SELECCIONE")
 					{
-					var value =$('#da_cover_light_precio').text();
+					var value =SinF($('#da_cover_light_precio').text());
 					//console.log(value);
 						if(value != 0){
 							restarAdicionales('#da_cover_light_precio');
@@ -188,7 +188,7 @@
 			    		var ancho =$('#producto_ancho').val();
 	                    if (jsonResponse.Success == 1) {
 	                    	var precioCover = jsonResponse.Precio * ancho;
-	                    	hAdicional.html(precioCover);
+	                    	hAdicional.html(ConF(precioCover));
 	                    	cal();
 
 	                    }
@@ -246,10 +246,10 @@
 					// precioTotalAdicional = precioAdicional - (precioAdicional * descuentoAdicional / 100);
 					// $('#da_soporte_intermedio_precio').html(precioTotalAdicional);
 
-					precioAdicional = $('#h_cover_light_precio').text();
+					precioAdicional = SinF($('#h_cover_light_precio').text());
 					descuentoAdicional = $('#da_cover_light_descuento').val();
 					precioTotalAdicional = precioAdicional - (precioAdicional * descuentoAdicional / 100);
-					$('#da_cover_light_precio').html(precioTotalAdicional);
+					$('#da_cover_light_precio').html(ConF(precioTotalAdicional));
 					
 					
 				}
@@ -282,22 +282,22 @@
 				}
 				else if (tipoProducto == "PANEL JAPONES") {
 
-					precioAdicional = $('#h_cenefa_precio').text();
+					precioAdicional = SinF($('#h_cenefa_precio').text());
 					descuentoAdicional = $('#da_cenefa_descuento').val();
 					precioTotalAdicional = precioAdicional - (precioAdicional * descuentoAdicional / 100);
-					$('#da_cenefa_precio').html(precioTotalAdicional);	
+					$('#da_cenefa_precio').html(ConF(precioTotalAdicional));	
 				}
 				else if (tipoProducto == "TELOS") {
-					precioAdicional = $('#h_perf_bol_precio').text();
+					precioAdicional = SinF($('#h_perf_bol_precio').text());
 					descuentoAdicional = $('#da_cenefa_descuento').val();
 					precioTotalAdicional = precioAdicional - (precioAdicional * descuentoAdicional / 100);
-					$('#da_perf_bol_precio').html(precioTotalAdicional);		
+					$('#da_perf_bol_precio').html(ConF(precioTotalAdicional));		
 				}
 			}
 			function Llenar_motor(tipomotor){
 				if(tipomotor=='SELECCIONE'){
-					var valor = parseInt($('#Motor_valor').text());
-					console.log('valor '+valor);
+					var valor = SinF($('#Motor_valor').text());
+					//console.log('valor '+valor);
 					if(valor != 0){
 						restarAdicionales('#Motor_valor');
 						$('#Motor_valor').text(0);
@@ -348,7 +348,7 @@
 			}
 			function precio_motor(motor){
 					if(motor != 'SELECCIONE' ){
-					var valor = parseInt($('#Motor_valor').text());
+					var valor = SinF($('#Motor_valor').text());
 				//	console.log('valor '+valor);
 					if(valor != 0){
 						restarAdicionales('#Motor_valor');
@@ -364,8 +364,8 @@
 					    
 					        success:  function (response) {
 								Json =JSON.parse(response);
-								$('#Motor_valor').text(Json.precioMotor);
-								$('#Motor_valor_db').text(Json.precioMotor);
+								$('#Motor_valor').text(ConF(Json.precioMotor));
+								$('#Motor_valor_db').text(ConF(Json.precioMotor));
 								descmotor();
 								detalle_motor(motor);
 
@@ -373,7 +373,7 @@
 						}); // final del ajaz
 					
 					}else{
-						value =$('#Motor_valor').text();
+						value =SinF($('#Motor_valor').text());
 						if(value != 0){
 							restarAdicionales('#Motor_valor');
 
@@ -411,20 +411,20 @@
 			}
 			function descmotor(){
 				//console.log('Entro a descmotor');
-				var precioOriginal = $('#Motor_valor_db').text();
+				var precioOriginal = SinF($('#Motor_valor_db').text());
 				var descuento = $('#da_motor_desc').val();
 				//console.log('Original '+ precioOriginal+ ' descuento '+ descuento);
 				var precioConDescuento = precioOriginal - (precioOriginal * (descuento /100));
 				//console.log(precioConDescuento);
-				 $('#Motor_valor').text(precioConDescuento);
+				 $('#Motor_valor').text(conF(precioConDescuento));
 
 			}
 		function restarAdicionales(id){
 		//valores antes de adicional;
-		var subAnt = parseInt($('#da_producto_subtotal').text());
+		var subAnt = SinF($('#da_producto_subtotal').text());
 		//datos del objeto
 	//	alert(id);
-		var ValorRestar=parseInt($(id).text());
+		var ValorRestar=SinF($(id).text());
 	//	console.log(ValorRestar);
 		var subDes = subAnt-ValorRestar;
 		//console.log(subDes);
@@ -432,25 +432,25 @@
 		//console.log(ivaDes);
 		var TotalDes = subDes+ivaDes;
 		//console.log(TotalDes);
-		$('#da_producto_subtotal').html(subDes);
-		$('#da_producto_iva').html(parseInt(ivaDes));
-		$('#da_producto_total').html(TotalDes);
+		$('#da_producto_subtotal').html(ConF(subDes));
+		$('#da_producto_iva').html(ConF(ivaDes));
+		$('#da_producto_total').html(ConF(TotalDes));
 
 		if(id=='#Motor_valor'){
-			var sindesc=parseInt($('#Motor_valor_db').text());
+			var sindesc=SinF($('#Motor_valor_db').text());
 		}else if (id=='#da_cover_light_precio') {
-			var sindesc=parseInt($('#h_cover_light_precio').text());
+			var sindesc=SinF($('#h_cover_light_precio').text());
 		}else if (id=='#da_cenefa_precio') {
-			var sindesc=parseInt($('#h_cenefa_precio').text());
+			var sindesc=SinF($('#h_cenefa_precio').text());
 		}else if (id=='#da_perf_bol_precio') {
-			var sindesc=parseInt($('#h_perf_bol_precio').text());
+			var sindesc=SinF($('#h_perf_bol_precio').text());
 		}
 
-		var subAntcli = parseInt($('#da_cli_subtotal').text());
+		var subAntcli = SinF($('#da_cli_subtotal').text());
 
-		$('#da_cli_subtotal').html(subAntcli-sindesc);
-		$('#da_cli_iva').html(parseInt(subAntcli-sindesc*(16 /100)));
-		$('#da_cli_total').html(subAntcli-sindesc + sindesc*(16 /100));
+		$('#da_cli_subtotal').html(ConF(subAntcli-sindesc));
+		$('#da_cli_iva').html(ConF(subAntcli-sindesc*(16 /100)));
+		$('#da_cli_total').html(ConF(subAntcli-sindesc + sindesc*(16 /100)));
 
 
 	}
@@ -472,7 +472,7 @@
 			{
 				var ancho =$('#producto_ancho').val();
 				var valCenefa = ancho *45000;
-				hAdicional.html(valCenefa);
+				hAdicional.html(ConF(valCenefa));
 				cal();
 			}
 		
@@ -507,7 +507,34 @@
 			}else if (tipo=='ELITE') {
 				var ancho =$('#producto_ancho').val();
 				var valCenefa = ancho * perfil_elite * nrotelos;
-				hAdicional.html(valCenefa);
+				hAdicional.html(ConF(valCenefa));
 				cal();
 			}
 		}
+
+		function ConF(numero){
+			console.log('entro a ConF');
+			console.log(numero);
+			numero = numero.toString();
+			var n = 0;    	var x = 3;    	var s = '.';    	var c = ',';
+		    var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\D' : '$') + ')',
+		        num = parseInt(numero).toFixed(Math.max(0, ~~n));
+			var formato = (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ','));	
+			console.log(formato);
+			return formato.toString();
+		}
+	    function SinF(valor){
+	    	var valorpuntos =valor;
+	    	var punto='si';
+	    	var sinpuntos =valorpuntos.replace('.','')
+	    	while (punto == 'si') {
+	    		if(sinpuntos.indexOf('.') != -1){
+					sinpuntos =sinpuntos.replace('.','')	
+					alert(sinpuntos);
+	    		}else  {
+	    			punto='no';
+	    		}
+	    	}
+	    	var valororiginal = parseInt(sinpuntos);
+	    	return valororiginal;
+    	}

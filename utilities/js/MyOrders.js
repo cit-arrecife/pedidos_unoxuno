@@ -1,3 +1,4 @@
+document.write('<script src="../utilities/js/Adicionales.js" type="text/javascript"></script>');
 var jsonGLobal = null;
 
 function CargarPedidos(codigo){
@@ -19,7 +20,7 @@ function CargarPedidos(codigo){
 					var Cod ='<td style="text-align:center">'+val.NRODCTO+'</td>';
 					var Ref ='<td style="text-align:center">'+val.REFERENCIAPEDIDO+'</td>'; 
 					var Fec ='<td style="text-align:center">'+val.FECHA+'</td>';
-					var Tot ='<td style="text-align:center">'+val.BRUTO+'</td>';
+					var Tot ='<td style="text-align:center">$ '+ConF(val.BRUTO)+'</td>';
 					var Btn = '<button id="btnVer'+val.NRODCTO+'" class="btn btn-danger" title="Ver" onclick="verDetalle('+val.NRODCTO+')">Ver</button>'; //<span class="glyphicon glyphicon-remove"></span>  -- 
 					var addBtn = '<td style="text-align:center">'+Btn+'</td>';
 					var detallePedido ="<tr>"+Cod+Ref+Fec+Tot+addBtn+"</tr>";

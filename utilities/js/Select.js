@@ -200,6 +200,9 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 					}
 				}
 	}
+
+
+
 	function seleccionar_producto(){
 		
 		var tipoproducto = $('#producto_tipo').val();
@@ -233,8 +236,8 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 		    			document.getElementById("datos_complementarios").style.display = "block";
 	    				productoPrecio = Json.Precio;
 	    				console.log(productoPrecio);
-		    			$('#producto_precio_lista').html(parseInt(productoPrecio).toFixed(2));
-		    			$('#producto_precio_db').html(parseInt(productoPrecio).toFixed(2));
+		    			$('#producto_precio_lista').html(ConF(productoPrecio));
+		    			$('#producto_precio_db').html(ConF(productoPrecio));
 		    			calcularValores();
 		        }
 			}); // final del ajaz
@@ -254,8 +257,8 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 		    			document.getElementById("datos_adicionales").style.display = "block";
 		    			document.getElementById("datos_complementarios").style.display = "block";
 	    				productoPrecio = Json.Precio;
-		    			$('#producto_precio_lista').html(parseInt(productoPrecio).toFixed(2));
-		    			$('#producto_precio_db').html(parseInt(productoPrecio).toFixed(2));
+		    			$('#producto_precio_lista').html(ConF(productoPrecio));
+		    			$('#producto_precio_db').html(ConF(productoPrecio));
 		    			calcularValores();
 		        }
 			}); // final del ajaz
@@ -278,14 +281,14 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 		        success:  function (data) {
 						Json =JSON.parse(data);
 	    				productoPrecio = Json.Precio;
-		    			$('#producto_precio_lista').html(parseFloat(productoPrecio).toFixed(2));
-		    			$('#producto_precio_db').html(parseFloat(productoPrecio).toFixed(2));
+		    			$('#producto_precio_lista').html(ConF(productoPrecio));
+		    			$('#producto_precio_db').html(ConF(productoPrecio));
 		    			
 		    			
 					   
 						var productoCantidad = $('#producto_cantidad').val();
 						var valproducto = productoCantidad * productoPrecio;
-						$('#producto_precio_lista').text(parseInt(valproducto).toFixed(2));
+						$('#producto_precio_lista').text(ConF(productoPrecio));
 
 
 						var prodDescDist = $('#producto_descuento_distribuidor').val();
@@ -293,7 +296,7 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 
 						var total_desc = parseInt(prodDescDist)+parseInt(prodDescAdi);
 						var prodpreciodesc =valproducto - (valproducto *(total_desc /100));
-						$('#producto_precio_descuento').html(parseInt(prodpreciodesc).toFixed(2));
+						$('#producto_precio_descuento').html(ConF(prodpreciodesc));
 
 
 						var daProductoSubtotal = prodpreciodesc;
@@ -301,15 +304,15 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 						var daProductoIva = daProductoSubtotal * (16 / 100);
 						var daProductoTotal = daProductoSubtotal + daProductoIva;
 
-						$('#da_producto_subtotal').html(parseInt(daProductoSubtotal).toFixed(2));
-						$('#da_producto_iva').html(parseInt(daProductoIva).toFixed(2));
-						$('#da_producto_total').html(parseInt(daProductoTotal).toFixed(2));
+						$('#da_producto_subtotal').html(ConF(daProductoSubtotal));
+						$('#da_producto_iva').html(ConF(daProductoIva));
+						$('#da_producto_total').html(ConF(daProductoTotal));
 
 
 						var cliProductoSubtotal = valproducto;
-						$('#da_cli_subtotal').html(parseInt(cliProductoSubtotal).toFixed(2));
-						$('#da_cli_iva').html(parseInt(cliProductoSubtotal*(16 /100)).toFixed(2));
-						$('#da_cli_total').html(parseInt(cliProductoSubtotal + cliProductoSubtotal*(16 /100)).toFixed(2));
+						$('#da_cli_subtotal').html(ConF(cliProductoSubtotal));
+						$('#da_cli_iva').html(ConF(cliProductoSubtotal*(16 /100)));
+						$('#da_cli_total').html(ConF(cliProductoSubtotal + cliProductoSubtotal*(16 /100)));
 
 						var nombreAdicional = $('#da_cover_light').val();
 						//console.log('nombre adicional '+nombreAdicional);
@@ -332,21 +335,21 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 			
 		}
 		else{
-			var productoPreciodb = $('#producto_precio_db').text();
+			var productoPreciodb = SinF($('#producto_precio_db').text());
 			var productoCantidad = $('#producto_cantidad').val();
 			var ancho = $('#producto_ancho').val();
 			var alto = $('#producto_alto').val();		
 			var dimenciones = ancho * alto;
 			var valproducto =(dimenciones * productoCantidad) * productoPreciodb;
 
-			$('#producto_precio_lista').text(parseInt(valproducto).toFixed(2));
+			$('#producto_precio_lista').text(ConF(valproducto));
 
 			var prodDescDist = $('#producto_descuento_distribuidor').val();
 			var prodDescAdi = $('#producto_descuento_adicional').val();
 
 			var total_desc = parseInt(prodDescDist)+parseInt(prodDescAdi);
 			var prodpreciodesc =valproducto - (valproducto *(total_desc /100));
-			$('#producto_precio_descuento').html(parseInt(prodpreciodesc).toFixed(2));
+			$('#producto_precio_descuento').html(ConF(prodpreciodesc));
 
 
 			var daProductoSubtotal = prodpreciodesc;
@@ -354,15 +357,15 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 			var daProductoIva = daProductoSubtotal * (16 / 100);
 			var daProductoTotal = daProductoSubtotal + daProductoIva;
 
-			$('#da_producto_subtotal').html(parseInt(daProductoSubtotal).toFixed(2));
-			$('#da_producto_iva').html(parseInt(daProductoIva).toFixed(2));
-			$('#da_producto_total').html(parseInt(daProductoTotal).toFixed(2));
+			$('#da_producto_subtotal').html(ConF(daProductoSubtotal));
+			$('#da_producto_iva').html(ConF(daProductoIva));
+			$('#da_producto_total').html(ConF(daProductoTotal));
 
 
 			var cliProductoSubtotal = valproducto;
-			$('#da_cli_subtotal').html(parseInt(cliProductoSubtotal).toFixed(2));
-			$('#da_cli_iva').html(parseInt(cliProductoSubtotal*(16 /100)).toFixed(2));
-			$('#da_cli_total').html(parseInt(cliProductoSubtotal + cliProductoSubtotal*(16 /100)).toFixed(2));
+			$('#da_cli_subtotal').html(ConF(cliProductoSubtotal));
+			$('#da_cli_iva').html(ConF(cliProductoSubtotal*(16 /100)));
+			$('#da_cli_total').html(ConF(cliProductoSubtotal + cliProductoSubtotal*(16 /100)));
 
 			var nombreAdicional = $('#da_cover_light').val();
 			//console.log('nombre adicional '+nombreAdicional);
@@ -385,9 +388,9 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 
 	function sumarAdicionales(id){
 		//valores antes de adicional;
-		var subAnt = parseInt($('#da_producto_subtotal').text());
+		var subAnt = parseInt(SinF($('#da_producto_subtotal').text()));
 		//datos del objeto
-		var ValorAgregar=parseInt($(id).text());
+		var ValorAgregar=parseInt(SinF($(id).text()));
 		//console.log(ValorAgregar);
 		var subDes = subAnt+ValorAgregar;
 		//console.log(subDes);
@@ -395,25 +398,25 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 		//console.log(ivaDes);
 		var TotalDes = subDes+ivaDes;
 		//console.log(TotalDes);
-		$('#da_producto_subtotal').html(parseInt(subDes).toFixed(2));
-		$('#da_producto_iva').html(parseInt(ivaDes).toFixed(2));
-		$('#da_producto_total').html(parseInt(TotalDes).toFixed(2));
+		$('#da_producto_subtotal').html(ConF(subDes));
+		$('#da_producto_iva').html(ConF(ivaDes));
+		$('#da_producto_total').html(ConF(TotalDes));
 		console.log('este es el id '+id);
 		if(id=='#Motor_valor'){
-			var sindesc=parseInt($('#Motor_valor_db').text());
+			var sindesc=parseInt(SinF($('#Motor_valor_db').text()));
 		}else if (id=='#da_cover_light_precio') {
-			var sindesc=parseInt($('#h_cover_light_precio').text());
+			var sindesc=parseInt(SinF($('#h_cover_light_precio').text()));
 		}else if (id=='#da_cenefa_precio') {
-			var sindesc=parseInt($('#h_cenefa_precio').text());
+			var sindesc=parseInt(SinF($('#h_cenefa_precio').text()));
 		}else if (id=='#da_perf_bol_precio') {
-			var sindesc=parseInt($('#h_perf_bol_precio').text());
+			var sindesc=parseInt(SinF($('#h_perf_bol_precio').text()));
 		}
 
-		var subcli = parseInt($('#da_cli_subtotal').text());
+		var subcli = SinF($('#da_cli_subtotal').text());
 		var totcli = subcli+sindesc;
-		$('#da_cli_subtotal').html(parseInt(totcli).toFixed(2));
-		$('#da_cli_iva').html(parseInt(totcli*(16 /100)).toFixed(2));
-		$('#da_cli_total').html(totcli + totcli*(16 /100).toFixed(2));
+		$('#da_cli_subtotal').html(ConF(totcli));
+		$('#da_cli_iva').html(ConF(totcli*(16 /100)));
+		$('#da_cli_total').html(ConF(totcli + totcli*(16 /100)));
 
 	}
 
