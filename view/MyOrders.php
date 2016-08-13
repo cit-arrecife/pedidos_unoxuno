@@ -21,7 +21,7 @@
     <script  type="text/javascript" >
         $(document).ready(function (){
                 var codigo ='<?php echo $_SESSION['usuario_codigo']; ?>';
-                console.log(codigo);
+             //   console.log(codigo);
                 //$('#codusu').val(codigo);
                 //CargarEncabezado(codigo);
                 CargarPedidos(codigo);

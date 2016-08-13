@@ -14,7 +14,7 @@ function CargarPedidos(codigo){
 	      
 	        success:  function (response) {
 	        	var i=1;
-	        	console.log(response);
+	        	//console.log(response);
 	    	    Json = JSON.parse(response);		    	    
 				$.each(Json, function(index, val) {
 					var Cod ='<td style="text-align:center">'+val.NRODCTO+'</td>';
@@ -92,10 +92,10 @@ function verDetalle(numDocumento){
 			$.each(Json, function(index, val) {
 				var Row ='<td style="text-align:center" id="td_itemProducto'+val.IDPRODUCTO+'">'+i+'</td>';
 				var RName ='<td style="text-align:center" class="txt">'+val.NOMBRE+'</td>';
-				var RCant ='<td style="text-align:center">'+val.CANTIDAD+'</td>';
+				var RCant ='<td style="text-align:center">'+parseInt(val.CANTIDAD).toFixed(0)+'</td>';
 				var RAnch='<td style="text-align:center">'+val.ANCHO+'</td>';
 				var RAlt='<td style="text-align:center">'+val.ALTO+'</td>';
-				var RVal='<td style="text-align:center" id="Val'+i+'">'+val.VALORUNIT+'</td>';
+				var RVal='<td style="text-align:center" id="Val'+i+'">'+ConF(val.VALORUNIT)+'</td>';
 				var RCaracte='<td style="text-align:center" class="txt">'+val.NOTA+'</td>';
 				var detalleProducto ="<tr id='tr_"+val.IDPRODUCTO+"'>"+Row+RName+RCant+RAnch+RAlt+RVal+RCaracte+"</tr>";
 				

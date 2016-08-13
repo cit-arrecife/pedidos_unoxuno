@@ -186,8 +186,9 @@
 			    	}).done(function(data) {
 			    		var jsonResponse = JSON.parse(data);
 			    		var ancho =$('#producto_ancho').val();
+			    		var alto =$('#producto_alto').val();
 	                    if (jsonResponse.Success == 1) {
-	                    	var precioCover = jsonResponse.Precio * ancho;
+	                    	var precioCover = jsonResponse.Precio * alto * 2;
 	                    	hAdicional.html(ConF(precioCover));
 	                    	cal();
 
@@ -513,14 +514,14 @@
 		}
 
 		function ConF(numero){
-			console.log('entro a ConF');
-			console.log(numero);
+			// console.log('entro a ConF');
+			// console.log(numero);
 			numero = numero.toString();
 			var n = 0;    	var x = 3;    	var s = '.';    	var c = ',';
 		    var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\D' : '$') + ')',
 		        num = parseInt(numero).toFixed(Math.max(0, ~~n));
 			var formato = (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ','));	
-			console.log(formato);
+			// console.log(formato);
 			return formato.toString();
 		}
 	    function SinF(valor){

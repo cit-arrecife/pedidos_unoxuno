@@ -73,7 +73,7 @@
 		$.each(Adicionales, function(index, val){
 			producto=producto+val+', ';
 		});
-		console.log('el producto '+ producto);
+	//	console.log('el producto '+ producto);
 		//console.log('hizo variables');
 		$.ajax({
 	        data:  {opcion : 'mvtrade',
@@ -202,8 +202,13 @@ function validar(){
 				var perfil =$('#da_perfil').val();
 				var sentido =$('#da_direccion_tela').val();
 				var mando =$('#da_mando').val();
+
+				if(presentacion=='PREMIUM' ){
+					perfil='';
+				}
+
 				
-				if(perfil == 'SELECCIONE' ||  sentido == 'SELECCIONE' || mando == 'SELECCIONE' || sistema == 'SELECCIONE')
+				if( perfil=='SELECCIONE' || sentido == 'SELECCIONE' || mando == 'SELECCIONE' || sistema == 'SELECCIONE')
 				{
 
 					 $('#modalError').modal({backdrop: 'static', keyboard: false});
@@ -244,9 +249,9 @@ function validar(){
 				 document.getElementById("alert3").style.display = "block";
 				}
 				else if (cabezal  !='SELECCIONE' && cabezal != 'NO APLICA'){
-					console.log(cabezal);
+					//console.log(cabezal);
 					if( soporte =='SELECCIONE' || item== 'SELECCIONE'){
-						console.log(soporte+'  -  '+item);
+						//console.log(soporte+'  -  '+item);
 						$('#modalError').modal({backdrop: 'static', keyboard: false});
 				 		document.getElementById("alert3").style.display = "block";		
 					}
@@ -267,7 +272,7 @@ function validar(){
 				var bolsillo =$('#da_bolsillo').val();
 				var telos  =$('#da_telos').val();
 				if(bolsillo=='SELECCIONE' || telos =='SELECCIONE'){
-					console.log('SI ENTRO A TELOS VALIDAR ERROR');
+					//console.log('SI ENTRO A TELOS VALIDAR ERROR');
 					 $('#modalError').modal({backdrop: 'static', keyboard: false});
 					 document.getElementById("alert3").style.display = "block";
 				}else{

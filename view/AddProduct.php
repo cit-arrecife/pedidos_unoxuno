@@ -648,10 +648,10 @@
 								    <label>Cassetera</label>
 							    </div>
 							    <div class="col-sm-3">
-							    	<select id="da_cassetera_referencia" class="form-control" onchange="adicional('Casetera', this.value)">
+							    	<select id="da_cassetera_referencia" class="form-control" onchange="adicional('Casetera', this.value,'')">
 							    		<option value="SELECCIONE">-- Seleccione --</option>
 						    			<option value="PLANA">PLANA</option>
-						    			<option value="NORMAL">NORMAL</option>
+						    			<option value="NORMAL">CURVO</option>
 						    		</select>
 							    </div>
 
@@ -660,22 +660,22 @@
 						</div>
 					</div>
 
-					<div class="panel panel-default" id="panel_cassetera" style="display:none;">
+				<!-- 	<div class="panel panel-default" id="panel_cassetera" style="display:none;">
 						<div class="panel-heading">
 			    			<div class="panel-title">Cassetera</div>
 						</div>
-						<div class="panel-body">
+						<div class="panel-body"> -->
 
-							<div class="form-group col-sm-3">
+							<!-- <div class="form-group col-sm-3">
 						    	<div class="input_container">
-						    	<!-- 	<label>Referencia</label> -->
-						    		<select id="da_cassetera_referencia" class="form-control" onchange="adicional('Casetera', this.value)">
+						    		<label>Referencia</label>
+						    		<select id="da_cassetera_referencia" class="form-control" onchange="adicional('Casetera', this.value,)">
 						    			<option value="PLANA">PLANA</option>
 						    			<option value="NORMAL">NORMAL</option>
 						    		</select>
 						    	</div>
 					    	</div>
-
+ -->
 					    	<!-- <div class="form-group col-sm-6">
 						    	<div class="input_container">
 						    		<label>Nombre</label>
@@ -692,8 +692,8 @@
 						    	<label style="color:#CA0707;">$0.00</label>
 					    	</div>
 						 -->
-						</div>
-					</div>
+					<!-- 	</div>
+					</div> -->
 
 					<div class="panel panel-default" id="panel_sistema" style="display:none;">
 						<div class="panel-heading">
@@ -716,7 +716,7 @@
 							    <div class="col-sm-4">
 							    	<select id="da_motor_tipo" class="form-control" onchange="Llenar_motor(this.value)">
 							    		<option selected value="SELECCIONE" >-- Seleccione --</option>
-							    		<option value="INALAMBRICO">INALAMBRICO</option>
+							    		<option value="ALAMBRICO">ALAMBRICO</option>
 							    		<option value="RADIOFRECUENCIA">RADIOFRECUENCIA</option>
 							    	</select>
 						    	</div>

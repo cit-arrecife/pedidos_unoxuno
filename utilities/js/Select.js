@@ -152,8 +152,8 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 		}else{
 			//console.log('la tela es '+ tela);
 			var tipo =$('#producto_tipo_tela').val();
-			console.log('el tipó ' + tipo);
-			console.log('la tela '+ tela);
+		//	console.log('el tipó ' + tipo);
+		//	console.log('la tela '+ tela);
 		    $.ajax({
 		        data:  {tipo: tipo, tela: tela, opcion: 4},
 		        url:   '../control/validar.php',
@@ -230,7 +230,7 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 		        type:  'post',
 		        success:  function (data) {
 						Json =JSON.parse(data);
-						console.log(Json.Precio);
+		//				console.log(Json.Precio);
 						document.getElementById("datos_iniciales").style.display = "block";
 		    			document.getElementById("datos_adicionales").style.display = "block";
 		    			document.getElementById("datos_complementarios").style.display = "block";
@@ -425,6 +425,7 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 		{
 		if (tipoProducto == "ENROLLABLE")
 			{
+				var presentacion = $('#producto_tipo_presentacion').val();
 				document.getElementById("dap_junto_item").style.display = "none";
 				document.getElementById("dap_mismo_cabezal").style.display = "none";
 				document.getElementById("dap_telos").style.display = "none";
@@ -442,7 +443,7 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 				$('#dap_bolsillo').hide();
 				$('#dap_bolsillo2').hide();
 
-				
+		
 
 			}
 			else if (tipoProducto == "SHEER")
@@ -531,7 +532,7 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 		}
 		function Perfil(tipoProducto){
 			var tipoproducto= tipoProducto;
-			console.log('tipo '+tipoProducto);
+			//console.log('tipo '+tipoProducto);
 				if(tipoproducto=='SELECCIONE'){
 					var select = document.getElementById("da_perfil");
 							while(select.options.length > 0)
@@ -543,47 +544,54 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 					    		option.text = "-- Seleccione --";
 					    		select.add(option);
 				}else{
-				    $.ajax({
-				        data:  {tipoproducto: tipoproducto, opcion: 6},
-				        url:   '../control/validar.php',
-				        type:  'post',
-				      
-				        success:  function (response) {
-								Json =JSON.parse(response);
-								var select = document.getElementById("da_perfil");
-								while(select.options.length > 0)
-								{                
-				    				select.remove(0);
-				    			}
-				    			var option = document.createElement('option');
-								option.value = "SELECCIONE";
-					    		option.text = "-- Seleccione --";
-					    		select.add(option);
-								$.each(Json, function(index, val) {
-							 //   	console.log(val.tipoPresentacionProducto);
-							    	var option = document.createElement('option');
-									option.value = val.nombrePerfil;
-					    			option.text = val.nombrePerfil;
-					    			select.add(option);
-								});
+					var presentacion = $('#producto_tipo_presentacion').val();
+					if(presentacion == 'PREMIUM'){
+						if(presentacion =='PREMIUM'){
+							document.getElementById("dap_perfil").style.display = "none";
+						}
+					}else{
+					    $.ajax({
+					        data:  {tipoproducto: tipoproducto, opcion: 6},
+					        url:   '../control/validar.php',
+					        type:  'post',
+					      
+					        success:  function (response) {
+									Json =JSON.parse(response);
+									var select = document.getElementById("da_perfil");
+									while(select.options.length > 0)
+									{                
+					    				select.remove(0);
+					    			}
+					    			var option = document.createElement('option');
+									option.value = "SELECCIONE";
+						    		option.text = "-- Seleccione --";
+						    		select.add(option);
+									$.each(Json, function(index, val) {
+								 //   	console.log(val.tipoPresentacionProducto);
+								    	var option = document.createElement('option');
+										option.value = val.nombrePerfil;
+						    			option.text = val.nombrePerfil;
+						    			select.add(option);
+									});
 
-								
-									 $('#da_bolsillo_perfil').prop('selectedIndex', 0);
-									 $('#h_perf_bol_precio').text('0.00');
-									 $('#da_perf_bol_precio').text('0.00');
+									
+										 $('#da_bolsillo_perfil').prop('selectedIndex', 0);
+										 $('#h_perf_bol_precio').text('0.00');
+										 $('#da_perf_bol_precio').text('0.00');
 
-								
-								
+									
+									
 
-				        }
-					}); // final del ajaz
-				}// final del else 
+					        }
+						}); // final del ajaz
+					}// final del else 
+				}
 				seleccionarTipoProducto(tipoproducto);
 				Bolsillo(tipoProducto);
 		}
 		function Bolsillo(tipoProducto){
 			var tipoproducto= tipoProducto;
-			console.log('tipo '+tipoProducto);
+		//	console.log('tipo '+tipoProducto);
 				if(tipoproducto=='SELECCIONE'){
 					var select = document.getElementById("da_bolsillo");
 							while(select.options.length > 0)
