@@ -365,7 +365,9 @@
 					    
 					        success:  function (response) {
 								Json =JSON.parse(response);
-								$('#Motor_valor').text(ConF(Json.precioMotor));
+								var desc=$('#producto_descuento_distribuidor').val();
+								var motordesc = Json.precioMotor *(desc/100);
+								$('#Motor_valor').text(ConF(Json.precioMotor-motordesc));
 								$('#Motor_valor_db').text(ConF(Json.precioMotor));
 								descmotor();
 								detalle_motor(motor);

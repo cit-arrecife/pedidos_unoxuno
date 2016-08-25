@@ -38,6 +38,14 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 					    			option.text = val.tipoPresentacionProducto;
 					    			select.add(option);
 								});
+								if(tipoproducto=='ENROLLABLE' || tipoproducto=='SHEER'){
+									$('#producto_ancho').val(1);
+									$('#producto_alto').val(1);
+								}else if (tipoproducto=='PANEL JAPONES') {
+									console.log('BE INSIDER');
+									$('#producto_ancho').val(parseFloat(1.60));
+									$('#producto_alto').val(parseFloat(1.60));
+								}
 								
 
 				        }
@@ -681,12 +689,25 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 		function sistema(sistema){
 			if (sistema=='MANUAL'){
 				document.getElementById("panel_sistema").style.display = "none";
+				$('#da_motor_tipo').prop('selectedIndex', 0);
+				var select = document.getElementById("da_motor");
+							while(select.options.length > 0)
+							{                
+			    				select.remove(0);
+			    			}
+			    			var option = document.createElement('option');
+							option.value = "SELECCIONE";
+				    		option.text = "-- Seleccione --";
+				    		select.add(option);
+				precio_motor('SELECCIONE');
+
+
 
 			}else if (sistema =='MOTORIZADO') {
 				document.getElementById("panel_sistema").style.display = "block";
 				
 			}else if (sistema=='SELECCIONE') {
-
+			document.getElementById("panel_sistema").style.display = "none";
 				
 			}
 
