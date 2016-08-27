@@ -222,31 +222,33 @@ include ('../utilities/db/db_session.php');
                         </div>
 
                         <div class="col-sm-4" style="text-align:right;">
-                            <label style="color:#ffffff;">Total Cliente</label>
+                            <label style="color:#000;">Total Cliente</label>
                         </div>
 
                         <div class="col-sm-4">
-                            <label style="color:#CA0707;">SubTotal</label>
+                            <label style="color:#000;">SubTotal</label>
                         </div>
 
                         <div class="col-sm-4" style="text-align:right;">
-                            <label style="color:#CA0707;">$ <label><label style="color:#CA0707;" id="ro_subtotal_distribuidor">0.00</label>
+                              <label style="color:#CA0707;">$ <label><label style="color:#CA0707;" id="ro_subtotal_cliente">0.00</label>
                         </div>
 
                         <div class="col-sm-4" style="text-align:right;">
-                            <label style="color:#ffffff;">$ <label><label style="color:#ffffff;" id="ro_subtotal_cliente">0.00</label>
+
+                            <label style="color:#000;">$ <label><label style="color:#000;" id="ro_subtotal_distribuidor">0.00</label>
                         </div>
 
                         <div class="col-sm-4">
-                            <label style="color:#CA0707;">IVA</label>
+                            <label style="color:#000;">IVA</label>
                         </div>
 
                         <div class="col-sm-4" style="text-align:right;">
-                            <label style="color:#CA0707;">$ <label><label style="color:#CA0707;" id="ro_iva_distribuidor">0.00</label>
+
+                             <label style="color:#CA0707;">$ <label><label style="color:#CA0707;" id="ro_iva_cliente">0.00</label>
                         </div>
 
                         <div class="col-sm-4" style="text-align:right;">
-                            <label style="color:#ffffff;">$ <label><label style="color:#ffffff;" id="ro_iva_cliente">0.00</label>
+                             <label style="color:#000;">$ <label><label style="color:#000;" id="ro_iva_distribuidor">0.00</label>
                         </div>
 
                         <div class="col-sm-12">
@@ -254,15 +256,16 @@ include ('../utilities/db/db_session.php');
                         </div>
 
                         <div class="col-sm-4">
-                            <label style="color:#CA0707;">Total Pedido</label>
+                            <label style="color:#000;">Total Pedido</label>
                         </div>
 
                         <div class="col-sm-4" style="text-align:right;">
-                            <label style="color:#CA0707;">$ <label><label style="color:#CA0707;" id="ro_total_distribuidor">0.00</label>
+                          <label style="color:#CA0707;">$ <label><label style="color:#CA0707;" id="ro_total_cliente">0.00</label>
                         </div>
 
                         <div class="col-sm-4" style="text-align:right;">
-                            <label style="color:#ffffff;">$ <label><label style="color:#ffffff;" id="ro_total_cliente">0.00</label>
+
+                              <label style="color:#000;">$ <label><label style="color:#000;" id="ro_total_distribuidor">0.00</label>
                         </div>
 
                     </div>

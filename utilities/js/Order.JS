@@ -10,6 +10,7 @@ function CargarEncabezado(codigo){
 	        type:  'post',
 	      
 	        success:  function (response) {
+	        	console.log(response);
 	        	Json = JSON.parse(response);	
 			$("#ro_detalle_fecha").html(Json.FECHA);
 			$('#nro_documento').text(Json.NRODCTO);
@@ -18,7 +19,7 @@ function CargarEncabezado(codigo){
 				        }
 		}); // final
 }
-
+	
 	
 	function CargarProductos(codigo){
 	
@@ -63,6 +64,20 @@ function CargarEncabezado(codigo){
 		 	}); // final
 	}
 
+	    function llamar_descu2(nombre, subtotal){
+			$.post("../control/control_propio.php",{ usuario_nombre:nombre }, function (data){
+				var jsonResponse = JSON.parse(data);
+				var descuento = parseInt(jsonResponse.Descu);
+
+					var dsubtotal =subtotal - subtotal*(descuento/100);
+			    	var diva =dsubtotal*0.16;
+			    	var dtotal= dsubtotal+diva;
+			    	$('#ro_subtotal_cliente').html(ConF(dsubtotal));
+			    	$('#ro_iva_cliente').html(ConF(diva));
+			    	$('#ro_total_cliente').html(ConF(dtotal));
+             });
+		}
+
     	function calcularValores()
     	{
     	//	console.log('Calcula Valores');
@@ -81,6 +96,14 @@ function CargarEncabezado(codigo){
 	    	$('#ro_subtotal_distribuidor').html(ConF(subtotal));
 	    	$('#ro_iva_distribuidor').html(ConF(iva));
 	    	$('#ro_total_distribuidor').html(ConF(total));
+
+	    	//precios con descuento 
+	    	llamar_descu2($('#ro_detalle_distribuidor').text(), subtotal);
+	    		
+	    		
+
+	    	
+
 
 	    	
     	}
@@ -107,3 +130,5 @@ function CargarEncabezado(codigo){
 		 	 setTimeout ("calcularValores();", 500);
     		
     	}
+
+

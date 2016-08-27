@@ -351,9 +351,9 @@
 					if(motor != 'SELECCIONE' ){
 					var valor = SinF($('#Motor_valor').text());
 				//	console.log('valor '+valor);
-					if(valor != 0){
-						restarAdicionales('#Motor_valor');
-					}
+						if(valor != 0){
+							restarAdicionales('#Motor_valor');
+						}
 					//	console.log('resto adicionales');
 						var tipoproducto =$('#producto_tipo').val();
 						 $.ajax({
@@ -533,7 +533,7 @@
 	    	while (punto == 'si') {
 	    		if(sinpuntos.indexOf('.') != -1){
 					sinpuntos =sinpuntos.replace('.','')	
-					alert(sinpuntos);
+					//alert(sinpuntos);
 	    		}else  {
 	    			punto='no';
 	    		}

@@ -266,7 +266,7 @@
 					    	</div>
 
 					    	<div class="form-group col-sm-3">
-						    	<input type="number" min="0" id="producto_ancho" onkeyup="calcularValores()" onchange="calcularValores();perfil_telos()" class="form-control" value="1.00" placeholder="Ancho">
+						    	<input type="number" min="1" id="producto_ancho" onkeyup="calcularValores()" onchange="calcularValores();perfil_telos()" class="form-control" value="1.00" placeholder="Ancho">
 					    	</div>
 
 					    	<div class="form-group col-sm-6">
@@ -278,7 +278,7 @@
 					    	</div>
 
 					    	<div class="form-group col-sm-3">
-						    	<input type="number" min="0" id="producto_alto" onkeyup="calcularValores()" onchange="calcularValores()" class="form-control" value="1.00" placeholder="Alto">
+						    	<input type="number" min="1" id="producto_alto" onkeyup="calcularValores()" onchange="calcularValores()" class="form-control" value="1.00" placeholder="Alto">
 					    	</div>
 
 					    	<div class="form-group col-sm-6">

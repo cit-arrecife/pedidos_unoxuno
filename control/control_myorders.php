@@ -22,6 +22,7 @@ ini_set('display_errors', '1');
 				$response['REFERENCIAPEDIDO']=$row['REFERENCIAPEDIDO'];
 				$response['FECHA']=$row['FECHA'];
 				$response['BRUTO']=$row['BRUTO'];
+				$response['DESCCOMER']=$row['DESCCOMER'];
 				$json[]=$response;
 			}
 				echo json_encode($json);

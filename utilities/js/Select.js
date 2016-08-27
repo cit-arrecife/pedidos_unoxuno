@@ -409,7 +409,7 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 		$('#da_producto_subtotal').html(ConF(subDes));
 		$('#da_producto_iva').html(ConF(ivaDes));
 		$('#da_producto_total').html(ConF(TotalDes));
-		console.log('este es el id '+id);
+	//	console.log('este es el id '+id);
 		if(id=='#Motor_valor'){
 			var sindesc=parseInt(SinF($('#Motor_valor_db').text()));
 		}else if (id=='#da_cover_light_precio') {
@@ -509,7 +509,9 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
 				$('#dap_bolsillo').show();
 				$('#dap_bolsillo2').show();
 				$('#dap_casetera').hide();
-
+				document.getElementById("panel_sistema").style.display = "none";
+				$('#da_sistema').prop('selectedIndex', 0);
+				precio_motor('SELECCIONE');
 
 				document.getElementById("dap_perfil").style.display = "none";
 				document.getElementById("dap_telos").style.display = "block";
@@ -535,6 +537,7 @@ document.write('<script src="../utilities/js/Adicionales.js" type="text/javascri
                 // $('#da_mismo_cabezal_descuento').val(parseInt(jsonResponse.Descu));
                 $('#da_motor_desc').val(parseInt(jsonResponse.Descu));
                 $('#da_cenefa_descuento').val(parseInt(jsonResponse.Descu));
+               
    
              });
 		}

@@ -100,7 +100,7 @@ class pedido {
 
 
 
- public function realizarPedido($codigo, $bru, $observacionP, $referenciaP){
+ public function realizarPedido($codigo, $bru, $observacionP, $referenciaP, $ivabruto){
 
 	$bruto = intval($bru);
  	// TRAER LOS DATOS DE LAS TABLAS TEMPORALES Y CREAR EL PRODUCTO EN MTMERCIA
@@ -158,7 +158,7 @@ class pedido {
 		$tipocar =$row['TIPOCAR'];	
 		$descuentomvtrade = $row['DESCCOMER'];	
 		$descuentotrade =($bruto * $descuentomvtrade)/100;
-		$ivabruto = $bruto *0.16;
+		$ivabruto = $ivabruto;
 
 
 	$sql ="	INSERT INTO TRADE

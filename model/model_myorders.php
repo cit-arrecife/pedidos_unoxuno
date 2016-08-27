@@ -21,13 +21,15 @@ ini_set('display_errors', '1');
 			//$sql="SELECT  IDPRODUCTO, DETALLE, CANTIDAD, ANCHO, ALTO, VALORUNIT, PRODUCTO
 			//	  FROM USUMVTRADE WHERE  NRODCTO = '$nrodcto'";
 
-			$sql="SELECT DISTINCT(T.NRODCTO), T.REFERENCIAPEDIDO, T.FECHA, T.BRUTO FROM TRADE T
+			$sql="SELECT DISTINCT(T.NRODCTO), T.REFERENCIAPEDIDO, T.FECHA, T.BRUTO, C.DESCCOMER FROM TRADE T
 				  JOIN MVTRADE M
 				  ON T.NRODCTO = M.NRODCTO
 				  AND M.FACTURADO ='0'
 				  AND M.ORIGEN ='FAC'
 				  AND M.TIPODCTO='PD'
-				  AND T.NIT ='$idcliente'";
+				  AND T.NIT ='$idcliente'
+				  JOIN MTPROCLI C
+				  ON T.NIT = C.NIT";
 
 			error_log($sql);
 			$result = odbc_exec($this->db->connect(), $sql);

@@ -1,6 +1,6 @@
 document.write('<script src="../utilities/js/Adicionales.js" type="text/javascript"></script>');
 var jsonGLobal = null;
-
+var valDescuento;
 function CargarPedidos(codigo){
 	
 	var idcliente = codigo;
@@ -15,15 +15,16 @@ function CargarPedidos(codigo){
 	        success:  function (response) {
 	        	var i=1;
 	        	//console.log(response);
-	    	    Json = JSON.parse(response);		    	    
+	    	    Json = JSON.parse(response);	    	    		    	    
 				$.each(Json, function(index, val) {
 					var Cod ='<td style="text-align:center">'+val.NRODCTO+'</td>';
 					var Ref ='<td style="text-align:center">'+val.REFERENCIAPEDIDO+'</td>'; 
 					var Fec ='<td style="text-align:center">'+val.FECHA+'</td>';
-					var Tot ='<td style="text-align:center">$ '+ConF(val.BRUTO)+'</td>';
+					var Tot ='<td style="text-align:center">$ '+ConF(((val.BRUTO-(val.BRUTO*val.DESCCOMER/100))*1.16))+'</td>';
 					var Btn = '<button id="btnVer'+val.NRODCTO+'" class="btn btn-danger" title="Ver" onclick="verDetalle('+val.NRODCTO+')">Ver</button>'; //<span class="glyphicon glyphicon-remove"></span>  -- 
 					var addBtn = '<td style="text-align:center">'+Btn+'</td>';
 					var detallePedido ="<tr>"+Cod+Ref+Fec+Tot+addBtn+"</tr>";
+					valDescuento = val.DESCCOMER;
 				  	$('#detallePedido').append(detallePedido);
 				  	i++;				  
 				});
@@ -95,7 +96,7 @@ function verDetalle(numDocumento){
 				var RCant ='<td style="text-align:center">'+parseInt(val.CANTIDAD).toFixed(0)+'</td>';
 				var RAnch='<td style="text-align:center">'+val.ANCHO+'</td>';
 				var RAlt='<td style="text-align:center">'+val.ALTO+'</td>';
-				var RVal='<td style="text-align:center" id="Val'+i+'">'+ConF(val.VALORUNIT)+'</td>';
+				var RVal='<td style="text-align:center" id="Val'+i+'">'+ConF((val.VALORUNIT-(val.VALORUNIT*valDescuento/100)))+'</td>';
 				var RCaracte='<td style="text-align:center" class="txt">'+val.NOTA+'</td>';
 				var detalleProducto ="<tr id='tr_"+val.IDPRODUCTO+"'>"+Row+RName+RCant+RAnch+RAlt+RVal+RCaracte+"</tr>";
 				
@@ -140,10 +141,11 @@ function BuscarProducto(){
 			  	if(i == 1){
 					$("#detallePedido").empty(); 
 			  	}
+
 				var Cod ='<td style="text-align:center">'+val.NRODCTO+'</td>';
 				var Ref ='<td style="text-align:center">'+val.REFERENCIAPEDIDO+'</td>'; 
 				var Fec ='<td style="text-align:center">'+val.FECHA+'</td>';
-				var Tot ='<td style="text-align:center">'+val.BRUTO+'</td>';
+				var Tot ='<td style="text-align:center">'+ConF(((val.BRUTO-(val.BRUTO*val.DESCCOMER/100))*1.16)) +'</td>';
 				var Btn = '<button id="btnVer'+val.NRODCTO+'" class="btn btn-danger" title="Ver" onclick="verDetalle('+val.NRODCTO+')">Ver</button>'; //<span class="glyphicon glyphicon-remove"></span>  -- 
 				var addBtn = '<td style="text-align:center">'+Btn+'</td>';
 				var detallePedido ="<tr>"+Cod+Ref+Fec+Tot+addBtn+"</tr>";
@@ -158,7 +160,7 @@ function BuscarProducto(){
 				var Cod ='<td style="text-align:center">'+val.NRODCTO+'</td>';
 				var Ref ='<td style="text-align:center">'+val.REFERENCIAPEDIDO+'</td>'; 
 				var Fec ='<td style="text-align:center">'+val.FECHA+'</td>';
-				var Tot ='<td style="text-align:center">'+val.BRUTO+'</td>';
+				var Tot ='<td style="text-align:center">'+ConF(((val.BRUTO-(val.BRUTO*val.DESCCOMER/100))*1.16))+'</td>';
 				var Btn = '<button id="btnVer'+val.NRODCTO+'" class="btn btn-danger" title="Ver" onclick="verDetalle('+val.NRODCTO+')">Ver</button>'; //<span class="glyphicon glyphicon-remove"></span>  -- 
 				var addBtn = '<td style="text-align:center">'+Btn+'</td>';
 				var detallePedido ="<tr>"+Cod+Ref+Fec+Tot+addBtn+"</tr>";
@@ -253,7 +255,7 @@ function BuscarProductoReferencia(){
 				var Cod ='<td style="text-align:center">'+val.NRODCTO+'</td>';
 				var Ref ='<td style="text-align:center">'+val.REFERENCIAPEDIDO+'</td>'; 
 				var Fec ='<td style="text-align:center">'+val.FECHA+'</td>';
-				var Tot ='<td style="text-align:center">'+val.BRUTO+'</td>';
+				var Tot ='<td style="text-align:center">'+ConF(((val.BRUTO-(val.BRUTO*val.DESCCOMER/100))*1.16))+'</td>';
 				var Btn = '<button id="btnVer'+val.NRODCTO+'" class="btn btn-danger" title="Ver" onclick="verDetalle('+val.NRODCTO+')">Ver</button>'; //<span class="glyphicon glyphicon-remove"></span>  -- 
 				var addBtn = '<td style="text-align:center">'+Btn+'</td>';
 				var detallePedido ="<tr>"+Cod+Ref+Fec+Tot+addBtn+"</tr>";
@@ -268,7 +270,7 @@ function BuscarProductoReferencia(){
 				var Cod ='<td style="text-align:center">'+val.NRODCTO+'</td>';
 				var Ref ='<td style="text-align:center">'+val.REFERENCIAPEDIDO+'</td>'; 
 				var Fec ='<td style="text-align:center">'+val.FECHA+'</td>';
-				var Tot ='<td style="text-align:center">'+val.BRUTO+'</td>';
+				var Tot ='<td style="text-align:center">'+ConF(((val.BRUTO-(val.BRUTO*val.DESCCOMER/100))*1.16))+'</td>';
 				var Btn = '<button id="btnVer'+val.NRODCTO+'" class="btn btn-danger" title="Ver" onclick="verDetalle('+val.NRODCTO+')">Ver</button>'; //<span class="glyphicon glyphicon-remove"></span>  -- 
 				var addBtn = '<td style="text-align:center">'+Btn+'</td>';
 				var detallePedido ="<tr>"+Cod+Ref+Fec+Tot+addBtn+"</tr>";
